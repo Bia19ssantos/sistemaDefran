@@ -104,21 +104,28 @@ with aba2:
         
         submit = st.form_submit_button("Salvar Alteração")
 
-    if submit:
+  if submit:
         try:
+
             sheet = client.open("estoque_defran").sheet1
             cell = sheet.find(id_i) 
+            
             if cell:
+
                 sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, float(qtd_i)]])
                 st.success(f"Item {id_i} atualizado!")
             else:
+
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
                 st.success(f"Novo item {id_i} adicionado!")
-            
-            # Limpeza consolidada
+
             st.cache_data.clear()
-            st.session_state.ultima_selecao = None
-            st.session_state.busca_estoque = "" 
+            st.session_state.ultima_selecao = None 
+            
+            if "busca_estoque" in st.session_state:
+                del st.session_state["busca_estoque"]
+            
             st.rerun()
+            
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
