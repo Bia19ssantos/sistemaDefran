@@ -26,10 +26,10 @@ with col4:
 st.markdown("---") # Linha divisória
 
 # Configuração da página
-st.set_page_config(page_title="Consultas Defran", layout="centered")
+st.set_page_config(page_title="Consultar Itens", layout="centered")
 
-st.title("📊 Consultas Defran")
-st.sidebar.header("Configurações")
+st.title("📊 Consultar Itens")
+st.sidebar.header("Consultas")
 
 # Função para carregar os dados
 def carregar_dados():
