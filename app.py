@@ -2,15 +2,20 @@ import streamlit as st
 import pandas as pd
 import os
 
-# Configuração inicial
+# Configuração da página
 st.set_page_config(page_title="Consultas Defran", layout="centered")
 
 st.title("📊 Consultas Defran")
 st.sidebar.header("Configurações")
 
-# 1. Carregamento dos arquivos (coloque os CSVs na mesma pasta do script)
-# Se estiverem no Drive, você pode baixar a pasta para o seu computador
+# Função para carregar os dados
 def carregar_dados():
+    # Defina os nomes das colunas exatamente como no seu banco
+    colunas = [
+        'id', 'ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 
+        'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda'
+    ]
+    
     arquivos = {
         "Produtos Gunnebo": "prod_gunnebo.csv",
         "Produtos Crosby": "prod_crosby.csv",
@@ -19,33 +24,61 @@ def carregar_dados():
     
     dados = {}
     for nome, arquivo in arquivos.items():
-        # Construímos o caminho completo usando a pasta 'dados/'
         caminho_completo = f"dados/{arquivo}"
         
         if os.path.exists(caminho_completo):
-        
-            dados[nome] = pd.read_csv(caminho_completo, sep=';', encoding='latin1')
+            # Lemos informando que não tem cabeçalho (header=None) e passando nossa lista de colunas
+            dados[nome] = pd.read_csv(
+                caminho_completo, 
+                sep=';', 
+                encoding='latin1', 
+                names=colunas, 
+                header=None
+            )
         else:
-            st.warning(f"Arquivo {caminho_completo} não encontrado no repositório!")
+            st.warning(f"Arquivo {arquivo} não encontrado na pasta 'dados'!")
             
     return dados
 
+# Carregar dados
 dados_carregados = carregar_dados()
 
-# 2. Seleção de qual planilha consultar
+# Interface de seleção
 if dados_carregados:
     selecao = st.sidebar.selectbox("Escolha a base:", list(dados_carregados.keys()))
     df = dados_carregados[selecao]
 
-    # 3. Campo de busca (filtro em tempo real)
-    termo = st.text_input("Filtrar por referência ou nome...")
+    # Campo de busca
+    termo = st.text_input("Filtrar por referência (ref_prod):")
     
     if termo:
-        # Filtra buscando em todas as colunas de texto
-        mask = df.apply(lambda row: row.astype(str).str.contains(termo, case=False).any(), axis=1)
-        df = df[mask]
+        # Filtra baseado na coluna 'ref_prod'
+        df = df[df['ref_prod'].astype(str).str.contains(termo, case=False)]
 
-    # 4. Exibição dos dados
+    # Exibição da Tabela
     st.dataframe(df, use_container_width=True)
+
+    # Exibição dos Detalhes (apenas se houver 1 resultado)
+    st.subheader("Detalhes do Produto")
+    
+    if len(df) == 1:
+        produto = df.iloc[0]
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.metric(label="Referência", value=str(produto['ref_prod']))
+        with col2:
+            # Formatando valores para 2 casas decimais
+            custo = float(produto['valor_custo'])
+            st.metric(label="Preço de Custo", value=f"R$ {custo:.2f}")
+        with col3:
+            venda = float(produto['valor_venda'])
+            st.metric(label="Preço de Venda", value=f"R$ {venda:.2f}")
+            
+    elif len(df) > 1:
+        st.info("Resultado com múltiplos itens. Filtre por uma referência específica para ver os preços detalhados.")
+    else:
+        st.write("Nenhum produto encontrado com este filtro.")
 else:
-    st.error("Nenhum arquivo CSV foi carregado. Verifique os nomes dos arquivos.")
+    st.error("Nenhum arquivo CSV foi carregado. Verifique a pasta 'dados' no GitHub.")
