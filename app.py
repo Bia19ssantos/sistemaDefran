@@ -8,7 +8,7 @@ st.set_page_config(page_title="Consultas Defran", layout="centered")
 # 2. Sidebar e Logo
 if os.path.exists("navbar-logo.png"):
     st.sidebar.image("navbar-logo.png", width=200)
-st.sidebar.header("Consultas")
+st.sidebar.header("")
 
 st.title("📊 Consultas Defran")
 
