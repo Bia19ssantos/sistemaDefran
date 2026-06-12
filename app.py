@@ -51,8 +51,9 @@ with aba1:
         st.dataframe(df, use_container_width=True)
 
 with aba2:
+   with aba2:
     st.header("Estoque Defran")
-    termo_busca = st.text_input("🔍 Filtrar por código ou referência:")
+    termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"]
     
     if termo_busca:
@@ -103,9 +104,11 @@ with aba2:
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, qtd_i])
                 st.success(f"Novo item {id_i} adicionado com sucesso!")
             
-            st.cache_data.clear()
+            sst.cache_data.clear()
             st.session_state.ultima_selecao = None
+            st.session_state.busca_estoque = "" 
+            
             st.rerun()
             
         except Exception as e:
-            st.error(f"Erro ao salvar na planilha: {e}")
+            st.error(f"Erro ao salvar: {e}")
