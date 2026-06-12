@@ -91,17 +91,28 @@ with aba2:
         
         submit = st.form_submit_button("Salvar Alteração")
 
+   Que notícia excelente! Fico muito feliz que tenha conseguido conectar e salvar os dados corretamente na planilha.
+
+Para fazer com que os campos fiquem vazios e a tabela recarregue automaticamente logo após o salvamento, precisamos apenas garantir que o st.cache_data.clear() seja chamado e que o formulário seja reiniciado.
+
+Aqui está o ajuste no bloco final do seu código:
+
+Python
     if submit:
         try:
-            sheet = client.open("estoque_defran").sheet1
+            sheet = client.open("estoque_defran").sheet1  
             cell = sheet.find(id_i) 
+            
             if cell:
                 sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, qtd_i]])
-                st.success(f"Item {id_i} atualizado!")
+                st.success(f"Item {id_i} atualizado com sucesso!")
             else:
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, qtd_i])
-                st.success(f"Novo item {id_i} adicionado!")
+                st.success(f"Novo item {id_i} adicionado com sucesso!")
+            
             st.cache_data.clear()
+            st.session_state.ultima_selecao = None
             st.rerun()
+            
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
