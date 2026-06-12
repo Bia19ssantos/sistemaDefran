@@ -52,48 +52,47 @@ with aba1:
 with aba2:
     st.header("Estoque Defran")
     df_est = dados_carregados["Estoque Defran"]
-    
-    # Configuração da tabela com seleção
+
+    # 1. Configuração da tabela com seleção
     event = st.dataframe(
         df_est, 
         use_container_width=True, 
         on_select="rerun", 
         selection_mode="single-row"
     )
-    
-    # LOGICA DE SELEÇÃO CORRETA
-    # O 'event' captura as linhas selecionadas
-    selected_rows = event.selection.rows
-    
-    # Usamos variáveis temporárias para o formulário
+
+    # 2. Guardar a seleção no session_state para não perder ao recarregar
+    if "ultima_selecao" not in st.session_state:
+        st.session_state.ultima_selecao = None
+
+    if event.selection.rows:
+        st.session_state.ultima_selecao = event.selection.rows[0]
+
+    # 3. Definir dados padrão baseado no que está no session_state
     dados_padrao = {"id": "", "codigo": "", "ref_prod": "", "qtde": 0.0, "desc_prod": ""}
-    
-    if len(selected_rows) > 0:
-        # Pega a linha clicada no DataFrame
-        linha_selecionada = df_est.iloc[selected_rows[0]]
-        dados_padrao = linha_selecionada.to_dict()
+    if st.session_state.ultima_selecao is not None:
+        try:
+            linha = df_est.iloc[st.session_state.ultima_selecao]
+            dados_padrao = linha.to_dict()
+        except:
+            pass
 
     st.markdown("---")
     st.subheader("Atualizar ou Inserir Estoque")
     
-    with st.form("form_estoque", clear_on_submit=False): # clear_on_submit=False ajuda a ver o que aconteceu
+    # Adicionamos uma "key" dinâmica ao formulário para forçar a atualização dos campos
+    key_form = f"form_{st.session_state.ultima_selecao}"
+    
+    with st.form(key=key_form, clear_on_submit=False):
         col1, col2, col3, col4 = st.columns(4)
-        
-        # O argumento 'value' preenche os campos automaticamente
         id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
         cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
         ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
-        # Garantir que qtde seja número
-        try:
-            val_qtde = float(dados_padrao.get("qtde", 0))
-        except:
-            val_qtde = 0.0
-        qtd_i = col4.number_input("Qtde", value=val_qtde, step=0.01)
-        
+        qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0)), step=0.01)
         desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
         
         submit = st.form_submit_button("Salvar Alteração")
 
     if submit:
-        # Aqui você implementa a lógica de salvar na planilha
-        st.success(f"Dados do código {cod_i} prontos para serem salvos na planilha!")
+        st.success(f"Dados do item {cod_i} prontos para salvar!")
+        # AQUI VOCÊ PODE CHAMAR A FUNÇÃO DE SALVAR NO GOOGLE SHEETS
