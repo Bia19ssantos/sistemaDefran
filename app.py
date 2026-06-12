@@ -28,7 +28,7 @@ st.markdown("---") # Linha divisória
 # Configuração da página
 st.set_page_config(page_title="Consultar Itens", layout="centered")
 
-st.title("📊 Consultar Itens")
+st.title("")
 st.sidebar.header("Consultas")
 
 # Função para carregar os dados
