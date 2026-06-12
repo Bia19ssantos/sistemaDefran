@@ -52,7 +52,7 @@ with aba1:
 with aba2:
     st.header("Estoque Defran")
     
-    # Filtro com chave no session_state
+    # 1. Filtro com chave fixa
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"]
     
@@ -62,37 +62,33 @@ with aba2:
             df_est['ref_prod'].astype(str).str.contains(termo_busca, case=False)
         ]
 
+    # 2. Tabela de seleção
     event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
 
+    # 3. Gerenciamento de seleção
     if "ultima_selecao" not in st.session_state:
         st.session_state.ultima_selecao = None
 
     if event.selection.rows:
         st.session_state.ultima_selecao = event.selection.rows[0]
 
+    # Pegar dados da linha para o formulário
     dados_padrao = {"id": "", "codigo": "", "ref_prod": "", "qtde": 0.0, "desc_prod": ""}
     if st.session_state.ultima_selecao is not None:
         try:
             linha = df_est.iloc[st.session_state.ultima_selecao]
             dados_padrao = linha.to_dict()
         except:
-            pass
+            st.session_state.ultima_selecao = None
 
     st.markdown("---")
     st.subheader("Atualizar ou Inserir Estoque")
+
+    # CSS do botão
+    st.markdown("""<style>div.stFormSubmitButton > button {background-color: #28a745 !important; color: white !important;}</style>""", unsafe_allow_html=True)
     
-    # CSS para o botão ficar verde
-    st.markdown("""
-        <style>
-        div.stFormSubmitButton > button {
-            background-color: #28a745 !important;
-            color: white !important;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-    
-    key_form = f"form_{st.session_state.ultima_selecao}"
-    with st.form(key=key_form, clear_on_submit=False):
+    form_key = f"form_{st.session_state.ultima_selecao}"
+    with st.form(key=form_key, clear_on_submit=True):
         col1, col2, col3, col4 = st.columns(4)
         id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
         cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
@@ -101,10 +97,6 @@ with aba2:
         desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
         
         submit = st.form_submit_button("Salvar Alteração")
-
-    def limpar_filtros():
-        st.session_state.busca_estoque = ""
-        st.session_state.ultima_selecao = None
 
     if submit:
         try:
@@ -117,9 +109,11 @@ with aba2:
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
                 st.success(f"Novo item {id_i} adicionado!")
             
+
             st.cache_data.clear()
+            st.session_state.ultima_selecao = None 
+            st.session_state["busca_estoque"] = "" 
             
-            limpar_filtros()
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
