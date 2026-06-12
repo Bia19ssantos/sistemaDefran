@@ -24,7 +24,6 @@ def carregar_estoque_do_google():
         st.warning(f"Usando arquivo local (Erro no Google: {e})")
         return pd.read_csv("dados/estoque_defran.csv", sep=',', encoding='latin1')
 
-# --- CARREGAMENTO GERAL ---
 def carregar_dados():
     colunas_prod = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda']
     arquivos = {"Produtos Gunnebo": "prod_gunnebo.csv", "Produtos Crosby": "prod_crosby.csv", "Manilhas Crosby": "manilhas_crosby.csv"}
@@ -51,8 +50,9 @@ with aba1:
         st.dataframe(df, use_container_width=True)
 
 with aba2:
-   with aba2:
     st.header("Estoque Defran")
+    
+    # Filtro com chave no session_state
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"]
     
@@ -80,21 +80,18 @@ with aba2:
 
     st.markdown("---")
     st.subheader("Atualizar ou Inserir Estoque")
-
-        st.markdown("""
+    
+    # CSS para o botão ficar verde
+    st.markdown("""
         <style>
-        div.stButton > button:first-child {
-            background-color: #28a745;
-            color: white;
-        }
-        div.stButton > button:first-child:hover {
-            background-color: #218838;
-            color: white;
+        div.stFormSubmitButton > button {
+            background-color: #28a745 !important;
+            color: white !important;
         }
         </style>
     """, unsafe_allow_html=True)
-       
-    key_form = f"form_{st.session_state.ultima_selecao}"      
+    
+    key_form = f"form_{st.session_state.ultima_selecao}"
     with st.form(key=key_form, clear_on_submit=False):
         col1, col2, col3, col4 = st.columns(4)
         id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
@@ -107,21 +104,18 @@ with aba2:
 
     if submit:
         try:
-            sheet = client.open("estoque_defran").sheet1  
+            sheet = client.open("estoque_defran").sheet1
             cell = sheet.find(id_i) 
-            
             if cell:
                 sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, qtd_i]])
-                st.success(f"Item {id_i} atualizado com sucesso!")
+                st.success(f"Item {id_i} atualizado!")
             else:
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, qtd_i])
-                st.success(f"Novo item {id_i} adicionado com sucesso!")
+                st.success(f"Novo item {id_i} adicionado!")
             
-            sst.cache_data.clear()
+            st.cache_data.clear()
             st.session_state.ultima_selecao = None
-            st.session_state.busca_estoque = "" 
-            
+            st.session_state.busca_estoque = ""
             st.rerun()
-            
         except Exception as e:
-            st.error(f"Erro ao salvar: {e}")
+            st.error(f"Erro ao salvar na planilha: {e}")
