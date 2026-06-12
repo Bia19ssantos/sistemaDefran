@@ -2,23 +2,19 @@ import streamlit as st
 import pandas as pd
 import os
 
-import streamlit as st
+# 1. Configuração da página (DEVE SER O PRIMEIRO COMANDO)
+st.set_page_config(page_title="Consultas Defran", layout="centered")
 
-# Logo na barra lateral
-st.sidebar.image("navbar-logo.png", width=200)
-
-st.markdown("---") # Linha divisória
-
-# Configuração da página
-st.set_page_config(page_title="Consultar Itens", layout="centered")
-
-st.title("")
+# 2. Sidebar e Logo
+if os.path.exists("navbar-logo.png"):
+    st.sidebar.image("navbar-logo.png", width=200)
 st.sidebar.header("Consultas")
 
-# Função para carregar os dados
+st.title("📊 Consultas Defran")
+
+# --- FUNÇÃO DE CARREGAMENTO ---
 def carregar_dados():
-    # Defina os nomes das colunas exatamente como no seu banco
-    colunas = [
+    colunas_prod = [
         'ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 
         'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda'
     ]
@@ -30,62 +26,51 @@ def carregar_dados():
     }
     
     dados = {}
+    # Carrega arquivos de produtos (sem cabeçalho)
     for nome, arquivo in arquivos.items():
-        caminho_completo = f"dados/{arquivo}"
+        caminho = f"dados/{arquivo}"
+        if os.path.exists(caminho):
+            dados[nome] = pd.read_csv(caminho, sep=';', encoding='latin1', names=colunas_prod, header=None)
+    
+    # Carrega o Estoque (com cabeçalho)
+    caminho_est = "dados/estoque_defran.csv"
+    if os.path.exists(caminho_est):
+        dados["Estoque Defran"] = pd.read_csv(caminho_est, sep=',', encoding='latin1')
         
-        if os.path.exists(caminho_completo):
-            # Lemos informando que não tem cabeçalho (header=None) e passando nossa lista de colunas
-            dados[nome] = pd.read_csv(
-                caminho_completo, 
-                sep=';', 
-                encoding='latin1', 
-                names=colunas, 
-                header=None
-            )
-        else:
-            st.warning(f"Arquivo {arquivo} não encontrado na pasta 'dados'!")
-            
     return dados
 
-# Carregar dados
 dados_carregados = carregar_dados()
 
-# Interface de seleção
-if dados_carregados:
-    selecao = st.sidebar.selectbox("Escolha a base:", list(dados_carregados.keys()))
-    df = dados_carregados[selecao]
+# --- ABA 1: CONSULTA DE PRODUTOS ---
+aba1, aba2 = st.tabs(["Produtos", "Estoque Defran"])
 
-    # Campo de busca
-    termo = st.text_input("Filtrar por referência (ref_prod):")
-    
-    if termo:
-        # Filtra baseado na coluna 'ref_prod'
-        df = df[df['ref_prod'].astype(str).str.contains(termo, case=False)]
-
-    # Exibição da Tabela
-    st.dataframe(df, use_container_width=True)
-
-    # Exibição dos Detalhes (apenas se houver 1 resultado)
-    st.subheader("Detalhes do Produto")
-    
-    if len(df) == 1:
-        produto = df.iloc[0]
+with aba1:
+    selecao = st.selectbox("Escolha a base:", ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"])
+    if selecao in dados_carregados:
+        df = dados_carregados[selecao]
+        termo = st.text_input("Filtrar referência (Produtos):")
         
-        col1, col2, col3 = st.columns(3)
+        if termo:
+            df = df[df['ref_prod'].astype(str).str.contains(termo, case=False)]
         
-        with col1:
-            st.metric(label="Referência", value=str(produto['ref_prod']))
-        with col2:
-            # Formatando valores para 2 casas decimais
-            custo = float(produto['valor_custo'])
-            st.metric(label="Preço de Custo", value=f"R$ {custo:.2f}")
-        with col3:
-            venda = float(produto['valor_venda'])
-            st.metric(label="Preço de Venda", value=f"R$ {venda:.2f}")
-            
-    elif len(df) > 1:
-        st.info("Resultado com múltiplos itens. Filtre por uma referência específica para ver os preços detalhados.")
+        st.dataframe(df, use_container_width=True)
+        
+        if len(df) == 1:
+            prod = df.iloc[0]
+            st.subheader("Detalhes do Produto")
+            c1, c2, c3 = st.columns(3)
+            c1.metric("Ref", str(prod['ref_prod']))
+            c2.metric("Custo", f"R$ {float(prod['valor_custo']):.2f}")
+            c3.metric("Venda", f"R$ {float(prod['valor_venda']):.2f}")
+
+# --- ABA 2: ESTOQUE DEFRAN ---
+with aba2:
+    if "Estoque Defran" in dados_carregados:
+        df_est = dados_carregados["Estoque Defran"]
+        busca = st.text_input("Buscar por código ou referência (Estoque):")
+        if busca:
+            df_est = df_est[df_est['codigo'].astype(str).str.contains(busca, case=False) | 
+                            df_est['ref_prod'].astype(str).str.contains(busca, case=False)]
+        st.dataframe(df_est, use_container_width=True)
     else:
-        st.write("Nenhum produto encontrado com este filtro.")
-else:
-    st.error("Nenhum arquivo CSV foi carregado. Verifique a pasta 'dados' no GitHub.")
+        st.error("Arquivo 'estoque_defran.csv' não encontrado na pasta 'dados'!")
