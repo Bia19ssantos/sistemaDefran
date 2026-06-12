@@ -52,24 +52,44 @@ with aba1:
 with aba2:
     st.header("Estoque Defran")
     df_est = dados_carregados["Estoque Defran"]
-    st.dataframe(df_est, use_container_width=True)
     
-    # FORMULÁRIO DENTRO DA ABA
+    # 1. Tabela com seleção habilitada
+    event = st.dataframe(
+        df_est, 
+        use_container_width=True, 
+        on_select="rerun", 
+        selection_mode="single-row"
+    )
+    
+    # 2. Recuperar os dados da linha clicada
+    selected_rows = event.selection.rows
+    dados_iniciais = {}
+    
+    if len(selected_rows) > 0:
+        index = selected_rows[0]
+        dados_iniciais = df_est.iloc[index].to_dict()
+
     st.markdown("---")
-    st.subheader("Atualizar Estoque")
+    st.subheader("Atualizar ou Inserir Estoque")
+    
+    # 3. Formulário que usa os dados selecionados como "default"
     with st.form("form_estoque", clear_on_submit=True):
         col1, col2, col3, col4 = st.columns(4)
-        id_i = col1.text_input("Id")
-        cod_i = col2.text_input("Codigo")
-        ref_i = col3.text_input("Referencia")
-        qtd_i = col4.number_input("Qtde", step=0.01)
-        desc_i = st.text_input("Descricao")
-        submit = st.form_submit_button("Salvar")
+        id_i = col1.text_input("Id", value=dados_iniciais.get("id", ""))
+        cod_i = col2.text_input("Codigo", value=dados_iniciais.get("codigo", ""))
+        ref_i = col3.text_input("Referencia", value=dados_iniciais.get("ref_prod", ""))
+        qtd_i = col4.number_input("Qtde", value=float(dados_iniciais.get("qtde", 0)), step=0.01)
+        desc_i = st.text_input("Descricao", value=dados_iniciais.get("desc_prod", ""))
+        
+        submit = st.form_submit_button("Salvar Alteração")
 
     if submit:
         try:
             sheet = client.open("estoque_defran").sheet1
+            # Se o ID já existir, você poderia atualizar a linha. 
+            # Por simplicidade, aqui estamos adicionando uma nova linha:
             sheet.append_row([id_i, cod_i, ref_i, desc_i, qtd_i])
-            st.success("Salvo com sucesso! Recarregue a página para ver a atualização.")
+            st.success("Dados enviados para a planilha!")
+            st.rerun()
         except Exception as e:
-            st.error(f"Erro ao salvar: {e}")
+            st.error(f"Erro: {e}")
