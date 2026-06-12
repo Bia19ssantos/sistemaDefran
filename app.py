@@ -2,6 +2,29 @@ import streamlit as st
 import pandas as pd
 import os
 
+import streamlit as st
+
+# Logo na barra lateral
+st.sidebar.image("navbar-logo.png", width=200)
+
+# Cards coloridos
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.markdown("""<div style="background-color:#007bff; color:white; padding:15px; border-radius:5px;">
+    <b>Orçamento</b><br>Novo ></div>""", unsafe_allow_html=True)
+with col2:
+    st.markdown("""<div style="background-color:#ffc107; color:black; padding:15px; border-radius:5px;">
+    <b>Vendas</b><br>Adicionar ></div>""", unsafe_allow_html=True)
+with col3:
+    st.markdown("""<div style="background-color:#28a745; color:white; padding:15px; border-radius:5px;">
+    <b>Pedidos</b><br>Novo ></div>""", unsafe_allow_html=True)
+with col4:
+    st.markdown("""<div style="background-color:#dc3545; color:white; padding:15px; border-radius:5px;">
+    <b>Clientes</b><br>Ir agora ></div>""", unsafe_allow_html=True)
+
+st.markdown("---") # Linha divisória
+
 # Configuração da página
 st.set_page_config(page_title="Consultas Defran", layout="centered")
 
