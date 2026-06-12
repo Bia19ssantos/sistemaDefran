@@ -51,29 +51,25 @@ with aba1:
 
 with aba2:
     st.header("Estoque Defran")
-
-    if "busca_estoque" not in st.session_state:
-        st.session_state.busca_estoque = ""
-
-    termo_busca = st.text_input(
-        "🔍 Filtrar por código ou referência:", 
-        key="busca_estoque"
-    )
     
-    st.session_state.busca_estoque = termo_busca
-
+    # Campo de filtro controlado pela chave "busca_estoque"
+    termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
+    
     df_est = dados_carregados["Estoque Defran"]
     
-    if st.session_state.busca_estoque:
+    # Filtra usando o valor atual da chave
+    if st.session_state.get("busca_estoque"):
+        termo = st.session_state.busca_estoque
         df_est = df_est[
-            df_est['codigo'].astype(str).str.contains(st.session_state.busca_estoque, case=False) | 
-            df_est['ref_prod'].astype(str).str.contains(st.session_state.busca_estoque, case=False)
+            df_est['codigo'].astype(str).str.contains(termo, case=False) | 
+            df_est['ref_prod'].astype(str).str.contains(termo, case=False)
         ]
 
     event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
 
     if "ultima_selecao" not in st.session_state:
         st.session_state.ultima_selecao = None
+
     if event.selection.rows:
         st.session_state.ultima_selecao = event.selection.rows[0]
 
@@ -88,7 +84,15 @@ with aba2:
     st.markdown("---")
     st.subheader("Atualizar ou Inserir Estoque")
     
-    st.markdown("""<style>div.stFormSubmitButton > button {background-color: #28a745 !important; color: white !important;}</style>""", unsafe_allow_html=True)
+    # CSS para o botão ficar verde
+    st.markdown("""
+        <style>
+        div.stFormSubmitButton > button {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
     
     with st.form(key="form_estoque", clear_on_submit=True):
         col1, col2, col3, col4 = st.columns(4)
@@ -97,6 +101,7 @@ with aba2:
         ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
         qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0)), step=0.01)
         desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
+        
         submit = st.form_submit_button("Salvar Alteração")
 
     if submit:
@@ -109,12 +114,11 @@ with aba2:
             else:
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
                 st.success(f"Novo item {id_i} adicionado!")
-
-            st.session_state["busca_estoque"] = "" 
+            
+            # Limpeza consolidada
             st.cache_data.clear()
             st.session_state.ultima_selecao = None
-            
+            st.session_state.busca_estoque = "" 
             st.rerun()
-            
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
