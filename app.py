@@ -23,7 +23,8 @@ def carregar_dados():
         caminho_completo = f"dados/{arquivo}"
         
         if os.path.exists(caminho_completo):
-            dados[nome] = pd.read_csv(caminho_completo)
+        
+            dados[nome] = pd.read_csv(caminho_completo, sep=';', encoding='latin1')
         else:
             st.warning(f"Arquivo {caminho_completo} não encontrado no repositório!")
             
