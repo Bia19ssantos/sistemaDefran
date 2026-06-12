@@ -20,8 +20,8 @@ def carregar_estoque_do_google():
         sheet = client.open("estoque_defran").sheet1
         data = sheet.get_all_records()
         return pd.DataFrame(data)
-    except:
-        st.warning("Usando arquivo local (erro ao conectar no Google).")
+    except Exception as e:
+        st.warning(f"Usando arquivo local (Erro no Google: {e})")
         return pd.read_csv("dados/estoque_defran.csv", sep=',', encoding='latin1')
 
 # --- CARREGAMENTO GERAL ---
@@ -46,42 +46,29 @@ with aba1:
     if selecao in dados_carregados:
         df = dados_carregados[selecao]
         termo = st.text_input("Filtrar referência (Produtos):")
-        if termo: df = df[df['ref_prod'].astype(str).str.contains(termo, case=False)]
+        if termo: 
+            df = df[df['ref_prod'].astype(str).str.contains(termo, case=False)]
         st.dataframe(df, use_container_width=True)
 
 with aba2:
     st.header("Estoque Defran")
-    
-    # --- FILTRO ADICIONADO AQUI ---
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:")
-    
     df_est = dados_carregados["Estoque Defran"]
     
-    # Aplicar o filtro se o usuário digitar algo
     if termo_busca:
-        # Filtra se o termo está na coluna 'codigo' OU na coluna 'ref_prod'
         df_est = df_est[
             df_est['codigo'].astype(str).str.contains(termo_busca, case=False) | 
             df_est['ref_prod'].astype(str).str.contains(termo_busca, case=False)
         ]
-    # ------------------------------
 
-    # Tabela com a seleção (agora com os dados já filtrados!)
-    event = st.dataframe(
-        df_est, 
-        use_container_width=True, 
-        on_select="rerun", 
-        selection_mode="single-row"
-    )
+    event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
 
-    # (Mantenha o restante da lógica de seleção e formulário abaixo...)
     if "ultima_selecao" not in st.session_state:
         st.session_state.ultima_selecao = None
 
     if event.selection.rows:
         st.session_state.ultima_selecao = event.selection.rows[0]
 
-    # 3. Definir dados padrão baseado no que está no session_state
     dados_padrao = {"id": "", "codigo": "", "ref_prod": "", "qtde": 0.0, "desc_prod": ""}
     if st.session_state.ultima_selecao is not None:
         try:
@@ -93,9 +80,7 @@ with aba2:
     st.markdown("---")
     st.subheader("Atualizar ou Inserir Estoque")
     
-    # Adicionamos uma "key" dinâmica ao formulário para forçar a atualização dos campos
     key_form = f"form_{st.session_state.ultima_selecao}"
-    
     with st.form(key=key_form, clear_on_submit=False):
         col1, col2, col3, col4 = st.columns(4)
         id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
@@ -106,29 +91,17 @@ with aba2:
         
         submit = st.form_submit_button("Salvar Alteração")
 
-   if submit:
+    if submit:
         try:
-            # 1. Acessa a planilha
             sheet = client.open("estoque_defran").sheet1
-            
-            # 2. Procura a linha que contém o ID que você preencheu
-            # Isso busca na coluna 1 (onde está o ID)
             cell = sheet.find(id_i) 
-            
             if cell:
-                # Se achou o ID, atualiza a linha inteira
-                # A lista deve ter a mesma ordem das colunas da planilha (Id, Codigo, Referencia, Descricao, Qtde)
-                sheet.row_values(cell.row) # Apenas para garantir conexão
                 sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, qtd_i]])
-                st.success(f"Item {id_i} atualizado com sucesso!")
+                st.success(f"Item {id_i} atualizado!")
             else:
-                # Se não achou o ID, adiciona como um novo item
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, qtd_i])
-                st.success(f"Novo item {id_i} adicionado com sucesso!")
-            
-            # 3. Limpa o cache e recarrega a página para mostrar o dado novo
+                st.success(f"Novo item {id_i} adicionado!")
             st.cache_data.clear()
             st.rerun()
-            
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
