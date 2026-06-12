@@ -80,8 +80,21 @@ with aba2:
 
     st.markdown("---")
     st.subheader("Atualizar ou Inserir Estoque")
-    
-    key_form = f"form_{st.session_state.ultima_selecao}"
+
+        st.markdown("""
+        <style>
+        div.stButton > button:first-child {
+            background-color: #28a745;
+            color: white;
+        }
+        div.stButton > button:first-child:hover {
+            background-color: #218838;
+            color: white;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+       
+    key_form = f"form_{st.session_state.ultima_selecao}"      
     with st.form(key=key_form, clear_on_submit=False):
         col1, col2, col3, col4 = st.columns(4)
         id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
