@@ -19,10 +19,14 @@ def carregar_dados():
     
     dados = {}
     for nome, arquivo in arquivos.items():
-        if os.path.exists(arquivo):
-            dados[nome] = pd.read_csv(arquivo)
+        # Construímos o caminho completo usando a pasta 'dados/'
+        caminho_completo = f"dados/{arquivo}"
+        
+        if os.path.exists(caminho_completo):
+            dados[nome] = pd.read_csv(caminho_completo)
         else:
-            st.warning(f"Arquivo {arquivo} não encontrado!")
+            st.warning(f"Arquivo {caminho_completo} não encontrado no repositório!")
+            
     return dados
 
 dados_carregados = carregar_dados()
