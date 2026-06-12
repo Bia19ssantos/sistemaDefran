@@ -51,9 +51,22 @@ with aba1:
 
 with aba2:
     st.header("Estoque Defran")
+    
+    # --- FILTRO ADICIONADO AQUI ---
+    termo_busca = st.text_input("🔍 Filtrar por código ou referência:")
+    
     df_est = dados_carregados["Estoque Defran"]
+    
+    # Aplicar o filtro se o usuário digitar algo
+    if termo_busca:
+        # Filtra se o termo está na coluna 'codigo' OU na coluna 'ref_prod'
+        df_est = df_est[
+            df_est['codigo'].astype(str).str.contains(termo_busca, case=False) | 
+            df_est['ref_prod'].astype(str).str.contains(termo_busca, case=False)
+        ]
+    # ------------------------------
 
-    # 1. Configuração da tabela com seleção
+    # Tabela com a seleção (agora com os dados já filtrados!)
     event = st.dataframe(
         df_est, 
         use_container_width=True, 
@@ -61,7 +74,7 @@ with aba2:
         selection_mode="single-row"
     )
 
-    # 2. Guardar a seleção no session_state para não perder ao recarregar
+    # (Mantenha o restante da lógica de seleção e formulário abaixo...)
     if "ultima_selecao" not in st.session_state:
         st.session_state.ultima_selecao = None
 
@@ -93,6 +106,29 @@ with aba2:
         
         submit = st.form_submit_button("Salvar Alteração")
 
-    if submit:
-        st.success(f"Dados do item {cod_i} prontos para salvar!")
-        # AQUI VOCÊ PODE CHAMAR A FUNÇÃO DE SALVAR NO GOOGLE SHEETS
+   if submit:
+        try:
+            # 1. Acessa a planilha
+            sheet = client.open("estoque_defran").sheet1
+            
+            # 2. Procura a linha que contém o ID que você preencheu
+            # Isso busca na coluna 1 (onde está o ID)
+            cell = sheet.find(id_i) 
+            
+            if cell:
+                # Se achou o ID, atualiza a linha inteira
+                # A lista deve ter a mesma ordem das colunas da planilha (Id, Codigo, Referencia, Descricao, Qtde)
+                sheet.row_values(cell.row) # Apenas para garantir conexão
+                sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, qtd_i]])
+                st.success(f"Item {id_i} atualizado com sucesso!")
+            else:
+                # Se não achou o ID, adiciona como um novo item
+                sheet.append_row([id_i, cod_i, ref_i, desc_i, qtd_i])
+                st.success(f"Novo item {id_i} adicionado com sucesso!")
+            
+            # 3. Limpa o cache e recarrega a página para mostrar o dado novo
+            st.cache_data.clear()
+            st.rerun()
+            
+        except Exception as e:
+            st.error(f"Erro ao salvar na planilha: {e}")
