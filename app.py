@@ -57,8 +57,7 @@ with aba2:
 
     termo_busca = st.text_input(
         "🔍 Filtrar por código ou referência:", 
-        value=st.session_state.busca_estoque,
-        key="input_busca"
+        key="busca_estoque"
     )
     
     st.session_state.busca_estoque = termo_busca
@@ -111,9 +110,11 @@ with aba2:
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
                 st.success(f"Novo item {id_i} adicionado!")
 
+            st.session_state["busca_estoque"] = "" 
             st.cache_data.clear()
             st.session_state.ultima_selecao = None
-            st.session_state.busca_estoque = "" 
-            st.rerun() 
+            
+            st.rerun()
+            
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
