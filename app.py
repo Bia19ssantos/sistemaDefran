@@ -12,7 +12,7 @@ st.sidebar.header("Configurações")
 def carregar_dados():
     # Defina os nomes das colunas exatamente como no seu banco
     colunas = [
-        'id', 'ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 
+        'ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 
         'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda'
     ]
     
