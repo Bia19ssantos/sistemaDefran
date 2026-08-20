@@ -25,7 +25,7 @@ def carregar_estoque_do_google():
         return pd.read_csv("dados/estoque_defran.csv", sep=',', encoding='latin1')
 
 def carregar_dados():
-    colunas_prod = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda']
+    colunas_prod = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'comprimento', 'valor_venda', 'valor_linga']
     arquivos = {"Produtos Gunnebo": "prod_gunnebo.csv", "Produtos Crosby": "prod_crosby.csv", "Manilhas Crosby": "manilhas_crosby.csv"}
     dados = {}
     for nome, arquivo in arquivos.items():
@@ -41,13 +41,57 @@ dados_carregados = carregar_dados()
 aba1, aba2 = st.tabs(["Produtos", "Estoque Defran"])
 
 with aba1:
-    selecao = st.selectbox("Escolha a base:", ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"])
+    selecao = st.selectbox(
+        "Escolha a base:",
+        ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"]
+    )
+
     if selecao in dados_carregados:
         df = dados_carregados[selecao]
+
         termo = st.text_input("Filtrar referência (Produtos):")
-        if termo: 
-            df = df[df['ref_prod'].astype(str).str.contains(termo, case=False)]
-        st.dataframe(df, use_container_width=True)
+
+        if termo:
+            df = df[
+                df['ref_prod']
+                .astype(str)
+                .str.contains(termo, case=False, na=False)
+            ]
+
+        # Cabeçalho específico para Gunnebo
+        if selecao == "Produtos Gunnebo":
+            df_exibicao = df.rename(columns={
+                'ref_prod': 'Referência Gunnebo',
+                'desc_prod': 'Descrição do Produto',
+                'ncm': 'NCM',
+                'sap': 'Código SAP',
+                'ipi': 'IPI',
+                'tipo': 'Tipo',
+                'valor_custo': 'Custo',
+                'comprimento': 'Comprimento',
+                'valor_venda': 'Preço de Venda',
+                'valor_linga': 'Valor Lingada'
+            })
+
+        # Cabeçalho de Crosby e Manilhas
+        else:
+            df_exibicao = df.rename(columns={
+                'ref_prod': 'Referência',
+                'desc_prod': 'Descrição',
+                'ncm': 'NCM',
+                'sap': 'SAP',
+                'ipi': 'IPI',
+                'tipo': 'Tipo',
+                'valor_custo': 'Valor Custo',
+                'comprimento': 'Comprimento',
+                'valor_venda': 'Valor Venda',
+                'valor_linga': 'Valor Lingada'
+            })
+
+        st.dataframe(
+            df_exibicao,
+            use_container_width=True
+        )
 
 with aba2:
     st.header("Estoque Defran")
@@ -119,3 +163,4 @@ with aba2:
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
+
