@@ -7,6 +7,15 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 st.set_page_config(page_title="Consultas Defran", layout="centered")
 
+# --- EXIBIR LOGO DA EMPRESA NO TOPO ---
+if os.path.exists("navbar-logo.jpg"):
+    st.image("navbar-logo.jpg", width=300)
+elif os.path.exists("navbar-logo.png"):
+    st.image("navbar-logo.png", width=300)
+
+st.title("Consultas Defran")
+st.markdown("---")
+
 # --- CONEXÃO COM GOOGLE ---
 @st.cache_resource
 def conectar_google():
@@ -191,7 +200,7 @@ with aba2:
             sheet = client.open("estoque_defran").sheet1
             cell = sheet.find(id_i) 
             if cell:
-                sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, float(qtd_i)]])
+                sheet.update(f"A{cell.row}:E{cell.row}", [[id_id := id_i, cod_i, ref_i, desc_i, float(qtd_i)]]) # type: ignore
                 st.success(f"Item {id_i} atualizado!")
             else:
                 sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
