@@ -289,7 +289,8 @@ with aba4:
         if ref_digitada:
             dados_encontrados = base_produtos.get(ref_digitada, {})
     else:
-        ref_digitada = col_t2.selectbox("Buscar Referência de Linga:", [""] + list(base_lingas.keys()))
+        # Combo de lingas com filtro dinâmico ao digitar as primeiras letras
+        ref_digitada = col_t2.selectbox("🔍 Selecionar ou Digitar Referência da Linga:", [""] + list(base_lingas.keys()))
         if ref_digitada:
             dados_encontrados = base_lingas.get(ref_digitada, {})
 
