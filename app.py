@@ -70,7 +70,7 @@ with aba1:
                 'valor_custo': 'Custo',
                 'comprimento': 'Comprimento',
                 'valor_venda': 'Preço de Venda',
-                'valor_linga': 'Valor Lingada'
+                'valor_linga': 'Preço Linga'
             })
 
         # Cabeçalho de Crosby e Manilhas
@@ -82,10 +82,10 @@ with aba1:
                 'sap': 'SAP',
                 'ipi': 'IPI',
                 'tipo': 'Tipo',
-                'valor_custo': 'Valor Custo',
+                'valor_custo': 'Valor de Custo',
+                'carga_trabalho': 'Carga Trabalho',
                 'comprimento': 'Comprimento',
-                'valor_venda': 'Valor Venda',
-                'valor_linga': 'Valor Lingada'
+                'valor_venda': 'Preço de Venda'
             })
 
         st.dataframe(
@@ -163,4 +163,5 @@ with aba2:
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
+
 
