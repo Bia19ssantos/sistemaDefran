@@ -276,37 +276,45 @@ with aba4:
     if st.session_state.editando_indice is not None and st.session_state.editando_indice < len(st.session_state.itens_orcamento):
         item_editando = st.session_state.itens_orcamento[st.session_state.editando_indice]
     
-    # Seletor de Tipo (Produto ou Linga)
+    
+    # Seletor de Tipo
     tipos_disponiveis = ["Produto", "Linga"]
     tipo_atual = item_editando.get("tipo", "Produto")
-    idx_tipo = tipos_disponiveis.index(tipo_atual) if tipo_atual in tipos_disponiveis else 0
     
     col_t1, col_t2 = st.columns(2)
-    tipo_item = col_t1.selectbox("Tipo de Item", ["Produto", "Linga"], key="tipo_item_orcamento")
+    # Adicionamos 'index' para o selectbox lembrar qual era o tipo original
+    tipo_item = col_t1.selectbox("Tipo de Item", tipos_disponiveis, 
+                                 index=tipos_disponiveis.index(tipo_atual),
+                                 key="tipo_item_orcamento")
 
-    # Busca dinâmica da referência correspondente
-   
-    dados_encontrados = {}
+    # Busca dinâmica (mantém o que você já tem, mas garantindo que limpa ao trocar)
+    dados_encontrados = item_editando if item_editando else {}
     
     if tipo_item == "Produto":
-        ref_digitada = col_t2.selectbox("Buscar Referência de Produto:", [""] + list(base_produtos.keys()), key="ref_produto_orc")
+        # Se estiver editando, tentamos definir o valor padrão do selectbox
+        ref_digitada = col_t2.selectbox("Buscar Referência de Produto:", [""] + list(base_produtos.keys()), 
+                                        index=0, key="ref_produto_orc")
         if ref_digitada and ref_digitada in base_produtos:
             dados_encontrados = base_produtos.get(ref_digitada, {})
     else:
         opcoes_lingas = [""] + list(base_lingas.keys())
-        ref_digitada = col_t2.selectbox("🔍 Selecionar ou Digitar Referência da Linga:", opcoes_lingas, key="ref_linga_orc")
-        
+        ref_digitada = col_t2.selectbox("🔍 Selecionar ou Digitar Referência da Linga:", opcoes_lingas, 
+                                        index=0, key="ref_linga_orc")
         if ref_digitada and ref_digitada in base_lingas:
             dados_encontrados = base_lingas.get(ref_digitada, {})
 
+    # Formulário de edição/adição
     with st.form("form_item_orc", clear_on_submit=True):
         if st.session_state.editando_indice is not None:
             st.info(f"Editando o Item #{st.session_state.editando_indice + 1}")
 
-        item_ref = st.text_input("Referência Exata", value=dados_encontrados.get("referencia", ""))
+        val_ref = item_editando.get("referencia", dados_encontrados.get("referencia", ""))
+        item_ref = st.text_input("Referência Exata", value=val_ref)
 
         col_i1, col_i2, col_i3 = st.columns(3)
-        item_qtd = col_i1.number_input("Quantidade / Metragem", min_value=0.01, value=float(dados_encontrados.get("quantidade", 1.00)), step=0.01)
+        item_qtd = col_i1.number_input("Quantidade / Metragem", min_value=0.01, 
+                                       value=float(item_editando.get("quantidade", dados_encontrados.get("quantidade", 1.00))), step=0.01)
+        
         
         unidades_disponiveis = ["PÇ", "M"]
         unidade_atual = dados_encontrados.get("unidade", "PÇ")
