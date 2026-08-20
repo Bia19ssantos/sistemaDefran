@@ -203,26 +203,26 @@ with aba2:
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
 with aba3:
+    # --- ABA 3: CARGA DE TRABALHO LINGAS ---
+with aba3:
     st.header("Carga de Trabalho - Lingas")
     
     caminho_pdf = "docs/cargaTrabalhoLingas.pdf"
     
     if os.path.exists(caminho_pdf):
-        with open(caminho_pdf, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        st.info("Clique no botão abaixo para baixar ou visualizar o documento de Carga de Trabalho.")
         
-        # Exibe o PDF diretamente na tela via visualizador embutido (iframe)
-        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="700px" type="application/pdf"></iframe>'
-        st.markdown(pdf_display, unsafe_allow_html=True)
-        
-        # Botão opcional para download direto
         with open(caminho_pdf, "rb") as f:
-            st.download_button(
-                label="📥 Baixar PDF de Carga de Trabalho",
-                data=f,
-                file_name="cargaTrabalhoLingas.pdf",
-                mime="application/pdf"
-            )
+            pdf_bytes = f.read()
+            
+        # Botão principal de download
+        st.download_button(
+            label="📥 Baixar / Visualizar PDF de Carga de Trabalho",
+            data=pdf_bytes,
+            file_name="cargaTrabalhoLingas.pdf",
+            mime="application/pdf",
+            use_container_width=True
+        )
     else:
         st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
 
