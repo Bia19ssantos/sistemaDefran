@@ -18,7 +18,7 @@ if os.path.exists("navbar-logo.jpg"):
 elif os.path.exists("navbar-logo.png"):
     st.image("navbar-logo.png", width=300)
 
-st.title("Consultas Defran")
+st.title("")
 st.markdown("---")
 
 # --- CONEXÃO COM GOOGLE ---
