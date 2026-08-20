@@ -436,11 +436,26 @@ with aba4:
             elementos.append(Paragraph("<b>PROPOSTA COMERCIAL</b>", estilo_titulo))
             elementos.append(Spacer(1, 8))
             
+            # --- BLOCO SUPERIOR: PROPOSTA, DATA E VENDEDOR(A) ---
+            info_topo = [
+                [Paragraph(f"<b>PROPOSTA N°:</b> {num}", estilo_texto), Paragraph(f"<b>DATA:</b> {data}", estilo_texto)],
+                [Paragraph(f"<b>VENDEDOR(A):</b> {vendedor}", estilo_texto), Paragraph("", estilo_texto)]
+            ]
+            t_topo = Table(info_topo, colWidths=[270, 270])
+            t_topo.setStyle(TableStyle([
+                ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#e9ecef")),
+                ('PADDING', (0,0), (-1,-1), 5),
+                ('BOX', (0,0), (-1,-1), 0.5, colors.HexColor("#adb5bd")),
+                ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+            ]))
+            elementos.append(t_topo)
+            elementos.append(Spacer(1, 6))
+
+            # --- BLOCO DE DADOS DO CLIENTE ---
             info_dados = [
-                [Paragraph(f"<b>PROPOSTA N°:</b> {num}", estilo_texto), Paragraph(f"Porto Feliz, {data}", estilo_texto)],
-                [Paragraph(f"<b>CLIENTE:</b> {cliente}", estilo_texto), Paragraph(f"<b>VENDEDOR(A):</b> {vendedor}", estilo_texto)],
-                [Paragraph(f"<b>CIDADE:</b> {cidade} - {estado}", estilo_texto), Paragraph(f"<b>CONTATO:</b> {contato}", estilo_texto)],
-                [Paragraph(f"<b>TEL:</b> {tel}", estilo_texto), Paragraph(f"<b>E-MAIL:</b> {email}", estilo_texto)]
+                [Paragraph(f"<b>CLIENTE:</b> {cliente}", estilo_texto), Paragraph(f"<b>CONTATO:</b> {contato}", estilo_texto)],
+                [Paragraph(f"<b>CIDADE:</b> {cidade} - {estado}", estilo_texto), Paragraph(f"<b>E-MAIL:</b> {email}", estilo_texto)],
+                [Paragraph(f"<b>TEL:</b> {tel}", estilo_texto), Paragraph("", estilo_texto)]
             ]
             t_info = Table(info_dados, colWidths=[270, 270])
             t_info.setStyle(TableStyle([
