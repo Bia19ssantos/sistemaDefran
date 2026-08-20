@@ -67,15 +67,17 @@ def carregar_dados():
 
 dados_carregados = carregar_dados()
 
-# --- FUNÇÃO PARA LER O BANCO DE DADOS DE PRODUTOS/ESPECIFICAÇÕES ---
-def carregar_base_produtos_txt():
-    caminho = "docs/produtos_info.txt"
+# --- FUNÇÃO PARA LER AS BASES DE PRODUTOS E LINGAS (TXT) ---
+def carregar_bases_txt():
     produtos_dict = {}
-    if os.path.exists(caminho):
-        with open(caminho, "r", encoding="utf-8") as f:
+    lingas_dict = {}
+    
+    # Base de Produtos
+    caminho_prod = "docs/produtos_info.txt"
+    if os.path.exists(caminho_prod):
+        with open(caminho_prod, "r", encoding="utf-8") as f:
             conteudo = f.read()
-        blocos = conteudo.split("\n\n")
-        for bloco in blocos:
+        for bloco in conteudo.split("\n\n"):
             linhas = bloco.strip().split("\n")
             dados_item = {}
             ref_encontrada = ""
@@ -101,9 +103,42 @@ def carregar_base_produtos_txt():
                         dados_item["ipi"] = valor_limpo
             if ref_encontrada:
                 produtos_dict[ref_encontrada.lower()] = dados_item
-    return produtos_dict
 
-base_produtos = carregar_base_produtos_txt()
+    # Base de Lingas
+    caminho_lingas = "docs/lingas_info.txt"
+    if os.path.exists(caminho_lingas):
+        with open(caminho_lingas, "r", encoding="utf-8") as f:
+            conteudo_l = f.read()
+        for bloco in conteudo_l.split("\n\n"):
+            linhas = bloco.strip().split("\n")
+            dados_item = {}
+            ref_encontrada = ""
+            for linha in linhas:
+                if ":" in linha:
+                    chave, valor = linha.split(":", 1)
+                    chave_limpa = chave.strip().lower()
+                    valor_limpo = valor.strip()
+                    if "referência" in chave_limpa:
+                        ref_encontrada = valor_limpo
+                        dados_item["referencia"] = valor_limpo
+                    elif "descrição" in chave_limpa:
+                        dados_item["descricao"] = valor_limpo
+                    elif "prazo de entrega" in chave_limpa:
+                        dados_item["prazo"] = valor_limpo
+                    elif "fator de segurança" in chave_limpa:
+                        dados_item["fator"] = valor_limpo
+                    elif "ncm" in chave_limpa:
+                        dados_item["ncm"] = valor_limpo
+                    elif "icms" in chave_limpa:
+                        dados_item["icms"] = valor_limpo
+                    elif "ipi" in chave_limpa:
+                        dados_item["ipi"] = valor_limpo
+            if ref_encontrada:
+                lingas_dict[ref_encontrada.lower()] = dados_item
+                
+    return produtos_dict, lingas_dict
+
+base_produtos, base_lingas = carregar_bases_txt()
 
 # --- INTERFACE COM ÍCONES NAS ABAS ---
 aba1, aba2, aba3, aba4 = st.tabs([
@@ -191,7 +226,7 @@ with aba3:
             )
     else:
         st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
-
+        
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
     st.header("📋 Orçamentos")
@@ -228,36 +263,68 @@ with aba4:
     vendedor_orc = st.text_input("Vendedor(a)", value="BEATRIZ")
 
     st.markdown("---")
-    st.subheader("Adicionar Itens ao Orçamento (Produtos ou Lingas)")
+    st.subheader("Adicionar ou Editar Itens na Proposta")
     
-    ref_digitada = st.selectbox("Buscar Referência Automática (Opcional):", [""] + list(base_produtos.keys()))
-    dados_encontrados = base_produtos.get(ref_digitada, {}) if ref_digitada else {}
+    if "itens_orcamento" not in st.session_state:
+        st.session_state.itens_orcamento = []
+    if "editando_indice" not in st.session_state:
+        st.session_state.editando_indice = None
+
+    item_editando = {}
+    if st.session_state.editando_indice is not None and st.session_state.editando_indice < len(st.session_state.itens_orcamento):
+        item_editando = st.session_state.itens_orcamento[st.session_state.editando_indice]
+    
+    # Seletor de Tipo (Produto ou Linga)
+    tipos_disponiveis = ["Produto", "Linga"]
+    tipo_atual = item_editando.get("tipo", "Produto")
+    idx_tipo = tipos_disponiveis.index(tipo_atual) if tipo_atual in tipos_disponiveis else 0
+    
+    col_t1, col_t2 = st.columns(2)
+    tipo_item = col_t1.selectbox("Tipo de Item", tipos_disponiveis, index=idx_tipo)
+
+    # Busca dinâmica da referência correspondente
+    dados_encontrados = {}
+    if tipo_item == "Produto":
+        ref_digitada = col_t2.selectbox("Buscar Referência de Produto:", [""] + list(base_produtos.keys()))
+        if ref_digitada:
+            dados_encontrados = base_produtos.get(ref_digitada, {})
+    else:
+        ref_digitada = col_t2.selectbox("Buscar Referência de Linga:", [""] + list(base_lingas.keys()))
+        if ref_digitada:
+            dados_encontrados = base_lingas.get(ref_digitada, {})
+
+    if st.session_state.editando_indice is not None and not ref_digitada:
+        dados_encontrados = item_editando
 
     with st.form("form_item_orc", clear_on_submit=True):
-        col_t1, col_t2 = st.columns(2)
-        tipo_item = col_t1.selectbox("Tipo de Item", ["Produto", "Linga"])
-        item_ref = col_t2.text_input("Referência Exata", value=dados_encontrados.get("referencia", ""))
+        if st.session_state.editando_indice is not None:
+            st.info(f"Editando o Item #{st.session_state.editando_indice + 1}")
+
+        item_ref = st.text_input("Referência Exata", value=dados_encontrados.get("referencia", ""))
 
         col_i1, col_i2, col_i3 = st.columns(3)
-        item_qtd = col_i1.number_input("Quantidade / Metragem", min_value=0.01, value=1.00, step=0.01)
-        item_unidade = col_i2.selectbox("Unidade", ["PÇ", "M"], index=0)
-        item_val = col_i3.number_input("Valor Unitário (R$)", min_value=0.0, value=0.0, step=0.10)
+        item_qtd = col_i1.number_input("Quantidade / Metragem", min_value=0.01, value=float(dados_encontrados.get("quantidade", 1.00)), step=0.01)
+        
+        unidades_disponiveis = ["PÇ", "M"]
+        unidade_atual = dados_encontrados.get("unidade", "PÇ")
+        idx_unidade = unidades_disponiveis.index(unidade_atual) if unidade_atual in unidades_disponiveis else 0
+        item_unidade = col_i2.selectbox("Unidade", unidades_disponiveis, index=idx_unidade)
+        
+        item_val = col_i3.number_input("Valor Unitário (R$)", min_value=0.0, value=float(dados_encontrados.get("unitario", 0.0)), step=0.10)
         
         item_desc = st.text_area("Descrição Completa", value=dados_encontrados.get("descricao", ""))
         
         col_extra1, col_extra2, col_extra3, col_extra4 = st.columns(4)
-        item_prazo = col_extra1.text_input("Prazo de Entrega", value=dados_encontrados.get("prazo", "05 dias"))
-        item_ncm = col_extra2.text_input("NCM", value=dados_encontrados.get("ncm", "73269090"))
-        item_ipi = col_extra3.text_input("IPI", value=dados_encontrados.get("ipi", "5% Incluso"))
+        item_prazo = col_extra1.text_input("Prazo de Entrega", value=dados_encontrados.get("prazo", "07 dias"))
+        item_ncm = col_extra2.text_input("NCM", value=dados_encontrados.get("ncm", "7315.12.90"))
+        item_ipi = col_extra3.text_input("IPI", value=dados_encontrados.get("ipi", "Incluso"))
         item_fator = col_extra4.text_input("Fator de Seg.", value=dados_encontrados.get("fator", "4:1"))
         
-        add_item_btn = st.form_submit_button("Adicionar Item na Proposta")
+        texto_botao = "Salvar Alteração do Item" if st.session_state.editando_indice is not None else "Adicionar Item na Proposta"
+        add_item_btn = st.form_submit_button(texto_botao)
         
         if add_item_btn and item_ref:
-            if "itens_orcamento" not in st.session_state:
-                st.session_state.itens_orcamento = []
-                
-            st.session_state.itens_orcamento.append({
+            novo_dado_item = {
                 "tipo": tipo_item,
                 "referencia": item_ref,
                 "descricao": item_desc,
@@ -269,17 +336,45 @@ with aba4:
                 "ipi": item_ipi,
                 "fator": item_fator,
                 "total": item_qtd * item_val
-            })
-            st.success("Item adicionado com sucesso!")
+            }
+            
+            if st.session_state.editando_indice is not None:
+                st.session_state.itens_orcamento[st.session_state.editando_indice] = novo_dado_item
+                st.session_state.editando_indice = None
+                st.success("Item atualizado com sucesso!")
+            else:
+                st.session_state.itens_orcamento.append(novo_dado_item)
+                st.success("Item adicionado com sucesso!")
             st.rerun()
 
-    if "itens_orcamento" in st.session_state and st.session_state.itens_orcamento:
+    if st.session_state.editando_indice is not None:
+        if st.button("❌ Cancelar Edição"):
+            st.session_state.editando_indice = None
+            st.rerun()
+
+    if st.session_state.itens_orcamento:
         st.write("### Itens Na Proposta:")
-        df_itens = pd.DataFrame(st.session_state.itens_orcamento)
-        st.dataframe(df_itens[['tipo', 'referencia', 'quantidade', 'unidade', 'unitario', 'total']], use_container_width=True)
         
+        for idx, item in enumerate(st.session_state.itens_orcamento):
+            col_res1, col_res2, col_res3, col_res4, col_res5, col_res6 = st.columns([1, 2, 2, 2, 1, 1])
+            col_res1.write(f"**#{idx+1}**")
+            col_res2.write(f"{item['tipo']}")
+            col_res3.write(f"{item['referencia']}")
+            col_res4.write(f"{item['quantidade']:.2f} {item['unidade']} - R$ {item['total']:.2f}")
+            
+            if col_res5.button("✏️ Editar", key=f"edit_{idx}"):
+                st.session_state.editando_indice = idx
+                st.rerun()
+                
+            if col_res6.button("🗑️ Excluir", key=f"del_{idx}"):
+                st.session_state.itens_orcamento.pop(idx)
+                if st.session_state.editando_indice == idx:
+                    st.session_state.editando_indice = None
+                st.rerun()
+
         if st.button("🗑️ Limpar Todos os Itens"):
             st.session_state.itens_orcamento = []
+            st.session_state.editando_indice = None
             st.rerun()
             
         st.markdown("---")
@@ -295,7 +390,6 @@ with aba4:
             estilo_texto = ParagraphStyle('Texto', parent=styles['Normal'], fontSize=9, leading=12, textColor=colors.HexColor("#222222"))
             estilo_bold = ParagraphStyle('Bold', parent=estilo_texto, fontName='Helvetica-Bold')
             
-            # --- CABEÇALHO COM LOGOS ---
             img_esquerda = None
             if os.path.exists("logoDefran1.png"):
                 img_esquerda = Image("logoDefran1.png", width=150, height=52)
@@ -347,7 +441,7 @@ with aba4:
                     [Paragraph(f"<b>Referência:</b> {item['referencia']}", estilo_texto), Paragraph(f"<b>Preço Unit.:</b> R$ {item['unitario']:.2f}", estilo_bold)],
                     [Paragraph(f"<b>Descrição:</b> {item['descricao']}", estilo_texto), Paragraph("", estilo_texto)],
                     [Paragraph(f"<b>Prazo de Entrega:</b> {item['prazo']}", estilo_texto), Paragraph(f"<b>NCM:</b> {item['ncm']}", estilo_texto)],
-                    [Paragraph("<b>ICMS:</b> 18% Incluso", estilo_texto), Paragraph(f"<b>IPI:</b> {item['ipi']}", estilo_texto)],
+                    [Paragraph("<b>ICMS:</b> Incluso (ST)", estilo_texto), Paragraph(f"<b>IPI:</b> {item['ipi']}", estilo_texto)],
                     [Paragraph(f"<b>Fator de Segurança:</b> {item['fator']}", estilo_texto), Paragraph(f"<b>Total do Item:</b> R$ {item['total']:.2f}", estilo_bold)]
                 ]
                 t_item = Table(item_dados, colWidths=[340, 200])
