@@ -65,8 +65,12 @@ def carregar_dados():
 
 dados_carregados = carregar_dados()
 
-# --- INTERFACE ---
-aba1, aba2, aba3 = st.tabs(["Produtos", "Estoque Defran", "Carga de Trabalho Lingas"])
+# --- INTERFACE COM ÍCONES NAS ABAS ---
+aba1, aba2, aba3 = st.tabs([
+    "🔗 Produtos", 
+    "📦 Estoque Defran", 
+    "🏗️ Carga de Trabalho Lingas"
+])
 
 with aba1:
     selecao = st.selectbox(
