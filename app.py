@@ -104,8 +104,9 @@ def carregar_bases_txt():
             if ref_encontrada:
                 produtos_dict[ref_encontrada.lower()] = dados_item
 
-  # Base de Lingas (Garantindo que puxa a referência correta)
-    caminho_lingas = "docs/lingas_info.txt"
+  # Base de Lingas
+    caminho_lingas = "docs/lingas.info.txt" 
+    if os.path.exists(caminho_lingas):
     if os.path.exists(caminho_lingas):
         with open(caminho_lingas, "r", encoding="utf-8") as f:
             conteudo_l = f.read()
