@@ -281,22 +281,19 @@ with aba4:
     idx_tipo = tipos_disponiveis.index(tipo_atual) if tipo_atual in tipos_disponiveis else 0
     
     col_t1, col_t2 = st.columns(2)
-    tipo_item = col_t1.selectbox("Tipo de Item", tipos_disponiveis, index=idx_tipo)
+    tipo_item = col_t1.selectbox("Tipo de Item", ["Produto", "Linga"], key="tipo_item_orcamento")
 
     # Busca dinâmica da referência correspondente
-    tipo_item = col_t1.selectbox("Tipo de Item", ["Produto", "Linga"])
-
+   
     dados_encontrados = {}
     
     if tipo_item == "Produto":
-        # Lista as chaves de produtos no selectbox com filtro nativo
-        ref_digitada = col_t2.selectbox("Buscar Referência de Produto:", [""] + list(base_produtos.keys()))
+        ref_digitada = col_t2.selectbox("Buscar Referência de Produto:", [""] + list(base_produtos.keys()), key="ref_produto_orc")
         if ref_digitada and ref_digitada in base_produtos:
             dados_encontrados = base_produtos.get(ref_digitada, {})
     else:
-        # Lista as chaves de lingas no selectbox com filtro nativo pelas primeiras letras
         opcoes_lingas = [""] + list(base_lingas.keys())
-        ref_digitada = col_t2.selectbox("🔍 Selecionar ou Digitar Referência da Linga:", opcoes_lingas)
+        ref_digitada = col_t2.selectbox("🔍 Selecionar ou Digitar Referência da Linga:", opcoes_lingas, key="ref_linga_orc")
         
         if ref_digitada and ref_digitada in base_lingas:
             dados_encontrados = base_lingas.get(ref_digitada, {})
