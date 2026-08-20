@@ -113,6 +113,11 @@ with aba1:
                 'valor_venda': 'Preço de Venda'
             })
 
+         df_exibicao = df_exibicao.drop(
+        columns=['carga_trabalho', 'comprimento'],
+        errors='ignore'
+    )
+
         st.dataframe(
             df_exibicao,
             use_container_width=True
@@ -188,6 +193,7 @@ with aba2:
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
+
 
 
 
