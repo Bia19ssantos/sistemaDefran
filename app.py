@@ -406,13 +406,17 @@ with aba4:
             estilo_texto = ParagraphStyle('Texto', parent=styles['Normal'], fontSize=9, leading=12, textColor=colors.HexColor("#222222"))
             estilo_bold = ParagraphStyle('Bold', parent=estilo_texto, fontName='Helvetica-Bold')
             
+            # --- BUSCANDO OS LOGOS NA PASTA DOCS ---
+            caminho_logo_esq = "docs/logoDefran1.png"
+            caminho_logo_dir = "docs/KitoCrosbyGunn.png"
+            
             img_esquerda = None
-            if os.path.exists("logoDefran1.png"):
-                img_esquerda = Image("logoDefran1.png", width=150, height=52)
+            if os.path.exists(caminho_logo_esq):
+                img_esquerda = Image(caminho_logo_esq, width=150, height=52)
             
             img_direita = None
-            if os.path.exists("KitoCrosbyGunn.png"):
-                img_direita = Image("KitoCrosbyGunn.png", width=130, height=48)
+            if os.path.exists(caminho_logo_dir):
+                img_direita = Image(caminho_logo_dir, width=130, height=48)
 
             header_table_data = [
                 [img_esquerda or Paragraph("<b>DEFRAN</b>", estilo_bold), img_direita or ""]
