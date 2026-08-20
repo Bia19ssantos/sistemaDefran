@@ -194,7 +194,7 @@ with aba3:
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
-   st.header("📋 Cadastro e Geração de Orçamento")
+    st.header("📋 Cadastro e Geração de Orçamento")
     
     df_clientes = dados_carregados.get("Clientes", pd.DataFrame())
     
