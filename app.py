@@ -194,21 +194,21 @@ with aba3:
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
-    st.header("📋 Cadastro e Geração de Orçamento")
+   st.header("📋 Cadastro e Geração de Orçamento")
     
     df_clientes = dados_carregados.get("Clientes", pd.DataFrame())
     
-    # Criar lista formatada "RAZÃO SOCIAL - CNPJ" para busca rápida por digitação
+    # Criar lista formatada "RAZÃO SOCIAL - CONTATO" para busca rápida por digitação
     opcoes_clientes = [""]
     mapa_clientes = {}
     if not df_clientes.empty:
         for _, row in df_clientes.iterrows():
-            rotulo = f"{row['razao']} (CNPJ: {row['cnpj']})"
+            rotulo = f"{row['razao']} | Contato: {row['contato']}"
             opcoes_clientes.append(rotulo)
             mapa_clientes[rotulo] = row.to_dict()
 
-    # O selectbox do Streamlit já possui filtro nativo: basta clicar e começar a digitar as primeiras letras
-    cliente_escolhido = st.selectbox("🔍 Buscar Cliente (Digite as primeiras letras da Razão Social ou CNPJ):", opcoes_clientes)
+    # O selectbox do Streamlit filtra tanto pela razão quanto pelo contato ao digitar
+    cliente_escolhido = st.selectbox("🔍 Buscar Cliente (Digite as primeiras letras da Razão Social ou do Contato):", opcoes_clientes)
     
     dados_cli = {}
     if cliente_escolhido and cliente_escolhido in mapa_clientes:
