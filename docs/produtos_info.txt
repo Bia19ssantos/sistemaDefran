@@ -22,7 +22,7 @@ NCM: 73269090
 ICMS: 18% Incluso
 IPI: 5% Incluso
 
-Referência: EGKN-13-10 - B14463
+Referência: EGKN-13-10
 Descrição: Gancho clévis Grau-10 para corrente de 13mm, Carga de Trabalho 6,7T, conforme Norma EN-1677.
 Prazo de Entrega: confirmação após o pedido
 Fator de Segurança: 4:1
