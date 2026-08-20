@@ -25,14 +25,41 @@ def carregar_estoque_do_google():
         return pd.read_csv("dados/estoque_defran.csv", sep=',', encoding='latin1')
 
 def carregar_dados():
-    colunas_prod = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda']
-    arquivos = {"Produtos Gunnebo": "prod_gunnebo.csv", "Produtos Crosby": "prod_crosby.csv", "Manilhas Crosby": "manilhas_crosby.csv"}
+    colunas_prod = [
+        'ref_prod',
+        'desc_prod',
+        'ncm',
+        'sap',
+        'ipi',
+        'tipo',
+        'valor_custo',
+        'carga_trabalho',
+        'comprimento',
+        'valor_venda'
+    ]
+
+    arquivos = {
+        "Produtos Gunnebo": "prod_gunnebo.csv",
+        "Produtos Crosby": "prod_crosby.csv",
+        "Manilhas Crosby": "manilhas_crosby.csv"
+    }
+
     dados = {}
+
     for nome, arquivo in arquivos.items():
         caminho = f"dados/{arquivo}"
+
         if os.path.exists(caminho):
-            dados[nome] = pd.read_csv(caminho, sep=';', encoding='latin1', names=colunas_prod, header=None)
+            dados[nome] = pd.read_csv(
+                caminho,
+                sep=';',
+                encoding='latin1',
+                names=colunas_prod,
+                header=0
+            )
+
     dados["Estoque Defran"] = carregar_estoque_do_google()
+
     return dados
 
 dados_carregados = carregar_dados()
@@ -161,6 +188,7 @@ with aba2:
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
+
 
 
 
