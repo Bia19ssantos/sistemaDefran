@@ -25,7 +25,7 @@ def carregar_estoque_do_google():
         return pd.read_csv("dados/estoque_defran.csv", sep=',', encoding='latin1')
 
 def carregar_dados():
-    colunas_prod = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'comprimento', 'valor_venda', 'valor_linga']
+    colunas_prod = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda']
     arquivos = {"Produtos Gunnebo": "prod_gunnebo.csv", "Produtos Crosby": "prod_crosby.csv", "Manilhas Crosby": "manilhas_crosby.csv"}
     dados = {}
     for nome, arquivo in arquivos.items():
@@ -68,9 +68,9 @@ with aba1:
                 'ipi': 'IPI',
                 'tipo': 'Tipo',
                 'valor_custo': 'Custo',
-                'comprimento': 'Comprimento',
-                'valor_venda': 'Preço de Venda',
-                'valor_linga': 'Preço Linga'
+                'carga_trabalho': 'Comprimento',
+                'comprimento': 'Preço de Venda',
+                'valor_venda': 'Preço Linga'
             })
 
         # Cabeçalho de Crosby e Manilhas
@@ -83,8 +83,6 @@ with aba1:
                 'ipi': 'IPI',
                 'tipo': 'Tipo',
                 'valor_custo': 'Valor de Custo',
-                'carga_trabalho': 'Carga Trabalho',
-                'comprimento': 'Comprimento',
                 'valor_venda': 'Preço de Venda'
             })
 
@@ -163,5 +161,6 @@ with aba2:
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
+
 
 
