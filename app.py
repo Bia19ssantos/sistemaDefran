@@ -218,9 +218,11 @@ with aba3:
         with open(caminho_pdf, "rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
         
+        # Exibe o PDF diretamente na tela via visualizador embutido (iframe)
         pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="700px" type="application/pdf"></iframe>'
         st.markdown(pdf_display, unsafe_allow_html=True)
         
+        # Botão opcional para download direto
         with open(caminho_pdf, "rb") as f:
             st.download_button(
                 label="📥 Baixar PDF de Carga de Trabalho",
@@ -314,26 +316,26 @@ with aba4:
             st.info(f"Editando o Item #{st.session_state.editando_indice + 1}")
 
         val_ref = fonte_dados.get("referencia", "")
-        item_ref = st.text_input("Referência Exata", value=val_ref)
+        item_ref = st.text_input("Referência Exata", value=val_ref, key="input_ref_exata")
 
         col_i1, col_i2, col_i3 = st.columns(3)
         item_qtd = col_i1.number_input("Quantidade / Metragem", min_value=0.01, 
-                                       value=float(fonte_dados.get("quantidade", 1.00)), step=0.01)
+                                       value=float(fonte_dados.get("quantidade", 1.00)), step=0.01, key="input_qtd")
         
         unidades_disponiveis = ["PÇ", "M"]
         unidade_atual = fonte_dados.get("unidade", "PÇ")
         idx_unidade = unidades_disponiveis.index(unidade_atual) if unidade_atual in unidades_disponiveis else 0
-        item_unidade = col_i2.selectbox("Unidade", unidades_disponiveis, index=idx_unidade)
+        item_unidade = col_i2.selectbox("Unidade", unidades_disponiveis, index=idx_unidade, key="input_unidade")
         
-        item_val = col_i3.number_input("Valor Unitário (R$)", min_value=0.0, value=float(fonte_dados.get("unitario", 0.0)), step=0.10)
+        item_val = col_i3.number_input("Valor Unitário (R$)", min_value=0.0, value=float(fonte_dados.get("unitario", 0.0)), step=0.10, key="input_val")
         
-        item_desc = st.text_area("Descrição Completa", value=fonte_dados.get("descricao", ""))
+        item_desc = st.text_area("Descrição Completa", value=fonte_dados.get("descricao", ""), key="input_desc")
         
         col_extra1, col_extra2, col_extra3, col_extra4 = st.columns(4)
-        item_prazo = col_extra1.text_input("Prazo de Entrega", value=fonte_dados.get("prazo", "07 dias"))
-        item_ncm = col_extra2.text_input("NCM", value=fonte_dados.get("ncm", "7315.12.90"))
-        item_ipi = col_extra3.text_input("IPI", value=fonte_dados.get("ipi", "Incluso"))
-        item_fator = col_extra4.text_input("Fator de Seg.", value=fonte_dados.get("fator", "4:1"))
+        item_prazo = col_extra1.text_input("Prazo de Entrega", value=fonte_dados.get("prazo", "07 dias"), key="input_prazo")
+        item_ncm = col_extra2.text_input("NCM", value=fonte_dados.get("ncm", "7315.12.90"), key="input_ncm")
+        item_ipi = col_extra3.text_input("IPI", value=fonte_dados.get("ipi", "Incluso"), key="input_ipi")
+        item_fator = col_extra4.text_input("Fator de Seg.", value=fonte_dados.get("fator", "4:1"), key="input_fator")
         
         texto_botao = "Salvar Alteração do Item" if st.session_state.editando_indice is not None else "Adicionar Item na Proposta"
         add_item_btn = st.form_submit_button(texto_botao)
@@ -360,6 +362,11 @@ with aba4:
             else:
                 st.session_state.itens_orcamento.append(novo_dado_item)
                 st.success("Item adicionado com sucesso!")
+            
+            # Limpa explicitamente o cache de memória dos widgets do form para resetar a tela acima
+            for chave_limpar in ["ref_produto_orc", "ref_linga_orc", "input_ref_exata", "input_desc", "input_prazo", "input_ncm", "input_ipi", "input_fator"]:
+                if chave_limpar in st.session_state:
+                    del st.session_state[chave_limpar]
             
             st.rerun()
 
@@ -496,6 +503,13 @@ with aba4:
             st.session_state.itens_orcamento = []
             st.session_state.editando_indice = None
 
+        pdf_buffer = gerar_pdf_defran(
+            num_orc, data_orc, cliente_orc, 
+            cidade_orc, estado_orc, tel_orc, contato_orc, 
+            email_orc, vendedor_orc, cond_pgto_orc, cond_entrega_orc, st.session_test if "itens_orcamento" in st.session_state else []
+        )
+        
+        # Correção da chamada da variável de itens no PDF
         pdf_buffer = gerar_pdf_defran(
             num_orc, data_orc, cliente_orc, 
             cidade_orc, estado_orc, tel_orc, contato_orc, 
