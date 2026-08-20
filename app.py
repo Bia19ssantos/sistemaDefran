@@ -167,7 +167,7 @@ with aba2:
         except Exception as e:
             st.error(f"Erro ao salvar: {e}")
 
-# --- ABA 3: CARGA DE TRABALHO LINGAS ---
+    # --- ABA 3: CARGA DE TRABALHO LINGAS ---
 with aba3:
     st.header("")
     
@@ -192,22 +192,27 @@ with aba3:
     else:
         st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
 
-
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
     st.header("📋 Cadastro e Geração de Orçamento")
     
     df_clientes = dados_carregados.get("Clientes", pd.DataFrame())
-    lista_razoes = [""] + list(df_clientes['razao'].unique()) if not df_clientes.empty else [""]
     
-    # Seleção de cliente para preenchimento automático
-    cliente_selecionado = st.selectbox("Selecione o Cliente na Base:", lista_razoes)
+    # Criar lista formatada "RAZÃO SOCIAL - CNPJ" para busca rápida por digitação
+    opcoes_clientes = [""]
+    mapa_clientes = {}
+    if not df_clientes.empty:
+        for _, row in df_clientes.iterrows():
+            rotulo = f"{row['razao']} (CNPJ: {row['cnpj']})"
+            opcoes_clientes.append(rotulo)
+            mapa_clientes[rotulo] = row.to_dict()
+
+    # O selectbox do Streamlit já possui filtro nativo: basta clicar e começar a digitar as primeiras letras
+    cliente_escolhido = st.selectbox("🔍 Buscar Cliente (Digite as primeiras letras da Razão Social ou CNPJ):", opcoes_clientes)
     
     dados_cli = {}
-    if cliente_selecionado and not df_clientes.empty:
-        match = df_clientes[df_clientes['razao'] == cliente_selecionado]
-        if not match.empty:
-            dados_cli = match.iloc[0].to_dict()
+    if cliente_escolhido and cliente_escolhido in mapa_clientes:
+        dados_cli = mapa_clientes[cliente_escolhido]
 
     col_c1, col_c2, col_c3 = st.columns(3)
     num_orc = col_c1.text_input("Nº da Proposta", value="373/26")
