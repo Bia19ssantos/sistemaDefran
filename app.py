@@ -201,8 +201,7 @@ with aba2:
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
 
-
-   with aba3:
+with aba3:
     st.header("Carga de Trabalho - Lingas")
     
     caminho_pdf = "docs/cargaTrabalhoLingas.pdf"
