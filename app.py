@@ -6,11 +6,11 @@ from io import BytesIO
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 
-st.set_page_config(page_title="Consultas Defran", layout="centered")
+st.set_page_config(page_title="", layout="centered")
 
 # --- EXIBIR LOGO DA EMPRESA NO TOPO ---
 if os.path.exists("navbar-logo.jpg"):
@@ -18,7 +18,7 @@ if os.path.exists("navbar-logo.jpg"):
 elif os.path.exists("navbar-logo.png"):
     st.image("navbar-logo.png", width=300)
 
-st.title("")
+st.title("Consultas Defran")
 st.markdown("---")
 
 # --- CONEXÃO COM GOOGLE ---
@@ -167,7 +167,7 @@ with aba2:
         except Exception as e:
             st.error(f"Erro ao salvar: {e}")
 
-    # --- ABA 3: CARGA DE TRABALHO LINGAS ---
+# --- ABA 3: CARGA DE TRABALHO LINGAS ---
 with aba3:
     st.header("")
     
@@ -194,11 +194,10 @@ with aba3:
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
-    st.header("📋 Cadastro e Geração de Orçamento")
+    st.header("📋 Orçamentos")
     
     df_clientes = dados_carregados.get("Clientes", pd.DataFrame())
     
-    # Criar lista formatada "RAZÃO SOCIAL - CONTATO" para busca rápida por digitação
     opcoes_clientes = [""]
     mapa_clientes = {}
     if not df_clientes.empty:
@@ -207,7 +206,6 @@ with aba4:
             opcoes_clientes.append(rotulo)
             mapa_clientes[rotulo] = row.to_dict()
 
-    # O selectbox do Streamlit filtra tanto pela razão quanto pelo contato ao digitar
     cliente_escolhido = st.selectbox("🔍 Buscar Cliente (Digite as primeiras letras da Razão Social ou do Contato):", opcoes_clientes)
     
     dados_cli = {}
@@ -292,16 +290,34 @@ with aba4:
             elementos = []
             styles = getSampleStyleSheet()
             
-            estilo_empresa = ParagraphStyle('Empresa', parent=styles['Normal'], fontSize=9, leading=11, textColor=colors.HexColor("#333333"))
+            estilo_empresa = ParagraphStyle('Empresa', parent=styles['Normal'], fontSize=8, leading=10, textColor=colors.HexColor("#333333"))
             estilo_titulo = ParagraphStyle('Titulo', parent=styles['Heading2'], fontSize=12, leading=14, textColor=colors.HexColor("#0056b3"), alignment=1)
             estilo_texto = ParagraphStyle('Texto', parent=styles['Normal'], fontSize=9, leading=12, textColor=colors.HexColor("#222222"))
             estilo_bold = ParagraphStyle('Bold', parent=estilo_texto, fontName='Helvetica-Bold')
             
-            # Cabeçalho Empresa
-            elementos.append(Paragraph("<b>DEFRAN - PRODUTOS PARA MOVIMENTAÇÃO DE CARGAS LTDA</b>", estilo_empresa))
-            elementos.append(Paragraph("Av. Getúlio Vargas, 966 Bambu/Porto Feliz-SP/CEP: 18540-380", estilo_empresa))
-            elementos.append(Paragraph("CNPJ: 66.521.337/0001-52 / IE: 554.109.111.113 | KITO CROSBY | GUNNEBO REVENDEDOR", estilo_empresa))
-            elementos.append(Spacer(1, 10))
+            # --- CABEÇALHO COM LOGOS ---
+            img_esquerda = None
+            if os.path.exists("logoDefran1.png"):
+                img_esquerda = Image("logoDefran1.png", width=150, height=52)
+            
+            img_direita = None
+            if os.path.exists("KitoCrosbyGunn.png"):
+                img_direita = Image("KitoCrosbyGunn.png", width=130, height=48)
+
+            header_table_data = [
+                [img_esquerda or Paragraph("<b>DEFRAN</b>", estilo_bold), img_direita or ""]
+            ]
+            t_header = Table(header_table_data, colWidths=[300, 240])
+            t_header.setStyle(TableStyle([
+                ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+                ('ALIGN', (1,0), (1,0), 'RIGHT'),
+                ('BOTTOMPADDING', (0,0), (-1,-1), 4),
+            ]))
+            elementos.append(t_header)
+            
+            elementos.append(Paragraph("Av. Getúlio Vargas, 966 Bambu/Porto Feliz-SP / CEP: 18540-380", estilo_empresa))
+            elementos.append(Paragraph("CNPJ: 66.521.337/0001-52 / IE: 554.109.111.113", estilo_empresa))
+            elementos.append(Spacer(1, 8))
             
             elementos.append(Paragraph("<b>PROPOSTA COMERCIAL</b>", estilo_titulo))
             elementos.append(Spacer(1, 8))
