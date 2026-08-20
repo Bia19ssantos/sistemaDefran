@@ -201,29 +201,27 @@ with aba2:
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
 
+# --- ABA 3: CARGA DE TRABALHO LINGAS ---
 with aba3:
-    st.header("Carga de Trabalho - Lingas")
+    st.header("")
     
     caminho_pdf = "docs/cargaTrabalhoLingas.pdf"
     
     if os.path.exists(caminho_pdf):
         with open(caminho_pdf, "rb") as f:
-            pdf_bytes = f.read()
-            
-        # Converte para base64 para abrir em nova aba de forma segura
-        b64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
-        href = f'<a href="data:application/pdf;base64,{b64_pdf}" target="_blank" style="text-decoration: none;"><button style="width: 100%; background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;">📄 Abrir PDF em Nova Aba</button></a>'
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
         
-        st.markdown(href, unsafe_allow_html=True)
-        st.write("") # Espaçamento
+        # Exibe o PDF diretamente na tela via visualizador embutido (iframe)
+        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="700px" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
         
-        # Mantém o botão de download caso o usuário queira baixar
-        st.download_button(
-            label="📥 Baixar PDF",
-            data=pdf_bytes,
-            file_name="cargaTrabalhoLingas.pdf",
-            mime="application/pdf",
-            use_container_width=True
-        )
+        # Botão opcional para download direto
+        with open(caminho_pdf, "rb") as f:
+            st.download_button(
+                label="📥 Baixar PDF de Carga de Trabalho",
+                data=f,
+                file_name="cargaTrabalhoLingas.pdf",
+                mime="application/pdf"
+            )
     else:
-        st.error(f"O arquivo PDF não foi encontrado em: {caminho_pdf}")
+        st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
