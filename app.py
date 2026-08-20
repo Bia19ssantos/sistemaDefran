@@ -202,28 +202,29 @@ with aba2:
             st.error(f"Erro ao salvar na planilha: {e}")
 
 
-    # --- ABA 3: CARGA DE TRABALHO LINGAS ---
-with aba3:
+   with aba3:
     st.header("Carga de Trabalho - Lingas")
     
     caminho_pdf = "docs/cargaTrabalhoLingas.pdf"
     
     if os.path.exists(caminho_pdf):
-        st.info("Clique no botão abaixo para baixar ou visualizar o documento de Carga de Trabalho.")
-        
         with open(caminho_pdf, "rb") as f:
             pdf_bytes = f.read()
             
-        # Botão principal de download
+        # Converte para base64 para abrir em nova aba de forma segura
+        b64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
+        href = f'<a href="data:application/pdf;base64,{b64_pdf}" target="_blank" style="text-decoration: none;"><button style="width: 100%; background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;">📄 Abrir PDF em Nova Aba</button></a>'
+        
+        st.markdown(href, unsafe_allow_html=True)
+        st.write("") # Espaçamento
+        
+        # Mantém o botão de download caso o usuário queira baixar
         st.download_button(
-            label="📥 Baixar / Visualizar PDF de Carga de Trabalho",
+            label="📥 Baixar PDF",
             data=pdf_bytes,
             file_name="cargaTrabalhoLingas.pdf",
             mime="application/pdf",
             use_container_width=True
         )
     else:
-        st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
-
-
-
+        st.error(f"O arquivo PDF não foi encontrado em: {caminho_pdf}")
