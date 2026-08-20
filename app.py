@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
+import base64
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -65,7 +66,7 @@ def carregar_dados():
 dados_carregados = carregar_dados()
 
 # --- INTERFACE ---
-aba1, aba2 = st.tabs(["Produtos", "Estoque Defran"])
+aba1, aba2, aba3 = st.tabs(["Produtos", "Estoque Defran", "Carga de Trabalho Lingas"])
 
 with aba1:
     selecao = st.selectbox(
@@ -181,7 +182,6 @@ with aba2:
         
         submit = st.form_submit_button("Salvar Alteração")
 
-    # AQUI ESTÁ A CORREÇÃO: O 'if' está alinhado com o 'with aba2:'
     if submit:
         try:
             sheet = client.open("estoque_defran").sheet1
@@ -201,8 +201,30 @@ with aba2:
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
 
-
-
+# --- ABA 3: CARGA DE TRABALHO LINGAS ---
+with aba3:
+    st.header("Carga de Trabalho - Lingas")
+    
+    caminho_pdf = "docs/cargaTrabalhoLingas.pdf"
+    
+    if os.path.exists(caminho_pdf):
+        with open(caminho_pdf, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        
+        # Exibe o PDF diretamente na tela via visualizador embutido (iframe)
+        pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="700px" type="application/pdf"></iframe>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+        
+        # Botão opcional para download direto
+        with open(caminho_pdf, "rb") as f:
+            st.download_button(
+                label="📥 Baixar PDF de Carga de Trabalho",
+                data=f,
+                file_name="cargaTrabalhoLingas.pdf",
+                mime="application/pdf"
+            )
+    else:
+        st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
 
 
 
