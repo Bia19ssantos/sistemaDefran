@@ -201,8 +201,7 @@ with aba2:
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
 
-# --- ABA 3: CARGA DE TRABALHO LINGAS ---
-with aba3:
+
     # --- ABA 3: CARGA DE TRABALHO LINGAS ---
 with aba3:
     st.header("Carga de Trabalho - Lingas")
