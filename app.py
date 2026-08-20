@@ -104,7 +104,7 @@ def carregar_bases_txt():
             if ref_encontrada:
                 produtos_dict[ref_encontrada.lower()] = dados_item
 
-    # Base de Lingas
+  # Base de Lingas (Garantindo que puxa a referência correta)
     caminho_lingas = "docs/lingas_info.txt"
     if os.path.exists(caminho_lingas):
         with open(caminho_lingas, "r", encoding="utf-8") as f:
@@ -134,7 +134,8 @@ def carregar_bases_txt():
                     elif "ipi" in chave_limpa:
                         dados_item["ipi"] = valor_limpo
             if ref_encontrada:
-                lingas_dict[ref_encontrada.lower()] = dados_item
+                # Usamos a referência original como chave para aparecer bonitinha no combo
+                lingas_dict[ref_encontrada] = dados_item
                 
     return produtos_dict, lingas_dict
 
