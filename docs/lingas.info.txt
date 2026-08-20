@@ -1,0 +1,55 @@
+Referência: TG4/OKE
+Descrição: Linga de Correntes Grau-10 de 8mm, 04 pernas e 04 encurtadores, com gancho olhal de fundição nas extremidades, Carga de Trabalho 5,2T, comprimento total 2.000mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+Fator de Segurança: 4:1
+NCM: 7315.12.90
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: TG2/OKE
+Descrição: Linga de Correntes Grau-10 de 8mm, 02 pernas e 02 encurtadores, com gancho olhal de fundição nas extremidades, Carga de Trabalho 3,5T, comprimento total 220mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+Fator de Segurança: 4:1
+NCM: 7315.12.90
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: TG2/EGKN
+Descrição: Linga de Correntes Grau-10 de 10mm, 02 pernas e 02 encurtadores, com gancho clévis com trava nas extremidades, Carga de Trabalho 5,6T, comprimento total 3.300mm, conforme Norma EN-818.
+Prazo de Entrega: 02 peças em 05 dias, saldo 20 dias
+Fator de Segurança: 4:1
+NCM: 7315.12.90
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: TG3/BKG
+Descrição: Linga de Correntes Grau-10 de 8mm, 03 pernas e 03 encurtadores, com gancho clevis automático nas extremidades, Carga de Trabalho 5,2T, comprimento total 1.335mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+Fator de Segurança: 4:1
+NCM: 7315.12.90
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: TG4/EGKN
+Descrição: Linga de Correntes Grau-10 de 13mm, 04 pernas e 04 encurtadores, com gancho clevis com trava nas extremidades, Carga de Trabalho 14T, comprimento total 5.500mm, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+Fator de Segurança: 4:1
+NCM: 7315.12.90
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: 2G/G
+Descrição: Linga de Correntes Grau-8 de 8mm, 02 pernas, com elo de ligação nas extremidades, Carga de Trabalho de 2,8T, comprimento total 695mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+Fator de Segurança: 4:1
+NCM: 7315.12.90
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: 1G/EGKN
+Descrição: Linga de Correntes Grau-8 de 13mm, 01 perna, com gancho clévis com trava na extremidade, Carga de Trabalho de 5,3T, comprimento total 1.000mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+Fator de Segurança: 4:1
+NCM: 7315.12.90
+ICMS: Incluso (ST)
+IPI: Incluso
