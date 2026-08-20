@@ -472,7 +472,8 @@ with aba4:
             
             for idx, item in enumerate(itens, 1):
                 item_dados = [
-                    [Paragraph(f"<b>Item: {idx:02d} ({item['tipo']})</b>", estilo_bold), Paragraph(f"<b>Quantidade:</b> {item['quantidade']:.2f} {item['unidade']}", estilo_bold)],
+                    
+                    [Paragraph(f"<b>Item: {idx:02d}</b>", estilo_bold), Paragraph(f"<b>Quantidade:</b> {item['quantidade']:.2f} {item['unidade']}", estilo_bold)],
                     [Paragraph(f"<b>Referência:</b> {item['referencia']}", estilo_texto), Paragraph(f"<b>Preço Unit.:</b> R$ {item['unitario']:.2f}", estilo_bold)],
                     [Paragraph(f"<b>Descrição:</b> {item['descricao']}", estilo_texto), Paragraph("", estilo_texto)],
                     [Paragraph(f"<b>Prazo de Entrega:</b> {item['prazo']}", estilo_texto), Paragraph(f"<b>NCM:</b> {item['ncm']}", estilo_texto)],
