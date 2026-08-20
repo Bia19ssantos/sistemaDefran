@@ -85,8 +85,11 @@ with aba1:
                 .str.contains(termo, case=False, na=False)
             ]
 
-        # Cabeçalho específico para Gunnebo
+        # =========================
+        # PRODUTOS GUNNEBO
+        # =========================
         if selecao == "Produtos Gunnebo":
+
             df_exibicao = df.rename(columns={
                 'ref_prod': 'Referência Gunnebo',
                 'desc_prod': 'Descrição do Produto',
@@ -95,13 +98,16 @@ with aba1:
                 'ipi': 'IPI',
                 'tipo': 'Tipo',
                 'valor_custo': 'Custo',
-                'carga_trabalho': 'Comprimento',
-                'comprimento': 'Preço de Venda',
-                'valor_venda': 'Preço Linga'
+                'carga_trabalho': 'Carga de Trabalho',
+                'comprimento': 'Comprimento',
+                'valor_venda': 'Preço de Venda'
             })
 
-        # Cabeçalho de Crosby e Manilhas
+        # =========================
+        # CROSBY E MANILHAS
+        # =========================
         else:
+
             df_exibicao = df.rename(columns={
                 'ref_prod': 'Referência',
                 'desc_prod': 'Descrição',
@@ -113,16 +119,17 @@ with aba1:
                 'valor_venda': 'Preço de Venda'
             })
 
-         df_exibicao = df_exibicao.drop(
-        columns=['carga_trabalho', 'comprimento'],
-        errors='ignore'
-    )
+            # Não exibir estas colunas no Crosby/Manilhas
+            df_exibicao = df_exibicao.drop(
+                columns=['carga_trabalho', 'comprimento'],
+                errors='ignore'
+            )
 
         st.dataframe(
             df_exibicao,
             use_container_width=True
         )
-
+        
 with aba2:
     st.header("Estoque Defran")
     
@@ -193,6 +200,7 @@ with aba2:
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar na planilha: {e}")
+
 
 
 
