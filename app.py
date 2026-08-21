@@ -367,8 +367,7 @@ with aba4:
 
     if st.session_state.limpar_campos_item:
         st.session_state["tipo_item_orcamento"] = "Produto"
-        st.session_state["sap_produto_orc"] = ""
-        st.session_state["ref_produto_orc"] = ""
+        st.session_state["busca_manual_input"] = ""
         st.session_state["ref_linga_orc"] = ""
         st.session_state.limpar_campos_item = False
 
@@ -389,35 +388,35 @@ with aba4:
 
     base_selecionada = base_produtos if tipo_item == "Produto" else base_lingas
 
-    # Se for Produto, adicionamos a opção de buscar por Código SAP ou Referência
     dados_encontrados = {}
+    busca_manual = ""
+
     if tipo_item == "Produto":
-        col_b1, col_b2 = st.columns(2)
-        
-        # Filtra chaves que parecem códigos SAP (ex: começam com B) ou referências
-        lista_saps = sorted([k for k in base_selecionada.keys() if str(k).startswith("B")])
-        lista_refs = sorted([k for k in base_selecionada.keys() if not str(k).startswith("B")])
-        
-        sap_digitado = col_b1.selectbox("Buscar por Código SAP:", [""] + lista_saps, key="sap_produto_orc")
-        ref_digitada = col_b2.selectbox("Ou Buscar por Referência:", [""] + lista_refs, key="ref_produto_orc")
-        
-        chave_busca = sap_digitado if sap_digitado else ref_digitada
-        if chave_busca and chave_busca in base_selecionada:
-            dados_encontrados = base_selecionada.get(chave_busca, {})
+        busca_manual = col_t2.text_input("Digite o Código SAP ou Referência e aperte Enter:", key="busca_manual_input")
+        if busca_manual:
+            # Procura por correspondência exata ou parcial na base de produtos (TXT)
+            if busca_manual in base_selecionada:
+                dados_encontrados = base_selecionada.get(busca_manual, {})
+            else:
+                for chave in base_selecionada.keys():
+                    if busca_manual.lower() in chave.lower():
+                        dados_encontrados = base_selecionada[chave]
+                        break
+            if not dados_encontrados:
+                st.warning("Produto não encontrado no arquivo TXT. Verifique o código digitado.")
     else:
-        ref_digitada = col_t2.selectbox(
+        ref_linga_digitada = col_t2.selectbox(
             "Buscar Referência de Linga:", 
             [""] + list(base_selecionada.keys()), 
             key="ref_linga_orc"
         )
-        if ref_digitada and ref_digitada in base_selecionada:
-            dados_encontrados = base_selecionada.get(ref_digitada, {})
+        if ref_linga_digitada and ref_linga_digitada in base_selecionada:
+            dados_encontrados = base_selecionada.get(ref_linga_digitada, {})
+            busca_manual = ref_linga_digitada
 
     # Buscar preço unitário automaticamente na planilha de Produtos Gunnebo se houver Código SAP ou Referência
     preco_sugerido_planilha = 0.0
-    ref_ou_sap_alvo = dados_encontrados.get("referencia", "") or dados_encontrados.get("sap", "")
-    if not ref_ou_sap_alvo and tipo_item == "Produto":
-        ref_ou_sap_alvo = st.session_state.get("sap_produto_orc", "") or st.session_state.get("ref_produto_orc", "")
+    ref_ou_sap_alvo = dados_encontrados.get("referencia", "") or dados_encontrados.get("sap", "") or busca_manual
 
     if ref_ou_sap_alvo and "Produtos Gunnebo" in dados_carregados:
         df_gun = dados_carregados["Produtos Gunnebo"]
@@ -444,7 +443,7 @@ with aba4:
             st.info(f"Editando o Item #{st.session_state.editando_indice + 1}")
 
         val_ref = ref_ou_sap_alvo if ref_ou_sap_alvo else fonte_dados.get("referencia", "")
-        item_ref = st.text_input("Referência Exata", value=val_ref)
+        item_ref = st.text_input("Referência / Código Exato", value=val_ref)
 
         col_i1, col_i2, col_i3 = st.columns(3)
         item_qtd = col_i1.number_input("Quantidade / Metragem", min_value=0.01, 
