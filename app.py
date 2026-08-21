@@ -611,20 +611,32 @@ with aba4:
             buffer.seek(0)
             return buffer
 
-        # 2. Montar o nome sugerido
+        # Função para limpar a tela após o clique
+        def limpar_tela_pos_pdf():
+            st.session_state.itens_orcamento = []
+            st.session_state.editando_indice = None
+
+        # Gerar o PDF com os dados atuais
+        pdf_buffer = gerar_pdf_defran(
+            num_orc, data_orc, cliente_orc, 
+            cidade_orc, estado_orc, tel_orc, contato_orc, 
+            email_orc, vendedor_orc, cond_pgto_orc, cond_entrega_orc, st.session_state.itens_orcamento
+        )
+        
+        # Montar o nome formatado do arquivo
         primeira_palavra_cliente = cliente_orc.strip().split()[0] if cliente_orc else "CLIENTE"
         num_limpo = num_orc.split('/')[0] if '/' in num_orc else num_orc
         ano_atual = "26"
-
         nome_sugerido = f"ORC {num_limpo}/{ano_atual} - {primeira_palavra_cliente} - {contato_orc}.pdf"
 
-        # 3. Botão de Download
+        # Único botão de download unificado
         st.download_button(
             label="📥 Baixar PDF do Orçamento Defran",
             data=pdf_buffer,
             file_name=nome_sugerido,
             mime="application/pdf",
-            use_container_width=True
+            use_container_width=True,
+            on_click=limpar_tela_pos_pdf
         )
 
         
