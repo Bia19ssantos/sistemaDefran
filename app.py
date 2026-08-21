@@ -154,31 +154,42 @@ aba1, aba2, aba3, aba4 = st.tabs([
     "📋 Orçamento"
 ])
 
+# --- ABA 1: PRODUTOS ---
 with aba1:
-    selecao = st.selectbox(
+    st.header("📦 Consulta de Produtos")
+    
+    # Mapeamento exato dos nomes da tela para as chaves reais dos arquivos CSV
+    opcoes_bases_aba1 = {
+        "Produtos Gunnebo": "prod_gunnebo",
+        "Produtos Crosby": "prod_crosby",
+        "Manilhas Crosby": "manilhas_crosby"
+    }
+
+    selecao_aba1 = st.selectbox(
         "Escolha a base:",
-        ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"]
+        list(opcoes_bases_aba1.keys()),
+        key="select_base_aba1"
     )
 
-    if selecao in dados_carregados:
-        df = dados_carregados[selecao]
+    chave_real_aba1 = opcoes_bases_aba1[selecao_aba1]
 
-        termo = st.text_input("Filtrar referência (Produtos):")
+    if chave_real_aba1 in dados_carregados:
+        df_aba1 = dados_carregados[chave_real_aba1].copy()
 
-        if termo:
-            df = df[
-                df['ref_prod']
+        termo_aba1 = st.text_input("Filtrar referência (Produtos):", key=f"filtro_aba1_{chave_real_aba1}")
+
+        if termo_aba1:
+            df_aba1 = df_aba1[
+                df_aba1['ref_prod']
                 .astype(str)
-                .str.contains(termo, case=False, na=False)
+                .str.contains(termo_aba1, case=False, na=False)
             ]
 
         # =========================
         # PRODUTOS GUNNEBO
         # =========================
-        if selecao == "Produtos Gunnebo":
-
-            df_exibicao = df.rename(columns={
-                
+        if selecao_aba1 == "Produtos Gunnebo":
+            df_exibicao_aba1 = df_aba1.rename(columns={
                 'sap': 'Código SAP',
                 'ref_prod': 'Referência',
                 'ipi': 'IPI',
@@ -192,25 +203,26 @@ with aba1:
         # CROSBY E MANILHAS
         # =========================
         else:
-
-            df_exibicao = df.rename(columns={
+            df_exibicao_aba1 = df_aba1.rename(columns={
                 'sap': 'SAP',
-                'ref_prod': 'Referência',              
+                'ref_prod': 'Referência',            
                 'ipi': 'IPI',
                 'valor_custo': 'Preço Custo',
                 'valor_venda': 'Preço Venda'
             })
 
             # Não exibir estas colunas no Crosby/Manilhas
-            df_exibicao = df_exibicao.drop(
+            df_exibicao_aba1 = df_exibicao_aba1.drop(
                 columns=['carga_trabalho', 'comprimento'],
                 errors='ignore'
             )
 
         st.dataframe(
-            df_exibicao,
+            df_exibicao_aba1,
             use_container_width=True
         )
+    else:
+        st.warning(f"A base '{selecao_aba1}' não foi encontrada nos dados carregados.")
 
 with aba2:
     st.header("Estoque Defran")
