@@ -9,6 +9,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
+from datetime import datetime
 
 st.set_page_config(page_title="Sistema Defran", layout="centered")
 
@@ -251,25 +252,35 @@ with aba4:
     if cliente_escolhido and cliente_escolhido in mapa_clientes:
         dados_cli = mapa_clientes[cliente_escolhido]
 
+    # CAMPOS LIMPOS / VAZIOS (ou preenchidos dinamicamente apenas se o cliente for selecionado)
     col_c1, col_c2, col_c3 = st.columns(3)
-    num_orc = col_c1.text_input("Nº da Proposta", value="373/26")
-    data_orc = col_c2.text_input("Data", value="19 de agosto de 2026")
-    cliente_orc = col_c3.text_input("Cliente", value=str(dados_cli.get("razao", "SIVA")))
+    num_orc = col_c1.text_input("Nº da Proposta", value="")
     
+
+    meses_pt = {
+        1: "janeiro", 2: "fevereiro", 3: "março", 4: "abril", 
+        5: "maio", 6: "junho", 7: "julho", 8: "agosto", 
+        9: "setembro", 10: "outubro", 11: "novembro", 12: "dezembro"
+    }
+    agora = datetime.now()
+    data_atual_formatada = f"{agora.day} de {meses_pt[agora.month]} de {agora.year}"
+    data_orc = col_c2.text_input("Data", value=data_atual_formatada) 
+    cliente_orc = col_c3.text_input("Cliente", value=str(dados_cli.get("razao", "")) if cliente_escolhido else "")
+  
     col_c4, col_c5, col_c6 = st.columns(3)
-    cidade_orc = col_c4.text_input("Cidade", value=str(dados_cli.get("cidade", "ITAQUAQUECETUBA")))
-    estado_orc = col_c5.text_input("Estado", value=str(dados_cli.get("estado", "SP")))
-    tel_orc = col_c6.text_input("Telefone", value=str(dados_cli.get("telefone", "(11) 4646-4646")))
+    cidade_orc = col_c4.text_input("Cidade", value=str(dados_cli.get("cidade", "")) if cliente_escolhido else "")
+    estado_orc = col_c5.text_input("Estado", value=str(dados_cli.get("estado", "")) if cliente_escolhido else "")
+    tel_orc = col_c6.text_input("Telefone", value=str(dados_cli.get("telefone", "")) if cliente_escolhido else "")
 
     col_c7, col_c8 = st.columns(2)
-    contato_orc = col_c7.text_input("Contato", value=str(dados_cli.get("contato", "MARCELO")))
-    email_orc = col_c8.text_input("E-mail", value=str(dados_cli.get("email", "compras@siva.com.br")))
-    vendedor_orc = st.text_input("Vendedor(a)", value="BEATRIZ")
+    contato_orc = col_c7.text_input("Contato", value=str(dados_cli.get("contato", "")) if cliente_escolhido else "")
+    email_orc = col_c8.text_input("E-mail", value=str(dados_cli.get("email", "")) if cliente_escolhido else "")
+    vendedor_orc = st.text_input("Vendedor(a)", value="")
 
-    # CONDIÇÕES COMERCIAIS PREENCHIDAS AUTOMATICAMENTE CONFORME O CLIENTE
+    # CONDIÇÕES COMERCIAIS (Vazias até selecionar o cliente ou digitar)
     col_cond1, col_cond2 = st.columns(2)
-    cond_pgto_orc = col_cond1.text_input("Condição de Pagamento", value=str(dados_cli.get("cond_pgto", "30 DDL (após aprovação do cadastro)")))
-    cond_entrega_orc = col_cond2.text_input("Condição de Entrega", value=str(dados_cli.get("cond_transporte", "FOB - Posto na transportadora em Porto Feliz/SP")))
+    cond_pgto_orc = col_cond1.text_input("Condição de Pagamento", value=str(dados_cli.get("cond_pgto", "")) if cliente_escolhido else "")
+    cond_entrega_orc = col_cond2.text_input("Condição de Entrega", value=str(dados_cli.get("cond_transporte", "")) if cliente_escolhido else "")
 
     st.markdown("---")
     st.subheader("Adicionar ou Editar Itens na Proposta")
