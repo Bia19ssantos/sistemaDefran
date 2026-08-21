@@ -611,12 +611,6 @@ with aba4:
             buffer.seek(0)
             return buffer
 
-        pdf_buffer = gerar_pdf_defran(
-            num_orc, data_orc, cliente_orc, cidade_orc, estado_orc, 
-            tel_orc, contato_orc, email_orc, vendedor_orc, 
-            cond_pgto_orc, cond_entrega_orc, st.session_state.itens_orcamento
-        )
-
         # 2. Montar o nome sugerido
         primeira_palavra_cliente = cliente_orc.strip().split()[0] if cliente_orc else "CLIENTE"
         num_limpo = num_orc.split('/')[0] if '/' in num_orc else num_orc
