@@ -46,8 +46,7 @@ def carregar_estoque_do_google():
 
 def carregar_dados():
     colunas_prod = [
-        'ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi',
-        'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda'
+        'ref_prod', 'sap', 'ipi', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda'
     ]
     arquivos = {
         "Produtos Gunnebo": "prod_gunnebo.csv",
