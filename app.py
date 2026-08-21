@@ -157,7 +157,6 @@ aba1, aba2, aba3, aba4 = st.tabs([
 with aba1:
     st.header("📦 Consulta de Produtos")
     
-    # As chaves aqui devem ser exatamente iguais às definidas na sua função carregar_dados()
     selecao_aba1 = st.selectbox(
         "Escolha a base:",
         ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"],
@@ -189,6 +188,9 @@ with aba1:
                 'comprimento': 'Preço Venda',
                 'valor_venda': 'Preço Linga'
             })
+            # Ordem exata desejada para Gunnebo
+            colunas_desejadas_gunnebo = ['Código SAP', 'Referência', 'IPI', 'Comprimento', 'Preço Custo', 'Preço Venda', 'Preço Linga']
+            df_exibicao_aba1 = df_exibicao_aba1[[c for c in colunas_desejadas_gunnebo if c in df_exibicao_aba1.columns]]
 
         # =========================
         # CROSBY E MANILHAS
@@ -202,10 +204,15 @@ with aba1:
                 'valor_venda': 'Preço Venda'
             })
 
+            # Garante que removemos as colunas indesejadas antes de reordenar
             df_exibicao_aba1 = df_exibicao_aba1.drop(
                 columns=['carga_trabalho', 'comprimento'],
                 errors='ignore'
             )
+            
+            # Ordem exata desejada para Crosby e Manilhas
+            colunas_desejadas_crosby = ['SAP', 'Referência', 'IPI', 'Preço Custo', 'Preço Venda']
+            df_exibicao_aba1 = df_exibicao_aba1[[c for c in colunas_desejadas_crosby if c in df_exibicao_aba1.columns]]
 
         st.dataframe(
             df_exibicao_aba1,
@@ -214,6 +221,7 @@ with aba1:
     else:
         st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
+# --- ABA 2: ESTOQUE DEFRAN ---
 with aba2:
     st.header("Estoque Defran")
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
@@ -268,7 +276,6 @@ with aba3:
     if os.path.exists(caminho_pdf):
         st.info("O visualizador integrado pode ser bloqueado por alguns navegadores. Utilize o botão abaixo para baixar ou visualizar o documento completo com facilidade.")
         
-        # Botão de download direto e seguro
         with open(caminho_pdf, "rb") as f:
             st.download_button(
                 label="📥 Baixar / Visualizar PDF de Carga de Trabalho",
@@ -280,7 +287,6 @@ with aba3:
             
         st.markdown("---")
         
-        # Tentativa secundária com object (alternativa ao embed/iframe)
         with open(caminho_pdf, "rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
             
@@ -345,11 +351,9 @@ with aba4:
     if "editando_indice" not in st.session_state:
         st.session_state.editando_indice = None
 
-    # Inicializa variáveis de controle de limpeza no session_state se não existirem
     if "limpar_campos_item" not in st.session_state:
         st.session_state.limpar_campos_item = False
 
-    # Se a flag de limpeza estiver ativa, resetamos os seletores da sessão para limpos
     if st.session_state.limpar_campos_item:
         st.session_state["tipo_item_orcamento"] = "Produto"
         st.session_state["ref_produto_orc"] = ""
@@ -373,7 +377,6 @@ with aba4:
 
     base_selecionada = base_produtos if tipo_item == "Produto" else base_lingas
 
-    # Chave dinâmica para o seletor de referência com base no tipo
     chave_ref_selectbox = f"ref_{tipo_item.lower()}_orc"
     
     ref_digitada = col_t2.selectbox(
@@ -443,7 +446,6 @@ with aba4:
                 st.session_state.itens_orcamento.append(novo_dado_item)
                 st.success("Item adicionado com sucesso!")
             
-            # Ativa a flag para limpar os seletores fora do formulário no próximo ciclo
             st.session_state.limpar_campos_item = True
             st.rerun()
 
@@ -488,7 +490,6 @@ with aba4:
             estilo_texto = ParagraphStyle('Texto', parent=styles['Normal'], fontSize=9, leading=12, textColor=colors.HexColor("#222222"))
             estilo_bold = ParagraphStyle('Bold', parent=estilo_texto, fontName='Helvetica-Bold')
             
-            # --- BUSCANDO OS LOGOS NA PASTA DOCS ---
             caminho_logo_esq = "docs/logoDefran1.png"
             caminho_logo_dir = "docs/KitoCrosbyGunn.png"
             
@@ -518,7 +519,6 @@ with aba4:
             elementos.append(Paragraph("<b>PROPOSTA COMERCIAL</b>", estilo_titulo))
             elementos.append(Spacer(1, 8))
             
-            # --- BLOCO SUPERIOR: PROPOSTA, DATA E VENDEDOR(A) ---
             info_topo = [
                 [Paragraph(f"<b>PROPOSTA N°:</b> {num}", estilo_texto), Paragraph(f"<b>DATA:</b> {data}", estilo_texto)],
                 [Paragraph(f"<b>VENDEDOR(A):</b> {vendedor}", estilo_texto), Paragraph("", estilo_texto)]
@@ -533,7 +533,6 @@ with aba4:
             elementos.append(t_topo)
             elementos.append(Spacer(1, 6))
 
-            # --- BLOCO DE DADOS DO CLIENTE ---
             info_dados = [
                 [Paragraph(f"<b>CLIENTE:</b> {cliente}", estilo_texto), Paragraph(f"<b>CONTATO:</b> {contato}", estilo_texto)],
                 [Paragraph(f"<b>CIDADE:</b> {cidade} - {estado}", estilo_texto), Paragraph(f"<b>E-MAIL:</b> {email}", estilo_texto)],
@@ -554,7 +553,6 @@ with aba4:
             
             for idx, item in enumerate(itens, 1):
                 item_dados = [
-                    
                     [Paragraph(f"<b>Item: {idx:02d}</b>", estilo_bold), Paragraph(f"<b>Quantidade:</b> {item['quantidade']:.2f} {item['unidade']}", estilo_bold)],
                     [Paragraph(f"<b>Referência:</b> {item['referencia']}", estilo_texto), Paragraph(f"<b>Preço Unit.:</b> R$ {item['unitario']:.2f}", estilo_bold)],
                     [Paragraph(f"<b>Descrição:</b> {item['descricao']}", estilo_texto), Paragraph("", estilo_texto)],
@@ -593,7 +591,6 @@ with aba4:
             buffer.seek(0)
             return buffer
 
-        # FUNÇÃO PARA RESETA/LIMPAR A TELA APÓS CLICAR NO BOTÃO DE DOWNLOAD
         def limpar_tela_pos_pdf():
             st.session_state.itens_orcamento = []
             st.session_state.editando_indice = None
