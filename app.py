@@ -293,17 +293,22 @@ with aba4:
     if st.session_state.editando_indice is not None and st.session_state.editando_indice < len(st.session_state.itens_orcamento):
         item_editando = st.session_state.itens_orcamento[st.session_state.editando_indice]
     
-    # Seletor de Tipo
+   # --- SELETOR DE TIPO E REFERÊNCIA ---
     tipos_disponiveis = ["Produto", "Linga"]
     tipo_atual = item_editando.get("tipo", "Produto")
     
     col_t1, col_t2 = st.columns(2)
-    tipo_item = col_t1.selectbox("Tipo de Item", tipos_disponiveis, 
-                                 index=tipos_disponiveis.index(tipo_atual) if tipo_atual in tipos_disponiveis else 0,
-                                 key="tipo_item_orcamento")
+    tipo_item = col_t1.selectbox(
+        "Tipo de Item", 
+        tipos_disponiveis, 
+        index=tipos_disponiveis.index(tipo_atual) if tipo_atual in tipos_disponiveis else 0,
+        key="tipo_item_orcamento"
+    )
 
+    # Define qual base consultar dependendo da escolha (Produto ou Linga)
     base_selecionada = base_produtos if tipo_item == "Produto" else base_lingas
 
+    # Campo único de busca de referência dinâmico
     ref_digitada = col_t2.selectbox(
         f"Buscar Referência de {tipo_item}:", 
         [""] + list(base_selecionada.keys()), 
@@ -315,6 +320,7 @@ with aba4:
     if ref_digitada and ref_digitada in base_selecionada:
         dados_encontrados = base_selecionada.get(ref_digitada, {})
 
+    # Se estiver editando, prioriza os dados do item em edição; senão, usa o produto/linga selecionado
     if st.session_state.editando_indice is not None:
         fonte_dados = item_editando
     else:
