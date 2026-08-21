@@ -212,7 +212,7 @@ with aba2:
 with aba3:
     st.header("")
     
-    caminho_pdf = "docs/cargaTrabalhoLingas.pdf"
+    caminho_pdf = "docs/cargas_lingas.pdf"
     
     if os.path.exists(caminho_pdf):
         with open(caminho_pdf, "rb") as f:
