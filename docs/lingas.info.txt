@@ -1,55 +1,202 @@
-Referência: TG4/OKE
-Descrição: Linga de Correntes Grau-10 de 8mm, 04 pernas e 04 encurtadores, com gancho olhal de fundição nas extremidades, Carga de Trabalho 5,2T, comprimento total 2.000mm, conforme Norma EN-818.
-Prazo de Entrega: 07 dias
-Fator de Segurança: 4:1
-NCM: 7315.12.90
-ICMS: Incluso (ST)
-IPI: Incluso
-
-Referência: TG2/OKE
+Referência: TG2/OKE/8
 Descrição: Linga de Correntes Grau-10 de 8mm, 02 pernas e 02 encurtadores, com gancho olhal de fundição nas extremidades, Carga de Trabalho 3,5T, comprimento total 220mm, conforme Norma EN-818.
-Prazo de Entrega: 07 dias
-Fator de Segurança: 4:1
-NCM: 7315.12.90
+Prazo de Entrega: 07 dias                                                           
+Fator de Segurança: 4:1 
+NCM: 7315.12.90 
 ICMS: Incluso (ST)
-IPI: Incluso
+IPI: Incluso	
 
-Referência: TG2/EGKN
+Referência: TG2/EGKN/10
 Descrição: Linga de Correntes Grau-10 de 10mm, 02 pernas e 02 encurtadores, com gancho clévis com trava nas extremidades, Carga de Trabalho 5,6T, comprimento total 3.300mm, conforme Norma EN-818.
-Prazo de Entrega: 02 peças em 05 dias, saldo 20 dias
+Prazo de Entrega: 20 dias
+NCM: 7315.12.90 						
 Fator de Segurança: 4:1
-NCM: 7315.12.90
 ICMS: Incluso (ST)
 IPI: Incluso
-
-Referência: TG3/BKG
+	
+Referência: TG3/BKG/8
 Descrição: Linga de Correntes Grau-10 de 8mm, 03 pernas e 03 encurtadores, com gancho clevis automático nas extremidades, Carga de Trabalho 5,2T, comprimento total 1.335mm, conforme Norma EN-818.
-Prazo de Entrega: 07 dias
-Fator de Segurança: 4:1
+Prazo de Entrega: 07 dias                                                            
+Fator de Segurança: 4:1 
+NCM: 7315.12.90 
+ICMS: Incluso (ST)
+IPI: Incluso	
+
+Referência: TG4/OKE/8
+Descrição: Linga de Correntes Grau-10 de 8mm, 04 pernas e 04 encurtadores, com gancho olhal de fundição nas extremidades, Carga de Trabalho 5,2T, comprimento total 2.000mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias                                                            
+Fator de Segurança: 4:1 
 NCM: 7315.12.90
 ICMS: Incluso (ST)
-IPI: Incluso
+IPI: Incluso	
 
-Referência: TG4/EGKN
+Referência: TG4/EGKN/13
 Descrição: Linga de Correntes Grau-10 de 13mm, 04 pernas e 04 encurtadores, com gancho clevis com trava nas extremidades, Carga de Trabalho 14T, comprimento total 5.500mm, conforme Norma EN-818.
-Prazo de Entrega: 03 dias
-Fator de Segurança: 4:1
-NCM: 7315.12.90
+Prazo de Entrega: 03 dias                                                            
+Fator de Segurança: 4:1 
+NCM: 7315.12.90 
 ICMS: Incluso (ST)
-IPI: Incluso
+IPI: Incluso	
 
-Referência: 2G/G
+Referência: 2G/G/8
 Descrição: Linga de Correntes Grau-8 de 8mm, 02 pernas, com elo de ligação nas extremidades, Carga de Trabalho de 2,8T, comprimento total 695mm, conforme Norma EN-818.
 Prazo de Entrega: 07 dias
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST)
+IPI: Incluso	
+
+Referência: 1G/OKE/8
+Descrição: Linga de Correntes Grau-10 de 8mm, 01 perna, com gancho olhal de fundição na extremidade, Carga de Trabalho de 2,5T, comprimento total 1.010mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST)
+IPI: Incluso	
+
+Referência: 4G/OKE/13
+Descrição: Linga de Correntes Grau-8 de 13mm, 04 pernas, com gancho olhal de fundição nas extremidades, Carga de Trabalho 11,2T, comprimento total 1.930mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias                                                                     
+Fator de Segurança: 4:1 
+NCM: 7315.12.90 
+ICMS: Incluso (ST)
+IPI: Incluso	
+
+Referência: 4G/E/13
+Descrição: Linga de Correntes Grau-8 de 13mm, cesto duplo Carga de Trabalho 9T, comprimento total 3.400mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias                                                                  
+Fator de Segurança: 4:1 
+NCM: 7315.12.90 
+ICMS: Incluso (ST)
+IPI: Incluso	
+
+
+Referência: 1G/EGKN/13
+Descrição: Linga de Correntes Grau-8 de 13mm, 01 perna, com gancho clévis com trava na extremidade, Carga de Trabalho de 5,3T, comprimento total 1.000mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST)
+IPI: Incluso	
+
+Referência: 2G/EGKN/13
+Descrição: Linga de Corrente Grau-10 de 13mm,02 pernas, com Gancho Clévis Grau-10 nas extremidades, Carga de Trabalho 9,5T, comprimento total 5.000mm, conforme Norma EN-818.
+Prazo de Entrega: 03 dias                                                                    
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: 4G/EGKN /6
+Descrição: Linga de Corrente Grau-8 de 6mm,04 pernas, com Gancho Clévis Grau-10 nas extremidades, Carga de Trabalho 2,36T, comprimento total 3.400mm, conforme Norma EN-818.
+Prazo de Entrega: 03 dias                                                                    
+NCM: 7315.12.90 					
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: 1G/EKN/32
+Descrição: Linga sem Correntes Grau-8 de 32mm, 01 perna, com gancho olhal com trava na extremidade, Carga de Trabalho de 31,5T, comprimento total 833mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: 2G/EKN/13
+Descrição: Linga sem Correntes Grau-10 de 13mm, 02 pernas, com gancho olhal com trava nas extremidades, Carga de Trabalho de 9,5T, comprimento total 7.500mm, conforme Norma EN-818.
+Prazo de Entrega: 08 dias
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: 3G/BK/8
+Descrição: Linga sem Correntes Grau-10 de 8mm, 03 pernas, com gancho olhal automática nas extremidades, Carga de Trabalho de 5,2T, comprimento total 975mm, conforme Norma EN-818.
+Prazo de Entrega: Imediato
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST)
+IPI: Incluso
+
+Referência: 2G/GG/EGKN/8
+Descrição: Linga de Corrente Grau-8 de 8mm, 02 pernas, com 02 encurtadores e gancho Clévis com trava de segurança nas extremidades, Carga de Trabalho 2,8T, comprimento total 3.200mm, conforme Norma EN-818.
+Prazo de Entrega: 07 dias                                                                    
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: 4G/GG/EGKN/16
+Descrição: Linga de Corrente Grau-8 de 16mm, 04 pernas, com 04 encurtadores e gancho Clévis com trava de segurança nas extremidades, Carga de Trabalho 17T, comprimento total 5500mm, conforme Norma EN-818.
+Prazo de Entrega: 03 dias                                                                    
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: 4G/OG/BK/22
+Descrição: Linga de Corrente Grau-10 de 22mm, 04 pernas, com 04 encurtadores e gancho olhal de segurança nas extremidades, Carga de Trabalho 42T, comprimento total 1500mm, conforme Norma EN-818.
+Prazo de Entrega: 03 dias                                                                    
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: MG1/BKG/6
+Descrição: Linga de Correntes Grau-10 de 6mm, 01 perna, com anel encurtador, e com gancho clévis automático nas extremidades, Carga de Trabalho 1,5T, comprimento total 3.000mm, conforme Norma EN-818.
+Prazo de entrega: 07 dias
+NCM: 7315.12.90 
+Fator de Segurança: 4:1
+ICMS:	Incluso (ST)
+IPI: Incluso
+
+Referência: MG2/EGKN/6
+Descrição: Linga de Correntes Grau-10 de 6mm, 02 pernas e 02 encurtadores, com gancho clévis com trava de segurança nas extremidades, Carga de Trabalho 2,12T, comprimento total 2.000mm, conforme Norma EN-818.
+Prazo de entrega: 03 dias
+NCM: 7312.9000
+Fator de Segurança: 4:1
+ICMS:	18% Incluso
+IPI: Incluso
+
+Referência: CG2/OKE/10
+Descrição: Linga de Correntes Grau-10 de 10mm, 01 perna e 01 encurtador, com gancho olhal de fundição na extremidade, Carga de Trabalho 4T, comprimento total 1.800mm, conforme Norma EN-818.
+Prazo de Entrega: 03 dias                                                                    
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: 4G/G-2140 30T/32
+Descrição: Linga de corrente Grau-10 de 32mm, 04 pernas, com manilha G-2140-30T nas extremidades, Carga de trabalho 83,8T, comprimento total 4.500mm, conforme norma EN-818.
+Prazo de Entrega: 03 dias                                                                    
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: 1G/O/10
+Descrição: Linga de Correntes Grau-10 de 10mm, 01 perna, com anel de carga nas extremidades, Carga de Trabalho de 4T, comprimento total 2.416mm, conforme Norma EN-818.
+Prazo de Entrega: Imediato
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST)
+IPI: Incluso	
+
+Referência: 3G/GG/KLA/6
+Descrição: Linga de Corrente Grau-10 de 6mm, 03 pernas com 03 encurtadores, Carga de Trabalho 3,15T, comprimento total 2.500mm, conforme Norma EN-818.
+Prazo de Entrega: 03 dias                                                                    
+NCM: 7315.12.90 						
+Fator de Segurança: 4:1
+ICMS: Incluso (ST) 
+IPI: Incluso
+
+Referência: 2G/1,5 DHW/8
+Descrição: Linga de Correntes Grau-10 de 8mm, com 02 pernas e 02 pega chapas horizontais com aplicação em chapas finas, com abertura de 0-35mm, Carga de Trabalho 1,5T/Par, comprimento total 2.000mm, conforme Norma EN-818. 
+Carga de Trabalho: 1,5T/Par                                                        
+Prazo de entrega: 75 dias                                                        
 Fator de Segurança: 4:1
 NCM: 7315.12.90
 ICMS: Incluso (ST)
 IPI: Incluso
 
-Referência: 1G/EGKN
-Descrição: Linga de Correntes Grau-8 de 13mm, 01 perna, com gancho clévis com trava na extremidade, Carga de Trabalho de 5,3T, comprimento total 1.000mm, conforme Norma EN-818.
-Prazo de Entrega: 07 dias
-Fator de Segurança: 4:1
-NCM: 7315.12.90
-ICMS: Incluso (ST)
-IPI: Incluso
