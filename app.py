@@ -155,13 +155,67 @@ aba1, aba2, aba3, aba4 = st.tabs([
 ])
 
 with aba1:
-    selecao = st.selectbox("Escolha a base:", ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"])
+    selecao = st.selectbox(
+        "Escolha a base:",
+        ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"]
+    )
+
     if selecao in dados_carregados:
         df = dados_carregados[selecao]
+
         termo = st.text_input("Filtrar referência (Produtos):")
+
         if termo:
-            df = df[df['ref_prod'].astype(str).str.contains(termo, case=False, na=False)]
-        st.dataframe(df, use_container_width=True)
+            df = df[
+                df['ref_prod']
+                .astype(str)
+                .str.contains(termo, case=False, na=False)
+            ]
+
+        # =========================
+        # PRODUTOS GUNNEBO
+        # =========================
+        if selecao == "Produtos Gunnebo":
+
+            df_exibicao = df.rename(columns={
+                'ref_prod': 'Referência Gunnebo',
+                'desc_prod': 'Descrição do Produto',
+                'ncm': 'NCM',
+                'sap': 'Código SAP',
+                'ipi': 'IPI',
+                'tipo': 'Tipo',
+                'valor_custo': 'Custo',
+                'carga_trabalho': 'Carga de Trabalho',
+                'comprimento': 'Comprimento',
+                'valor_venda': 'Preço de Venda'
+            })
+
+        # =========================
+        # CROSBY E MANILHAS
+        # =========================
+        else:
+
+            df_exibicao = df.rename(columns={
+                'ref_prod': 'Referência',
+                'desc_prod': 'Descrição',
+                'ncm': 'NCM',
+                'sap': 'SAP',
+                'ipi': 'IPI',
+                'tipo': 'Tipo',
+                'valor_custo': 'Valor de Custo',
+                'valor_venda': 'Preço de Venda'
+            })
+
+            # Não exibir estas colunas no Crosby/Manilhas
+            df_exibicao = df_exibicao.drop(
+                columns=['carga_trabalho', 'comprimento'],
+                errors='ignore'
+            )
+
+        st.dataframe(
+            df_exibicao,
+            use_container_width=True
+        )
 
 with aba2:
     st.header("Estoque Defran")
