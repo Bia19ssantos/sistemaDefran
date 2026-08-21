@@ -178,16 +178,14 @@ with aba1:
         if selecao == "Produtos Gunnebo":
 
             df_exibicao = df.rename(columns={
-                'ref_prod': 'Referência Gunnebo',
-                'desc_prod': 'Descrição do Produto',
-                'ncm': 'NCM',
+                
                 'sap': 'Código SAP',
+                'ref_prod': 'Referência Gunnebo',
                 'ipi': 'IPI',
-                'tipo': 'Tipo',
                 'valor_custo': 'Custo',
-                'carga_trabalho': 'Carga de Trabalho',
-                'comprimento': 'Comprimento',
-                'valor_venda': 'Preço de Venda'
+                'carga_trabalho': 'Comprimento',
+                'comprimento': 'Preço Venda',
+                'valor_venda': 'Preço Linga'
             })
 
         # =========================
@@ -196,12 +194,9 @@ with aba1:
         else:
 
             df_exibicao = df.rename(columns={
-                'ref_prod': 'Referência',
-                'desc_prod': 'Descrição',
-                'ncm': 'NCM',
                 'sap': 'SAP',
+                'ref_prod': 'Referência',              
                 'ipi': 'IPI',
-                'tipo': 'Tipo',
                 'valor_custo': 'Valor de Custo',
                 'valor_venda': 'Preço de Venda'
             })
