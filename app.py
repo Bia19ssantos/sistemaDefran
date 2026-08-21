@@ -255,7 +255,6 @@ with aba4:
     col_c1, col_c2, col_c3 = st.columns(3)
     num_orc = col_c1.text_input("Nº da Proposta", value="")
     
-
     meses_pt = {
         1: "janeiro", 2: "fevereiro", 3: "março", 4: "abril", 
         5: "maio", 6: "junho", 7: "julho", 8: "agosto", 
@@ -293,7 +292,7 @@ with aba4:
     if st.session_state.editando_indice is not None and st.session_state.editando_indice < len(st.session_state.itens_orcamento):
         item_editando = st.session_state.itens_orcamento[st.session_state.editando_indice]
     
-   # --- SELETOR DE TIPO E REFERÊNCIA ---
+    # --- SELETOR DE TIPO E REFERÊNCIA ---
     tipos_disponiveis = ["Produto", "Linga"]
     tipo_atual = item_editando.get("tipo", "Produto")
     
@@ -325,28 +324,14 @@ with aba4:
         fonte_dados = item_editando
     else:
         fonte_dados = dados_encontrados
-        
-    if tipo_item == "Produto":
-        ref_digitada = col_t2.selectbox("Buscar Referência de Produto:", [""] + list(base_produtos.keys()), 
-                                        index=0, key="ref_produto_orc")
-        if ref_digitada and ref_digitada in base_produtos:
-            dados_encontrados = base_produtos.get(ref_digitada, {})
-    else:
-        opcoes_lingas = [""] + list(base_lingas.keys())
-        ref_digitada = col_t2.selectbox("🔍 Selecionar ou Digitar Referência da Linga:", opcoes_lingas, 
-                                        index=0, key="ref_linga_orc")
-        if ref_digitada and ref_digitada in base_lingas:
-            dados_encontrados = base_lingas.get(ref_digitada, {})
-
-    # SE ESTIVER EDITANDO, PRIORIZA OS DADOS DO ITEM EDITANDO. CASO CONTRÁRIO, USA A BUSCA DE PRODUTO/LINGA.
-    fonte_dados = item_editando if st.session_state.editando_indice is not None else dados_encontrados
 
     # Formulário de edição/adição
     with st.form("form_item_orc", clear_on_submit=True):
         if st.session_state.editando_indice is not None:
             st.info(f"Editando o Item #{st.session_state.editando_indice + 1}")
 
-        val_ref = fonte_dados.get("referencia", "")
+        # Se houver uma referência selecionada nos seletores acima, prioriza ela, caso contrário usa a do item em edição
+        val_ref = ref_digitada if ref_digitada else fonte_dados.get("referencia", "")
         item_ref = st.text_input("Referência Exata", value=val_ref)
 
         col_i1, col_i2, col_i3 = st.columns(3)
