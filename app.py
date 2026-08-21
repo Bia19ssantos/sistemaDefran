@@ -309,6 +309,37 @@ with aba3:
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
+    # --- ESTILO CSS PERSONALIZADO PARA OS BOTÕES ---
+    st.markdown("""
+        <style>
+        /* Botão Primário (Adicionar / Salvar Item) - Azul Suave */
+        div.stButton > button[kind="primary"], 
+        div.stFormSubmitButton > button {
+            background-color: #0066cc !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-weight: 500 !important;
+        }
+        div.stButton > button[kind="primary"]:hover, 
+        div.stFormSubmitButton > button:hover {
+            background-color: #0052a3 !important;
+        }
+
+        /* Botão de Download (Gerar PDF) - Verde Suave */
+        div.stDownloadButton > button {
+            background-color: #28a745 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-weight: 500 !important;
+        }
+        div.stDownloadButton > button:hover {
+            background-color: #218838 !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
     st.header("📋 Orçamentos")
     
     df_clientes = dados_carregados.get("Clientes", pd.DataFrame())
@@ -394,7 +425,6 @@ with aba4:
     if tipo_item == "Produto":
         busca_manual = col_t2.text_input("Digite o Código SAP ou Referência e aperte Enter:", key="busca_manual_input")
         if busca_manual:
-            # Procura por correspondência exata ou parcial na base de produtos (TXT)
             if busca_manual in base_selecionada:
                 dados_encontrados = base_selecionada.get(busca_manual, {})
             else:
@@ -414,7 +444,6 @@ with aba4:
             dados_encontrados = base_selecionada.get(ref_linga_digitada, {})
             busca_manual = ref_linga_digitada
 
-    # Buscar preço unitário automaticamente na planilha de Produtos Gunnebo se houver Código SAP ou Referência
     preco_sugerido_planilha = 0.0
     ref_ou_sap_alvo = dados_encontrados.get("referencia", "") or dados_encontrados.get("sap", "") or busca_manual
 
