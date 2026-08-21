@@ -183,10 +183,25 @@ with aba1:
                 .str.contains(termo_aba1, case=False, na=False)
             ]
 
+        # Função auxiliar para formatar valores em Reais (R$ 2.000,00)
+        def formatar_moeda(val):
+            try:
+                # Converte para float caso venha como string ou outro tipo
+                num = float(val)
+                # Formata com separador de milhar por ponto e decimal por vírgula
+                return f"R$ {num:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+            except:
+                return val
+
         # =========================
         # PRODUTOS GUNNEBO
         # =========================
         if selecao_aba1 == "Produtos Gunnebo":
+            # Aplica a formatação de moeda nas colunas desejadas antes de renomear
+            for col in ['valor_custo', 'valor_venda', 'preco_linga']:
+                if col in df_aba1.columns:
+                    df_aba1[col] = df_aba1[col].apply(formatar_moeda)
+
             df_exibicao_aba1 = df_aba1.rename(columns={
                 'sap': 'SAP',
                 'ref_prod': 'Referência',
@@ -197,13 +212,17 @@ with aba1:
                 'preco_linga': 'Valor Linga'
             })
             
-            # Ordem exata solicitada para Gunnebo
             colunas_desejadas = ['SAP', 'Referência', 'IPI', 'Comprimento', 'Valor Custo', 'Valor Venda', 'Valor Linga']
 
         # =========================
         # CROSBY E MANILHAS CROSBY
         # =========================
         else:
+            # Aplica a formatação de moeda nas colunas de preço
+            for col in ['valor_custo', 'valor_venda']:
+                if col in df_aba1.columns:
+                    df_aba1[col] = df_aba1[col].apply(formatar_moeda)
+
             df_exibicao_aba1 = df_aba1.rename(columns={
                 'sap': 'SAP',
                 'ref_prod': 'Referência',
@@ -213,7 +232,6 @@ with aba1:
                 'valor_venda': 'Valor Venda'
             })
             
-            # Ordem exata solicitada para Crosby / Manilhas Crosby
             colunas_desejadas = ['SAP', 'Referência', 'NCM', 'IPI', 'Valor Custo', 'Valor Venda']
 
         # Filtra e reordena estritamente apenas as colunas que existem
