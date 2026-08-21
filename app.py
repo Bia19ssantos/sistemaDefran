@@ -174,21 +174,19 @@ with aba1:
     if selecao_aba1 in dados_carregados and not dados_carregados[selecao_aba1].empty:
         df_aba1 = dados_carregados[selecao_aba1].copy()
 
-        termo_aba1 = st.text_input("Filtrar referência (Produtos):", key=f"filtro_aba1_{selecao_aba1}")
+        # Campo de busca atualizado para procurar por Referência ou Código SAP
+        termo_aba1 = st.text_input("Filtrar por Referência ou Código SAP:", key=f"filtro_aba1_{selecao_aba1}")
 
         if termo_aba1:
-            df_aba1 = df_aba1[
-                df_aba1['ref_prod']
-                .astype(str)
-                .str.contains(termo_aba1, case=False, na=False)
-            ]
+            # Filtra se o termo estiver presente na coluna de referência OU na coluna 'sap'
+            filtro_ref = df_aba1['ref_prod'].astype(str).str.contains(termo_aba1, case=False, na=False)
+            filtro_sap = df_aba1['sap'].astype(str).str.contains(termo_aba1, case=False, na=False)
+            df_aba1 = df_aba1[filtro_ref | filtro_sap]
 
         # Função auxiliar para formatar valores em Reais (R$ 2.000,00)
         def formatar_moeda(val):
             try:
-                # Converte para float caso venha como string ou outro tipo
                 num = float(val)
-                # Formata com separador de milhar por ponto e decimal por vírgula
                 return f"R$ {num:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
             except:
                 return val
@@ -197,7 +195,6 @@ with aba1:
         # PRODUTOS GUNNEBO
         # =========================
         if selecao_aba1 == "Produtos Gunnebo":
-            # Aplica a formatação de moeda nas colunas desejadas antes de renomear
             for col in ['valor_custo', 'valor_venda', 'preco_linga']:
                 if col in df_aba1.columns:
                     df_aba1[col] = df_aba1[col].apply(formatar_moeda)
@@ -218,7 +215,6 @@ with aba1:
         # CROSBY E MANILHAS CROSBY
         # =========================
         else:
-            # Aplica a formatação de moeda nas colunas de preço
             for col in ['valor_custo', 'valor_venda']:
                 if col in df_aba1.columns:
                     df_aba1[col] = df_aba1[col].apply(formatar_moeda)
