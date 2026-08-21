@@ -1,39 +1,3529 @@
 Referência: EGKN-6-10 - B14460
-Descrição: Gancho Clévis Grau-10 para corrente de 6mm, Carga de Trabalho 1,5T, conforme Norma EN-1677.
-Prazo de Entrega: 05 dias
+Descrição: Gancho Clévis Grau-10 para corrente de 6mm, Carga de Trabalho 1,5T, conforme
+Norma EN-1677.
+Prazo de Entrega: 05 dias                                                      
 Fator de Segurança: 4:1
 NCM: 73269090
-ICMS: 18% Incluso
+ICMS: 18% Incluso 
 IPI: 5% Incluso
-
+	
 Referência: EGKN-8-10- B14461
-Descrição: Gancho Clévis Grau-10 para corrente de 8mm, Carga de Trabalho 2,5T, conforme Norma EN-1677.
-Prazo de Entrega: 03 dias
+Descrição: Gancho Clévis Grau-10 para corrente de 8mm, Carga de Trabalho 2,5T, conforme
+Norma EN-1677.
+Prazo de Entrega:03 dias                                                      
 Fator de Segurança: 4:1
 NCM: 73269090
-ICMS: 18% Incluso
+ICMS: 18% Incluso 
 IPI: 5% Incluso
 
 Referência: EGKN-10-10 - B14462
-Descrição: Gancho Clévis Grau-10 para corrente de 10mm, Carga de Trabalho 4T, conforme Norma EN-1677.
-Prazo de Entrega: 03 dias
+Descrição: Gancho Clévis Grau-10 para corrente de 10mm, Carga de Trabalho 4T, conforme
+Norma EN-1677.
+Prazo de Entrega: 03 dias                                                      	
 Fator de Segurança: 4:1
 NCM: 73269090
-ICMS: 18% Incluso
+ICMS: 18% Incluso 
 IPI: 5% Incluso
 
-Referência: EGKN-13-10
-Descrição: Gancho clévis Grau-10 para corrente de 13mm, Carga de Trabalho 6,7T, conforme Norma EN-1677.
-Prazo de Entrega: confirmação após o pedido
+Referência: EGKN-13-10 - B14463
+Descrição: Gancho clévis Grau-10 para corrente de 13mm, Carga de Trabalho 6,7T, conforme
+Norma EN-1677.
+Prazo de Entrega: confirmação após o pedido 
+NCM: 73269090						
 Fator de Segurança: 4:1
-NCM: 73269090
-ICMS: 18% Incluso
+ICMS: 18% Incluso 
 IPI: 5% Incluso
 
 Referência: EGKN-16-10 - B14464
-Descrição: Gancho clévis Grau-10 para corrente de 16mm, Carga de Trabalho 10T, conforme Norma EN-1677.
-Prazo de Entrega: confirmação após o pedido
+Descrição: Gancho clévis Grau-10 para corrente de 16mm, Carga de Trabalho 10T, conforme
+Norma EN-1677.
+Prazo de Entrega: confirmação após o pedido 
+NCM: 73269090						
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EGKN-20-10 - Z101127
+Descrição: Gancho Clévis, Grau-10 para corrente de 20mm, Carga de Trabalho 16T, conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
 Fator de Segurança: 4:1
-NCM: 73269090
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-6-10
+Descrição: Gancho olhal com trava de segurança Grau-10, de 6mm, Carga de Trabalho 1,5T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-7/8-10- Z101130
+Descrição: Gancho olhal com trava de segurança Grau-10, de 8mm, Carga de Trabalho 2,5T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-10-10
+Descrição: Gancho olhal com trava de segurança Grau-10, de 10mm, Carga de Trabalho 4T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-13-10
+Descrição: Gancho olhal com trava de segurança Grau-10, de 13mm, Carga de Trabalho 6,7T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-16-10
+Descrição: Gancho olhal com trava de segurança Grau-10, de 16mm, Carga de Trabalho 10T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-20-10
+Descrição: Gancho olhal com trava de segurança Grau-10, de 20mm, Carga de Trabalho 16T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-22-10
+Descrição: Gancho olhal com trava de segurança Grau-10, de 22mm, Carga de Trabalho 20T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-26-10
+Descrição: Gancho olhal com trava de segurança Grau-10, de 26mm, Carga de Trabalho 27T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-32-10 - Z101330
+Descrição: Gancho olhal com trava de segurança Grau-10, de 32mm, Carga de Trabalho 40T, fornecido conforme Norma EN-1677.
+Prazo de Entrega: 80 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: EKN-32-8 - Z100725
+Descrição: Gancho olhal com trava de segurança Grau-8, de 32mm, Carga de Trabalho 32,8T, fornecido conforme Norma EN-1677.
+Prazo de Entrega: 05 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: BKG-6-10
+Descrição: Gancho Clévis com trava automática Grau-10 para corrente de 6mm, Carga de Trabalho 1,5T conforme Norma EN 1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: BKG-8-10
+Descrição: Gancho Clévis com trava automática Grau-10 para corrente de 8mm, Carga de Trabalho 2,6T, conforme Norma EN-1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: BKG-10-10
+Descrição: Gancho Clévis com trava automática Grau-10 para corrente de 10mm, Carga de Trabalho 4T conforme Norma EN 1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: BKG-13-10
+Descrição: Gancho Clévis com trava automática Grau-10 para corrente de 13mm, Carga de Trabalho 6,7T conforme Norma EN 1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: BKG-16-10
+Descrição: Gancho Clévis com trava automática Grau-10 para corrente de 16mm, Carga de Trabalho 10T conforme Norma EN 1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: BKG-20-10
+Descrição: Gancho Clévis com trava automática Grau-10 para corrente de 20mm, Carga de Trabalho 16T conforme Norma EN 1677.
+Prazo de Entrega: 10 dias          
+NCM: 73269090						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: RDEKN-6 - Z100445
+Descrição: Kit trava completo para Gancho EGKN-6-10, composto de trava,pino e ola em aço inox.
+Prazo de Entrega:03 dias
+NCM:7318.2900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: RDEKN-7/8 - Z100447
+Descrição: Kit trava completo para Gancho EGKN-7/8, composto de trava, pino e mola em aço inox.
+Prazo de Entrega: 03 dias
+NCM: 7318.2900					
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: RDEKN-10 - Z100450
+Descrição: Kit trava completo para Gancho EGKN-10, composto de trava, pino e mola em aço inox.
+Prazo de Entrega: 03 dias
+NCM: 7318.2900						
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: RDEKN-13 - Z100449
+Descrição: Kit trava completo para Gancho EGKN-13, composto de trava, pino e mola em aço inox.
+Prazo de Entrega: 30 dias
+NCM: 7318.2900			
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: RDEKN-16 - Z100217
+Descrição: Kit trava completo para Gancho EGKN-16, composto de trava, pino e mola em aço inox.
+Prazo de Entrega: 03 dias
+NCM: 7318.2900					
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: RDEKN-18/20 - Z100453
+Descrição: Kit trava completo para Gancho EGKN-18/20, composto de trava, pino e mola em aço inox.
+Prazo de Entrega: 05 dias
+NCM: 7318.2900
+ICMS: 18% Incluso	
+IPI: Incluso
+
+Referência: RDEKN-22 - Z100452
+Descrição: Kit trava completo para Gancho EGKN-22, composto de trava, pino e mola em aço inox.
+Prazo de Entrega: 85 dias
+NCM: 7318.2900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: RDBK-6-10 - Z100282
+Descrição: Peça de reposição Kit trava para gancho BK-6-10
+Prazo de Entrega: 03 dias
+NCM: 7318.29.00
+ICMS: 18% Incluso	
+IPI: Incluso
+
+Referência: RDBK-8-10 - Z100283
+Descrição: Peça de reposição Kit trava para gancho BK-8-10
+Prazo de Entrega: 03 dias
+NCM: 7318.29.00
+ICMS: 18% Incluso	
+IPI: Incluso
+
+Referência: RDBK-10 - Z100284
+Descrição: Peça de reposição Kit trava para gancho BK-10-10
+Prazo de Entrega: 03 dias
+NCM: 7318.29.00
+ICMS: 18% Incluso	
+IPI: Incluso
+
+Referência: RDBK-13 - Z100285
+Descrição: Peça de reposição Kit trava para gancho BK-13-10
+Prazo de Entrega: 05 dias
+NCM: 7318.29.00
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RDOBK-10 - Z100289
+Descrição: Kit trava completo para Gancho OBK/GBK 10.
+Prazo de Entrega: 05 dias
+NCM: 7318.2900
+ICMS: 18% Incluso
+IPI: Incluso	
+
+Referência: RDOBK-13
+Descrição: Kit trava completo para Gancho OBK-13-10.
+Prazo de Entrega: Imediato
+NCM: 7318.2900
+ICMS: 18% Incluso
+IPI: Incluso	
+
+Referência: RDOBK-16
+Descrição: Kit trava completo para Gancho OBK-16-10.
+Prazo de Entrega: Imediato
+NCM: 7318.2900
+ICMS: 18% Incluso
+IPI: Incluso	
+
+Referência: RELP M8- Z102408 
+Descrição: Olhal Giratório Grau-10 tipo RELP M8 x 1,25, Carga de Trabalho na vertical 0,7T, na lateral 0,3T, conforme   Norma EN-1677.
+Prazo de entrega: 05 dias 						
+Fator de Segurança: 4:1
+NCM: 7326.90.90
+ICMS: 18% Incluso	
+IPI:     Incluso
+
+Referência: RELP M10- Z102410
+Descrição: Olhal Giratório Grau-10, tipo RELP M10, Carga de Trabalho na lateral 0,5T, na vertical 1,2T, conforme Norma EN-1677.
+Prazo de entrega:  80 dias                                                                 	
+Fator de Segurança: 4:1
+NCM: 7326.9090
 ICMS: 18% Incluso
 IPI: 5% Incluso
+
+Referência: RELP M12- Z102412
+Descrição: Olhal Giratório Grau-10, tipo RELP M12, Carga de Trabalho na lateral 0,8T, na vertical 2T, conforme Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090                                                                                   
+ICMS: 18% Incluso							
+Fator de Segurança: 4:1
+IPI: 5% Incluso
+
+Referência: RELP M16- Z102416
+Descrição: Olhal Giratório Grau-10, tipo RELP M16, Carga de Trabalho na lateral 1,5T, na vertical 3,5T, conforme Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RELP M20- Z102420
+Descrição: Olhal Giratório Grau-10, tipo RELP M20, Carga de Trabalho na lateral 2,4T, na vertical 6,1T, conforme Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RELP M24 - Z102424
+Descrição: Olhal Giratório Grau-10 tipo RELP M24 x 3, Carga de Trabalho na vertical 8,1T, na lateral 3,3T, conforme   Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: Incluso
+
+Referência: RELP M30 - Z102430
+Descrição: Olhal Giratório Grau-10 tipo RELP M30 x 3,5, Carga de Trabalho na vertical 12,1T, na lateral 4,6T, conforme   Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: Incluso
+
+Referência: BLP M8 - Z102008
+Descrição: Olhal Giratório Grau-10 M8, Carga de Trabalho vertical 0,6T, na lateral 0,3T conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP M10 - Z102010
+Descrição: Olhal Giratório Grau-10 M10, Carga de Trabalho vertical 1,2T, na lateral 0,6T conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP M12 - Z102012
+Descrição: Olhal Giratório Grau-10 M12, Carga de Trabalho vertical 1,5T, na lateral 0,75T conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP M16 - Z102016
+Descrição: Olhal Giratório Grau-10 M10, Carga de Trabalho vertical 3T, na lateral 1,5T conforme Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP M20 - Z102020
+Descrição: Olhal Giratório Grau-10 M20, Carga de Trabalho vertical 5T, na lateral 2,5T conforme Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP M24 - Z102024
+Descrição: Olhal Giratório Grau-10 M24, Carga de Trabalho vertical 7T, na lateral 4T conforme Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP-M30 - Z102030
+Descrição: Olhal Giratório Grau-10 M30, Carga de Trabalho vertical 12T, na lateral 6T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP M36 x 4.0 - Z102036
+Descrição: Olhal giratório Grau 10 M36, Carga de Trabalho lateral 8T, na vertical 14T, conforme Norma EN-1677.
+Prazo de entrega: 02 peças para 05 dias, saldo 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP M42 x 4.5 - Z102042
+Descrição: Olhal giratório Grau 10 M42, Carga de Trabalho lateral 10T, na vertical 16T, conforme Norma EN-1677.
+Prazo de entrega: 06 peças para 05 dias, saldo 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: BLP-2”-4.5 UNC
+Descrição: Olhal giratório Grau 10 M36, Carga de Trabalho lateral 13T, na vertical 18T, conforme Norma EN-1677.
+Prazo de entrega: 10 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: RLP-V2-M8 X 1.25 - Z101708
+Descrição: Olhal Giratório Grau-10 M8, Carga de Trabalho na lateral 0,4T, na vertical 0,8T, Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RLP-V2-M10 X 1.5 - Z101710
+Descrição: Olhal Giratório Grau-10 M10, Carga de Trabalho na lateral 0,7T, na vertical 1,2T, Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RLP-V2-M12 X 1.75 - Z101712
+Descrição: Olhal Giratório Grau-10 tipo RLP M12, Carga de Trabalho na lateral 1,2T, na vertical 2T com comprimento da rosca de 25mm, conforme Norma EN-1677.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-V2-M16 x 2 - Z101716
+Descrição: Olhal giratório Grau 10 tipo RLP M16x2, Carga de Trabalho na lateral 2T, na vertical 3,2T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-V2-M20 x 2.5 - Z101720
+Descrição: Olhal Giratório Grau-10 tipo RLP M20, Carga de Trabalho na lateral 2,8T, na vertical 5,6T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-V2-M20 - COM PARAFUSO LONGO - Z1017200L
+Descrição: Olhal Giratório Grau-10 tipo RLP M20, Carga de Trabalho na lateral 2,8, na vertical 5,6T com comprimento total da rosca de 200mm, conforme Norma EN-1677.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-V2-M24 - COM PARAFUSO LONGO
+Descrição: Olhal Giratório Grau-10 tipo RLP M24, Carga de Trabalho na lateral 4,6T, na vertical 9,2T com comprimento total da rosca de 240mm, conforme Norma EN-1677.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-V2-M24 x 3.0 - Z101724
+Descrição: Olhal Giratório Grau-10 tipo RLP M24, Carga de Trabalho na lateral 4,6T, na vertical 8T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias	
+NCM: 7326.9090							
+Fator de Segurança:4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: RLP-V2-M30 x 3.5 - Z101730
+Descrição: Olhal Giratório Grau-10 tipo RLP M30, Carga de Trabalho na lateral 6T, na vertical 12T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:          5% Incluso
+
+Referência: RLP-V2-M36 x 4 - Z101736
+Descrição: Olhal Giratório Grau-10 tipo RLP M36x4, Carga de Trabalho na lateral 8T, na vertical 14T, conforme Norma EN-1677.
+Prazo de entrega: 80 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-V2-M42 x 4.5 - Z101742
+Descrição: Olhal Giratório Grau-10 tipo RLP M42x4.5, Carga de Trabalho na lateral 14T, na vertical 16T, conforme Norma EN-1677.
+Prazo de entrega: 80 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-V2-M48 x 5 - Z101748
+Descrição: Olhal Giratório Grau-10 tipo RLP M48x5, Carga de Trabalho na lateral 16T, na vertical 20T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: RLP-3/8”-16 UNC - Z101810
+Descrição: Olhal Giratório Grau-10 3/8”-16, Carga de Trabalho na lateral 0,65T, na vertical 1,2T, Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RLP-3/4”-10 UNC - Z101820
+Descrição: Olhal Giratório Grau-10 3/4”-10, Carga de Trabalho na lateral 2,5T, na vertical 5T, Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RLP- 7/8”-9 UNC - Z101821
+Descrição: Olhal Giratório Grau-10 7/8”-9, Carga de Trabalho na lateral 2,8T, na vertical 5,6T, Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RLP-1”-8 UNC - Z101824
+Descrição: Olhal Giratório Grau-10 1”-8, Carga de Trabalho na lateral 4,6T, na vertical 8T, Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: RLP-1.1/4”-7 UNC - Z101830
+Descrição: Olhal Giratório Grau-10 1.1/4”-7, Carga de Trabalho na lateral 6T, na vertical 12T, Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: DLP-M8
+Descrição: Olhal giratório Grau 10, tipo DLP M8, Carga de Trabalho na vertical 0,70T, na lateral 0,35T.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:          5% Incluso
+
+Referência: DLP-M12
+Descrição: Olhal giratório Grau 10, tipo DLP M12, Carga de Trabalho na vertical 2T, na lateral 1T.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:          5% Incluso
+
+Referência: DLP-M16
+Descrição: Olhal giratório Grau 10, tipo DLP M16, Carga de Trabalho na vertical 1,8T, na lateral 3,6T.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:          5% Incluso
+
+Referência: DLP M30
+Descrição: Olhal giratório Grau 10, tipo DLP M30, Carga de Trabalho na vertical 10T, na lateral 5T.
+Prazo de entrega: 05 dias                                                                     
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:          5% Incluso
+
+Referência: MF-6-10
+Descrição: Anel de carga Grau-10 para corrente de 6mm, Carga de Trabalho 1,25T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: MF-86-10
+Descrição: Anel de carga Grau-10 de 8mm, Carga de Trabalho 2,5T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+ 
+Referência: MF-108-10
+Descrição: Anel de carga Grau-10 para corrente de 10mm, Carga de Trabalho 4T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: MF-1310-10 - Z2111310
+Descrição: Anel de carga Grau-10 para corrente de 13mm, Carga de Trabalho 7,5T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: MF-1613-10
+Descrição: Anel de carga Grau-10 para corrente de 16mm, Carga de Trabalho 10T, conforme Norma EN-1677.
+Prazo de Entrega: 07 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: MF-2016-10
+Descrição: Anel de carga Grau-10 para corrente de 20mm, Carga de Trabalho 17T, conforme Norma EN-1677.
+Prazo de Entrega: 04 peças para 07 dias, saldo 80 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: MF-2220-10
+Descrição: Anel de carga Grau-10 para corrente de 20/22mm, Carga de Trabalho 25T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: G-6-10 - Z100821
+Descrição: Elo de ligação Grau-10 para corrente 6mm, Carga de Trabalho 1,5T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-8-10 - Z100822
+Descrição: Elo de ligação Grau-10 para corrente 8mm, Carga de Trabalho 2,5T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-10-10 - Z100823
+Descrição: Elo de ligação Grau-10 para corrente 10mm, Carga de Trabalho 4T, conforme Norma EN-1677.
+Prazo de entrega: Imediato
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-13-10- Z100824
+Descrição: Elo de ligação Grau-10 para corrente 13mm, Carga de Trabalho 6,7T, conforme Norma EN-1677.
+Prazo de Entrega: Imediato
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-16-10- Z100825
+Descrição: Elo de ligação Grau-10 para corrente 16mm, Carga de Trabalho 10T, conforme Norma EN-1677.
+Prazo de Entrega: Imediato
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-20-10 - Z101119
+Descrição: Elo de ligação Grau-10 para corrente 20mm, Carga de Trabalho 16T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-22-10 - Z101339
+Descrição: Elo de ligação Grau-10 para corrente 22 mm, Carga de Trabalho 20T, conforme Norma EN-1677. 
+Prazo de Entrega: 05 dias
+NCM: 7315.90.00							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: G-26-10 - Z101365
+Descrição: Elo de ligação Grau-10 para corrente 26 mm, Carga de Trabalho 27T, conforme Norma EN-1677. 
+Prazo de Entrega: 05 dias
+NCM: 7315.90.00							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: G-32-10 - Z101666
+Descrição: Elo de ligação Grau-10 para corrente 32 mm, Carga de Trabalho 40T, conforme Norma EN-1677. 
+Prazo de Entrega: 05 dias
+NCM: 7315.90.00							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: G-6-8
+Descrição: Elo de ligação Grau-8 para corrente 6mm, Carga de Trabalho 1,12T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-7/8-8
+Descrição: Elo de ligação Grau-8 para corrente 8mm, Carga de Trabalho 2T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-10-8
+Descrição: Elo de ligação Grau-8 para corrente 10mm, Carga de Trabalho 3,2T, conforme Norma EN-1677.
+Prazo de entrega: Imediato
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-13-8
+Descrição: Elo de ligação Grau-8 para corrente 13mm, Carga de Trabalho 5,4T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-16-8
+Descrição: Elo de ligação Grau-8 para corrente 16mm, Carga de Trabalho 8T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-18/20-8
+Descrição: Elo de ligação Grau-8 para corrente 20mm, Carga de Trabalho 12,5T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:        9,75 Incluso
+
+Referência: G-22-8 
+Descrição: Elo de ligação Grau-8 para corrente 22 mm, Carga de Trabalho 15,5T, conforme Norma EN-1677. 
+Prazo de Entrega: 05 dias
+NCM: 7315.90.00							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: G-26-8 - Z349171 
+Descrição: Elo de ligação Grau-8 para corrente 26 mm, Carga de Trabalho 21,6T, conforme Norma EN-1677. 
+Prazo de Entrega: 18 peças para 05 dias, saldo 80 dias
+NCM: 7315.90.00							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: G-32-8
+Descrição: Elo de ligação Grau-8 para corrente 32 mm, Carga de Trabalho 32,8T, conforme Norma EN-1677. 
+Prazo de Entrega: 05 dias
+NCM: 7315.90.00							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: CGD-13-10
+Descrição: Elo duplo com encurtador para corrente de 13mm, Carga de Trabalho 9,5T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: MGD-6-10
+Descrição: Elo superior duplo com encurtador para corrente de 6mm, e linga de 2 pernas, Carga de Trabalho 2,1T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: MGD-8-10
+Descrição: Elo superior duplo com encurtador para corrente de 6mm, e linga de 2 pernas, Carga de Trabalho 3,5T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: MGD-10-10
+Descrição: Elo superior duplo com encurtador para corrente de 6mm, e linga de 2 pernas, Carga de Trabalho 5,6T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: MGD-13-10
+Descrição: Elo superior duplo com encurtador para corrente de 13mm, e linga de duas pernas, Carga de Trabalho 9,5T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: KLA-6-10
+Descrição: Corrente Grau-10 de 6mm, Carga de Trabalho 1,5T, conforme Norma EN-818.
+Prazo de entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLA-8-10 - Z802301
+Descrição: Corrente Grau-10 de 8mm, Carga de Trabalho 2,5T, conforme Norma EN-818.
+Prazo de Entrega: 03 dias 						
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLA-10-10 - Z802302
+Descrição: Corrente Grau-10 de 10 mm, Carga de Trabalho 4T, conforme Norma EN-818
+Prazo de Entrega: 03 dias 						
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLA-13-10
+Descrição: Corrente Grau-10 de 13mm, Carga de Trabalho 6,7T, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLA-16-10
+Descrição: Corrente Grau-10 de 16mm, Carga de Trabalho 10T, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLA-20-10
+Descrição: Corrente Grau-10 de 20mm, Carga de Trabalho 16T, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLA-22-10
+Descrição: Corrente Grau-10 de 22mm, Carga de Trabalho 20T, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLA-26-10
+Descrição: Corrente Grau-10 de 26mm, Carga de Trabalho 27T, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB-6-8E
+Descrição: Corrente Grau-8 de 6mm, Carga de Trabalho 1,12T, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB-7/8-8
+Descrição: Corrente Grau-8 de 8mm, Carga de Trabalho 2T, comprimento da peça 0,50M, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB-8-8E
+Descrição: Corrente Grau-8 de 8mm, Carga de Trabalho 2T, peça com 32 elos, conforme Norma EN-818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB 10-8
+Descrição: Corrente Grau 8 de 10 mm Carga de Trabalho 3,2T conforme Norma EN 818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB 13-8E
+Descrição: Corrente Grau 8 de 13 mm Carga de Trabalho 5,4T conforme Norma EN 818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB 16-8E
+Descrição: Corrente Grau 8 de 16 mm Carga de Trabalho 8T conforme Norma EN 818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB 19-8E
+Descrição: Corrente Grau 8 de 19 mm Carga de Trabalho 11,6T conforme Norma EN 818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB 22-8E
+Descrição: Corrente Grau 8 de 22 mm Carga de Trabalho 15,5T conforme Norma EN 818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB 26-8E - Z801231 
+Descrição: Corrente Grau 8 de 26 mm Carga de Trabalho 21,6T, com 1 metro cada peça, conforme Norma EN 818.
+Prazo de Entrega: 05 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KLB 32-8E
+Descrição: Corrente Grau 8 de 32 mm Carga de Trabalho 32,8T conforme Norma EN 818.
+Prazo de Entrega: 03 dias
+NCM: 7315.8200							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: M-6-10
+Descrição: Anel de Carga Grau 10 para corrente de 6mm Carga de Trabalho 1,5T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-86-10
+Descrição: Anel de Carga Grau 10 para corrente de 8 mm Carga de Trabalho 2,6T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-108-10
+Descrição: Anel de Carga Grau 10 para corrente de 10 mm Carga de Trabalho 4T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-13-10
+Descrição: Anel de Carga Grau 10 para corrente de 13 mm Carga de Trabalho 5,4T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-1310-10
+Descrição: Anel de Carga Grau 10 para corrente de 13 mm Carga de Trabalho 7,5T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-1613-10
+Descrição: Anel de Carga Grau 10 para corrente de 16 mm Carga de Trabalho 10T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-2016-10
+Descrição: Anel de Carga Grau 10 para corrente de 20 mm Carga de Trabalho 17T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-2220-10
+Descrição: Anel de Carga Grau 10 para corrente de 22 mm Carga de Trabalho 25T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-32-10
+Descrição: Anel de carga Grau 10 tipo M-32-10, Carga de Trabalho 33T, conforme Norma EN1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000								
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-3226-10 - Z101276
+Descrição: Anel de carga Grau 10 tipo M-3226-10, Carga de Trabalho 43T, conforme Norma EN1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-3632-10 - Z101277
+Descrição: Anel de carga Grau 10 tipo M-3632-10, Carga de Trabalho 56T, conforme Norma EN1677.
+Prazo de entrega: Imediato
+NCM: 7315.9000						
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: M-4536-10
+Descrição: Anel de carga Grau 10 tipo M-4536-10, Carga de Trabalho 70T, conforme Norma EN1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: MT-6-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 6mm, Carga de Trabalho 3,5T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-8-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 8mm, Carga de Trabalho 5,2T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-9-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 8mm, Carga de Trabalho 6,9T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-10-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 10mm, Carga de Trabalho 11,5T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-13-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 13mm, Carga de Trabalho 17T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-16-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 16mm, Carga de Trabalho 28T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-20-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 20mm, Carga de Trabalho 35T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-22-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 22mm, Carga de Trabalho 53T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-26-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 26mm, Carga de Trabalho 70T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MT-32-10
+Descrição: Anel de carga Grau-10 para linga de 04 pernas de 32mm, Carga de Trabalho 91T,
+conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: MIG-10-10 - B14310
+Descrição: Encurtador de corrente Grau-10 de 10mm, Carga de trabalho 4T, conforme norma EN1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: MIG-8-10 - B14300
+Descrição: Encurtador de corrente Grau-10 de 8mm, Carga de trabalho 2,6T, conforme norma EN1677.
+Prazo de Entrega: 80 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: GG-6-10
+Descrição: Gancho encurtador Grau-10 de 6mm, Carga de trabalho 1,5T, conforme norma EN 1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS:	Incluso
+IPI: Incluso
+
+Referência: GG-7-10
+Descrição: Gancho encurtador Grau-10 de 7mm, Carga de trabalho 2T, conforme norma EN1677.
+Carga de Trabalho: 2,5T
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: GG-8-10
+Descrição: Gancho encurtador Grau-10 de 8mm, Carga de trabalho 2,5T, conforme norma EN1677.
+Carga de Trabalho: 2,5T
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: GG-10-10 - B14772
+Descrição: Gancho encurtador Grau-10 de 10mm, Carga de trabalho 4T, conforme norma EN1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: GG-13-10
+Descrição: Gancho encurtador Grau-10 de 13mm, Carga de trabalho 6,7T, conforme norma EN1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: GG-16-10
+Descrição: Gancho encurtador Grau-10 de 16mm, Carga de trabalho 10T, conforme norma EN1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: GG-20-10
+Descrição: Gancho encurtador Grau-10 de 20mm, Carga de trabalho 16T, conforme norma EN1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-7/8-10
+Descrição: Gancho de Encurtamento Olhal, Grau 10 de 8mm, Carga de Trabalho 2,5T, conforme Norma EN1677 
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-10-10
+Descrição: Gancho de Encurtamento Olhal, Grau 10 de 10mm Carga de Trabalho 4T, conforme Norma EN1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-13-10
+Descrição: Gancho de Encurtamento Olhal, Grau 10 de13mm, Carga de Trabalho 6,7T, conforme Norma EN1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-16-10
+Descrição: Gancho de Encurtamento Olhal, Grau 10 de 16mm, Carga de Trabalho 10T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-20-10
+Descrição: Gancho de Encurtamento Olhal, Grau 10 de 20mm, Carga de Trabalho 16T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-22-10
+Descrição: Gancho de Encurtamento Olhal, Grau 10 de 22mm, Carga de Trabalho 20T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-26-10
+Descrição: Gancho de Encurtamento Olhal, Grau 10 de 26mm, Carga de Trabalho 27T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-7/8-8
+Descrição: Gancho de Encurtamento Olhal, Grau 8 de 8mm, Carga de Trabalho 2T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-10-8
+Descrição: Gancho de Encurtamento Olhal, Grau 8 de 10mm, Carga de Trabalho 3,2T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-13-8
+Descrição: Gancho de Encurtamento Olhal, Grau 8 de 13mm, Carga de Trabalho 5,4T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OG-16-8
+Descrição: Gancho de Encurtamento Olhal, Grau 8 de 16mm, Carga de Trabalho 8T, conforme Norma EN1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: WHO-6-8
+Descrição: Gancho olhal de fundição Grau-8 de 6mm, Carga de Trabalho 1,12T, conforme Norma
+EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OKE-7/8-10
+Descrição: Gancho olhal de fundição Grau-10 de 8mm, Carga de Trabalho 2,5T, conforme Norma
+EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OKE-10-10
+Descrição: Gancho olhal de fundição Grau-10 de 10mm, Carga de Trabalho 4T, conforme Norma
+EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OKE-13-10
+Descrição: Gancho olhal de fundição Grau-10 de 13mm, Carga de Trabalho 6,7T, conforme
+Norma EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OKE-16-10
+Descrição: Gancho olhal de fundição Grau-10 de 16mm, Carga de Trabalho 10T, conforme Norma
+EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OKE-20-10
+Descrição: Gancho olhal de fundição Grau-10 de 20mm, Carga de Trabalho 16T, conforme Norma
+EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OKE-22-10
+Descrição: Gancho olhal de fundição Grau-10 de 22mm, Carga de Trabalho 20T, conforme Norma
+EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BK-6-10
+Descrição: Gancho Automático Grau-10 de 6mm, Carga de Trabalho 1,5T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BK-7/8-10
+Descrição: Gancho Automático Grau-10 de 8mm, Carga de Trabalho 2,5T, conforme Norma EN-1677. 
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+                                                      
+Referência: BK-10-10
+Descrição: Gancho Automático olhal Grau-10 de 10mm, Carga de Trabalho 4T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+                                                     
+Referência: BK-13-10
+Descrição: Gancho automático Olhal Grau 10 de 13mm, Carga Trabalho 6,7T, conforme Norma EN 1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+                                                      
+Referência: BK-16-10
+Descrição: Gancho automático Olhal Grau de 16mm, Carga Trabalho 10T, conforme Norma EN 1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BK-18/20-10
+Descrição: Gancho automático Olhal Grau 10 de 18/20mm, Carga Trabalho 16T, conforme Norma EN 1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BK-22-10
+Descrição: Gancho automático Olhal Grau 10 de 22mm, Carga Trabalho 20T, conforme Norma EN 1677
+Prazo de Entrega: 05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BK-26-10
+Descrição: Gancho automático Olhal Grau 10 para corrente de 26mm, Carga Trabalho 27T, conforme Norma EN 1677
+Prazo de Entrega: 03 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BK-32-8
+Descrição: Gancho automático Olhal Grau 8 de 32mm, Carga Trabalho 32,8T, conforme Norma EN 1677
+Prazo de Entrega:  05 dias  
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKL-6-10 
+Descrição: Gancho automático giratório Grau-10 de 6mm, Carga de Trabalho 1,5T, conforme Norma EM-1677.
+Prazo de Entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: BKL-7/8-10- Z101104
+Descrição: Gancho Giratório automático Grau 10 de 8MM, Carga de Trabalho 2,5T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: BKL-10-10
+Descrição: Gancho automático giratório Grau-10 de 10mm, Carga de Trabalho 4T, conforme Norma EM-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: BKL-13-10
+Descrição: Gancho Giratório automático Grau 10 de 13mm, Carga de Trabalho 6,7T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: BKL-16-10
+Descrição: Gancho Giratório automático Grau 10 de 16mm, Carga de Trabalho 10T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKL-18/20-10
+Descrição: Gancho Automático Giratório, Grau-10 18/20mm, Carga de Trabalho 16T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias 
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: LKN-7/8-10
+Descrição: Gancho Giratório com trava Grau 10 de 8mm, Carga de Trabalho 2,5T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: LKN-16-10
+Descrição: Gancho Giratório com trava, Grau 10 de 16mm, Carga de Trabalho 10T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: LKNK-16-10
+Descrição: Gancho Giratório com trava rolamentado, Grau 10 de 16mm, Carga de Trabalho 10T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: BKLK-6-10
+Descrição: Gancho Automático Giratório rolamentado Grau-10 de 6mm, Carga de Trabalho 1,5T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias                                                            	
+ Fator de Segurança: 4:1
+NCM: 7326.90.90
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-7/8-10
+Descrição: Gancho Automático Giratório rolamentado Grau-10 de 8mm, Carga de Trabalho 2,5T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias                                                            	
+ Fator de Segurança: 4:1
+NCM: 7326.90.90
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-10-10
+Descrição: Gancho Automático Giratório rolamentado Grau-10 de 10mm, Carga de Trabalho 4T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias                                                            	
+ Fator de Segurança: 4:1
+NCM: 7326.90.90
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-13-10
+Descrição: Gancho Automático Giratório rolamentado Grau-10 de 13mm, Carga de Trabalho 6,7T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias                                                            	 
+Fator de Segurança: 4:1
+NCM: 7326.90.90
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-16-10
+Descrição: Gancho Automático Giratório rolamentado Grau-10 de 16mm, Carga de Trabalho 10T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias                                                            	 
+Fator de Segurança: 4:1
+NCM: 7326.90.90
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-18/20-10- Z101095 
+Descrição: Gancho Automático Giratório Rolamentado, Grau-10 de 18/20mm, Carga de Trabalho 16T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias 
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-22-10 OS
+Descrição: Gancho Automático Giratório Rolamentado Grau-10 de 22mm, Carga de Trabalho 20T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias 
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-26-10
+Descrição: Gancho Automático Giratório Rolamentado Grau-10 de 26mm, Carga de Trabalho 27T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias 
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: BKLK-32-8
+Descrição: Gancho Automático Giratório Rolamentado Grau-8 de 32mm, Carga de Trabalho 32,8T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias 
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: OBK-7/8-10
+Descrição: Gancho automático de segurança Grau-10 para corrente 8mm, Carga de Trabalho 2,5T, conforme Norma
+EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: OBK-10-10
+Descrição: Gancho automático de segurança Grau 10 para corrente de 10mm, carga de trabalho 4T conforme Norma EN 1677.
+Prazo de entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: OBK-13-10
+Descrição: Gancho olhal automático de segurança Grau 10 para corrente de 13mm, carga de trabalho 6,7T conforme Norma EN 1677.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: CH-3
+Descrição: Gancho para container, reto, Grau8, tipo CH-3, Carta de Trabalho 12,5T, conforme Norma EN-1677.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: UKN-1T
+Descrição: Gancho Soldável Grau-8 tipo UKN, Carga de Trabalho 1T, conforme Norma EN-1677.
+Prazo de Entrega: 140 dias
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: Incluso	
+
+Referência: FITA DE AMARRAÇÃO COM CATRACA
+Descrição: Fita de amarração de cargas - Fita com catraca, largura 50mm, l com 500mm
+com anel na extremidade e fita com 10 metros com olhal na extremidade.
+Prazo de entrega: confirmação após o pedido
+NCM: 5609.0090							
+Fator de Segurança: 2:1
+ICMS: 18% Incluso	
+IPI: Incluso			
+
+Referência: WIRELOCK 100cc
+Descrição: Resina de Soquetagem WIRELOCK 100cc
+Prazo de Entrega: 150 dias
+NCM: 3907.3029
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: WIRELOCK 250cc 
+Descrição: Resina de Soquetagem WIRELOCK 250cc
+Prazo de Entrega: 05 dias
+NCM: 3907.3029
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: WIRELOCK 500cc 
+Descrição: Resina de Soquetagem WIRELOCK 500cc
+Prazo de Entrega: 05 dias
+NCM: 3907.3029
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: WIRELOCK 1000cc
+Descrição: Resina de Soquetagem WIRELOCK 1000cc
+Prazo de Entrega: 03 dias
+NCM: 3907.3029
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: MFX - 1310-10
+Descrição: Anel de Carga Grau 10 para corrente de 13mm, Carga de Trabalho 8T conforme Norma EN1677.
+Prazo de entrega:05 dias
+NCM: 7315.9000
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: MFX - 1613-10
+Descrição: Anel de Carga Grau 10 para corrente de 16mm, Carga de Trabalho 11,2T conforme Norma EN1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: LBK-13-10
+Descrição: Gancho Giratório Grau 10 automático de 13mm, Carga de Trabalho 6,7T, conforme Norma 1677.
+Prazo de entrega:75 dias
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+ICMS: Incluso	
+IPI: Incluso
+
+Referência: CH3L (Z101221)
+Descrição: Gancho para Container
+Carga de Trabalho: 12,5T.			
+Prazo de entrega: 05 dias
+NCM: 7326.90.90
+ICMS: Incluso	
+IPI: Incluso
+
+Referência:CH3R (Z101219)
+Descrição: Gancho para Container
+Carga de Trabalho: 12,5T.			
+Prazo de entrega: 05 dias
+NCM: 7326.90.90
+ICMS: Incluso	
+IPI: Incluso
+
+Referência: WLP 2,5T - Z7009001
+Descrição: Olhal de Elevação Soldável, tipo WLP, Carga de Trabalho 2,5T
+Prazo de entrega: 45 dias
+NCM: 7326.90.90
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: WLP 16T - Z7009041
+Descrição: Olhal de Elevação Soldável, tipo WLP, Carga de Trabalho 16T.
+Prazo de entrega: 45 dias
+NCM: 7326.90.90					
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: SKT-7/8-8
+Descrição: Meio Elo de Ligação tipo SKT-7/8-8, Grau 8, Carga de Trabalho 2T, conforme Norma EN-1677.
+Prazo de entrega:60 dias
+NCM: 7315.90.00
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: SKT-10-8
+Descrição: Meio Elo de Ligação tipo SKT-10-8, Grau 8, Carga de Trabalho 3,2T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.90.00
+ICMS: 18% Incluso
+IPI: 9,75% Incluso      
+
+Referência: SKT-16-8 - 
+Descrição: Meio Elo de Ligação tipo SKT-16-8, Grau 8, Carga de Trabalho 8T, conforme Norma EN-1677.
+Prazo de entrega:11 peças imediato e saldo em 75 dias
+NCM: 7315.90.00
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: SKT-22-8 - Z100225
+Descrição: Meio Elo de Ligação tipo SKT de 22mm, Grau 8, marca GUNNEBO, Carga de Trabalho 15,5T, conforme Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7315.90.00
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: SKG-13-8 - Z419888
+Descrição: Gancho de Fundição com Acoplamento Modular Grau-8 para corrente 13mm, Carga de Trabalho 5,4T, conforme Norma EN-1677.
+Prazo de Entrega: Imediato
+NCM: 7315.9000							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: SKA-13-8- Z303822
+Descrição: Kit de Reparo (Pino e Bucha) para elo de ligação de 13mm, marca GUNNEBO, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.90.00
+ICMS: 18% Incluso		
+IPI: 9,75% Incluso      
+
+Referência: SKA-26-8- Z303822
+Descrição: Kit de Reparo (Pino e Bucha) para elo de ligação de 26mm, marca GUNNEBO, conforme Norma EN-1677.
+Prazo de entrega: 
+NCM: 7315.90.00
+ICMS: 18% Incluso		
+IPI: 9,75% Incluso      
+
+Referência: SKR-7/8-8
+Descrição: Acoplamento para cinta tipo Laço Redondo, Grau 8, Carga de Trabalho 2T, conforme Norma EN-1677.
+Prazo de entrega:60 dias
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: SKR-10-8
+Descrição: Acoplamento para cinta tipo Laço Redondo, Grau 8, Carga de Trabalho 3,2T, conforme Norma EN-1677.
+Prazo de entrega:05 dias
+NCM: 7326.9090
+ICMS: 18% Incluso		
+IPI: 5% Incluso
+
+Referência: RH-2-10
+Descrição: Gancho para Cinta tipo Laço Redondo RH-2-10, Grau 10, carga de trabalho 2T, conforme Norma EN-1677.
+Prazo de entrega:05 dias
+NCM: 7326.90.90
+ICMS: 18% Incluso
+IPI: Incluso      
+
+Referência: CL-6-10
+Descrição: Elo enforcador Grau-10, de 6mm, tipo CL, Carga de Trabalho 1,5T, Conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: CL-8-10
+Descrição: Elo enforcador Grau-10, de 8mm, tipo CL, Carga de Trabalho 2,5T, Conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: CL-10-10 - B14752
+Descrição: Elo enforcador Grau-10, de 10mm, tipo CL, Carga de Trabalho 4T, Conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: CL-13-10
+Descrição: Elo enforcador Grau-10, de 13mm, tipo CL, Carga de Trabalho 6,7T, Conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: CL-16-10 - B14754
+Descrição: Elo enforcador Grau-10, de 16mm, tipo CL, Carga de Trabalho 10T, Conforme Norma EN-1677
+Prazo de entrega: 03 dias
+NCM: 7326.9090
+ICMS: 18% Incluso
+IPI         5% Incluso
+
+Referência: CO 1T X 1M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 1T, comprimento total 1M, cor de reconhecimento de capacidade de carga violeta, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 1T X 2M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 1T, comprimento total 2M, cor de reconhecimento de capacidade de carga violeta, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 1T X 1,5M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 1T, comprimento total 1,5M, cor de reconhecimento de capacidade de carga violeta, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 1T X 6M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 1T, comprimento total 6 M, cor de reconhecimento de capacidade de carga violeta, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 2T X 2M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 2T, comprimento total 2M, cor de reconhecimento de capacidade de carga verde, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 2T X 3M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 2T, comprimento total 3M, cor de reconhecimento de capacidade de carga verde, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 2T X 4M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 2T, comprimento total 4M, cor de reconhecimento de capacidade de carga verde, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 2T X 5M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 2T, comprimento total 5M, cor de reconhecimento de capacidade de carga verde, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 3T X 3M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 3T, comprimento total 3M, cor de reconhecimento de capacidade de carga amarela, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 3T X 1,5M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 3T, comprimento total 1,5M, cor de reconhecimento de capacidade de carga amarela, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 3T X 4M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 3T, comprimento total 4M, cor de reconhecimento de capacidade de carga amarela, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 3T X 5M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 3T, comprimento total 5M, cor de reconhecimento de capacidade de carga amarela, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 4T X 5M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 4T, comprimento total 5M, cor de reconhecimento de capacidade de carga cinza, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 4T X 2M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 4T, comprimento total 2M, cor de reconhecimento de capacidade de carga cinza, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 4T X 4M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 4T, comprimento total 4M, cor de reconhecimento de capacidade de carga cinza, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 5T X 4M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 5T, comprimento total 4M, cor de reconhecimento de capacidade de carga vermelha, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 6T X 3M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 6T, comprimento total 3M, cor de reconhecimento de capacidade de carga marrom, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 6T X 4M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 6T, comprimento total 4M, cor de reconhecimento de capacidade de carga marrom, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 6T X 5M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 6T, comprimento total 5M, cor de reconhecimento de capacidade de carga marrom, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 8T X 4M 
+Descrição: Cinta de Poliéster com olhais reforçados, Carga de Trabalho 8T, comprimento total 4M, largura 240mm, cor de reconhecimento de capacidade de carga azul, conforme Norma EN-1492 e NBR15637.
+Prazo de Entrega: 03 dias 
+NCM: 6307.90.90						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CO 10TX10M
+Descrição: Cinta de poliéster com olhais reforçados, corpo Simples, Carga de Trabalho 10T, comprimento total 10M, cor de reconhecimento de capacidade de carga laranja, conforme Norma EN-1492 e NBR-15637.
+Prazo de Entrega: 07 dias
+NCM: 6307.9090						
+Fator de Segurança: 7:1	
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: CO 15T X 5M C/PROTEÇÃO
+Descrição: Cinta de poliéster com olhais reforçados, Quádrupla, Carga de Trabalho 15T, comprimento total 5M, largura 240mm, com 2M de proteção em couro costurado no centro da cinta, cor de reconhecimento de capacidade de carga laranja, conforme Norma EN-1492 e NBR-15637. 
+Prazo de Entrega: 07 dias 					
+Fator de Segurança: 7:1 
+NCM: 6307.9090
+ICMS: 18% Incluso 
+IPI: Isento 
+
+Referência: CSF 1TX3MX1,5M 
+Descrição: Cinta de poliéster tipo Sem Fim, Carga de Trabalho 1T, cor de reconhecimento de capacidade de carga violeta conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 15 dias 
+NCM: 5609.0090   						           
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: CSF 2TX3MX1,5M
+Descrição: Cinta de poliéster tipo Sem Fim, Carga de Trabalho 1T, conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LR 1TX1MX0,5M
+Descrição: Cinta de poliéster tipo Laço Redondo, Carga de Trabalho 1T por 1m por 0,5m, cor de identificação de carga violeta, conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LR 1TX2MX1M
+Descrição: Cinta de poliéster tipo Laço Redondo, Carga de Trabalho 1T por 2m por 1m, cor de identificação de carga violeta, conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LR 3TX6MX3M
+Descrição: Cinta de poliéster tipo Laço Redondo, Carga de Trabalho 3T, cor de identificação de carga amarela, conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 03 dias 
+NCM: 5609.0090   						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LR 6TX8MX4M 
+Descrição: Cinta de poliéster tipo Laço Redondo, Carga de Trabalho 6T, 8M de circunferência, 4M útil, cor de identificação de carga marrom, conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 07 dias 
+NCM: 6307.9090						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LR 8TX6MX3M 
+Descrição: Cinta de poliéster tipo Laço Redondo, Carga de Trabalho 8T, 6M de circunferência, 03M útil, cor de identificação de carga azul, conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 03 dias 
+NCM: 6307.9090						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LR 10TX20MX10M 
+Descrição: Cinta de poliéster tipo Laço Redondo, Carga de Trabalho 10T, 20M de circunferência, 10M útil, cor de identificação de carga laranja, conforme Norma EN-1492 e NBR-15637
+Prazo de Entrega: 07 dias 
+NCM: 6307.9090						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LR 25T X 16M X 8M
+Descrição: Cinta Tubular, capa dupla, Carga de Trabalho 25T, circunferência 16m, comprimento útil 8m, cor de reconhecimento de carga laranja, conforme Norma EN-1492 e NBR-15637.
+Prazo de Entrega: 03 dias 
+NCM: 63079090						
+Fator de Segurança: 7:1    
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: DIN 580 M8 
+Descrição: Olhal Fixo, DIM 580 M8, forjado a quente zincado. Capacidade de Carga 140kg.
+Prazo de Entrega:03diasFator de Segurança: 4:1
+
+Referência: DIN 580 M10 
+Descrição: Olhal Fixo, DIM 580 M10, forjado a quente zincado. Capacidade de Carga 230kg.
+Prazo de Entrega:03dias
+Fator de Segurança: 4:1
+ICMS: Incluso
+IPI: Incluso
+
+Referência: DIN 580 M12 
+Descrição: Olhal Fixo, DIM 580 M12, forjado a quente zincado. Capacidade de Carga 340kg.
+Prazo de Entrega:03 dias
+Fator de Segurança: 4:1
+ICMS: Incluso
+IPI: Incluso
+
+Referência: DIN 580 M16 
+Descrição: Olhal Fixo, DIM 580 M16, forjado a quente zincado. Capacidade de Carga 700kg.
+Prazo de Entrega:03 dias
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso	
+
+Referência: S-2130-200T
+Descrição: Manilha curva grau 8 com pino, porca e cupilha, Carga de Trabalho 200T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: Imediato
+NCM: 7326.9090						
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-2130-1,5T - 1019471
+Descrição: Manilha de carga curva com porca, pino e contra pino, Aço Liga, Galvanizada, Carga de Trabalho 1,5T, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 05 dias                                                          
+Fator de Segurança: 6:1
+NCM: 7315.8200
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: G-2130-2T - 1019472
+Descrição: Manilha de carga curva, com porca, pino e contra pino, tratada, revenida e galvanizada, Carga de Trabalho 2T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 03 dias
+NCM: 7326.9090						
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-3,25T - 1262013
+Descrição: Manilha de carga curva, com porca, pino e contra pino, tratada e revenida, galvanizada, Carga de Trabalho 3,25T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 20 dias
+NCM: 7326.9090						
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-4,75T - 1262022
+Descrição: Manilha de carga curva, com porca, pino e contra pino, Carga de Trabalho 4,75T, tratada e revenida, galvanizada, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 20 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-6,5T - 1262031
+Descrição: Manilha de carga curva, com pino, porca e contra pino, tratada, revenida, e galvanizada, Carga de Trabalho 6,5T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 20 dias
+NCM: 7326.9090						
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-8,5T - 1262040
+Descrição: Manilha curva com pino, porca e contrapino, Carga de Trabalho 8,5T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.9090						
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-2130-9,5T - 1262059
+Descrição: Manilha de carga curva, com porca, pino e contra pino, tratada e revenida, galvanizada, Carga de Trabalho 9,5T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 20 dias
+NCM: 7326.9090						
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-12T - 1262068
+Descrição: Manilha curva com pino, porca e contra pino, Carga de Trabalho 12T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.9090						
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130 13,5T - 1262077
+Descrição: Manilha de carga curva com porca, pino e contra pino, tratada e revenida, galvanizada, Carga de Trabalho 13,5T,conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 05 dias                                                          
+Fator de Segurança: 6:1
+NCM: 7315.8200
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: G-2130-17T - 1262086
+Descrição: Manilha de carga curva, com porca, pino e contra pino, tratada, revenida e galvanizada, Carga de Trabalho 17T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.9090						
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-25T - 1262095
+Descrição: Manilha curva com pino, porca e cupilha, Carga de Trabalho 25T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: Imediato
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-35T - 1019677
+Descrição: Manilha curva com pino, porca e contra pino, Carga de Trabalho 35T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 20 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-55T - 1019695
+Descrição: Manilha curva com pino, porca e contra pino, Carga de Trabalho 55T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 20 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2130-85T - 1019711
+Descrição: Manilha curva com pino, porca e contra pino, Carga de Trabalho 85T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 20 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2160-18T
+Descrição: Manilha de carga curva de corpo largo, com pino vermelho, tratada, revenida e galvanizada, Carga de Trabalho 18T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.9090				
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2160-40T
+Descrição: Manilha de carga curva de corpo largo, com pino vermelho, tratada, revenida e galvanizada, Carga de Trabalho 40T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.9090				
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2140-55T
+Descrição: Manilha de carga curva, grau 8, com pino, porca e cupilha, Carga de Trabalho 55T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.90.90							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-2140-175T
+Descrição: Manilha de carga curva, grau 8, com pino, porca e cupilha, Carga de Trabalho 175T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 160 dias
+NCM: 7326.90.90							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-2140-30T
+Descrição: Manilha de carga curva, grau 8, com pino, porca e cupilha, Carga de Trabalho 30T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 07dias
+NCM: 7326.90.90							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-2130-35T
+Descrição: Manilha de Carga, Curva com  Porca, Pino e Contra Pino, Aço Liga, Galvanizada, Carga de Trabalho 35T, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 05 dias                                                                
+ Fator de Segurança: 6:1
+NCM: 7315.8200
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: G-2130-55T
+Descrição: Manilha curva com pino, porca e cupilha, Carga de Trabalho 55T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: Imediato
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência:G-2130-85T
+Descrição: Manilha curva com pino, porca e cupilha, Carga de Trabalho 85T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: Imediato
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência:G-2130-120T
+Descrição: Manilha curva com pino, porca e cupilha, Carga de Trabalho 120T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: Imediato
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2140-4,75T
+Descrição: Manilha de carga curva, grau 8, com pino, porca e cupilha, Carga de Trabalho 4,75T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: Imediato
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2140-40T
+Descrição: Manilha de carga curva, grau 8, com pino, porca e cupilha, Carga de Trabalho 40T, tratada e revenida, galvanizada, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 07dias
+NCM: 7326.90.90							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-2140 - 55T
+Descrição: Manilha de carga curva, grau 8, com pino, porca e contrapino, Carga de Trabalho 55T, conforme Norma Fed. Spec RR-C-271.
+Prazo de entrega: 07dias
+NCM: 7326.90.90							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-2140 - 200T (1021234)
+Descrição: Manilha de carga curva, grau 8, com pino, porca e contrapino, Carga de Trabalho 200T, conforme Norma Fed. Spec RR-C-271.
+Prazo de entrega: 07dias
+NCM: 7326.90.90							
+Fator de Segurança: 4.5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-2150-85T
+Descrição: Manilha de carga reta com Pino, Porca e Contra Pino, Aço Liga, Galvanizada, Carga de Trabalho 85T, conforme Norma Fed.Spec.RR-C-271.
+Prazo de Entrega: 05 dias                                                                 
+Fator de Segurança: 6:1
+NCM: 7315.8200
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: G-2150 4,75T
+Descrição: Manilha de carga reta Galvanizada, Porca e Contra-Pino, Carga de Trabalho 4,75T, conforme Norma Fed.Spec.RR-C-271
+Prazo de Entrega: 05 dias 
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-2150 6,5T
+Descrição: Manilha de carga reta Galvanizada, Porca e Contra-Pino, Carga de Trabalho 6,5T, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-2150 17T
+Descrição: Manilha de carga reta galvanizada, porca e pino e contrapino, Carga de Trabalho 17T, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 2 peças para 3 dias, saldo para 80 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-2150 25T
+Descrição: Manilha de carga reta galvanizada, porca e pino e contrapino, Carga de Trabalho 25T, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 05 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-2150 - 35T
+Descrição: Manilha de carga reta com Pino, Porca e Contra Pino, Aço Liga, Galvanizada, Carga de Trabalho 35T, conforme Norma Fed.Spec.RR-C-271.
+Prazo de Entrega: 01 peça 03 dias, 01 peça 70 dias  
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-209-2T
+Descrição: Manilha de Carga curva, com pino roscado, Grau 6, tratada, revenida e galvanizada, Carga de Trabalho 2T, Marca Crosby, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-209-3,25T 
+Descrição: Manilha de carga curva com pino roscado, Grau 6, galvanizada, tratada e revenida, Carga de Trabalho 3,25T 5/8”, conforme Fed.Espec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-209-4,75T - 1018491
+Descrição: Manilha de carga curva com pino roscado, Grau 6, galvanizada, tratada e revenida, Carga de Trabalho 4,75T 3/4”, conforme Fed.Espec.RR-C-271.
+Prazo de Entrega: 05 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-209-6,5T 
+Descrição: Manilha de carga curva com pino roscado, Grau 6, galvanizada, tratada e revenida, Carga de Trabalho 6,5T 7/8”, conforme Fed.Espec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-209-8,5T 
+Descrição: Manilha de carga curva com pino roscado, Grau 6, galvanizada, tratada e revenida, Carga de Trabalho 8,5T 1”, conforme Fed.Espec.RR-C-271.
+Prazo de entrega: 03 dias 
+NCM: 7326.90.90							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-209-9,5T
+Descrição: Manilha de carga curva com pino roscado, Grau 6, tratada, revenida e galvanizada, Carga de Trabalho 9,5T, Marca Crosby, conforme Norma conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência:G-209-12T
+Descrição: Manilha de carga curva com pino roscado, Grau 6, tratada, revenida e galvanizada, Carga de Trabalho 12T, Marca Crosby, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência:G-209-17T
+Descrição: Manilha de carga curva com pino roscado, Grau-6, tratada, revenida e galvanizada, Carga de Trabalho 12T, Marca Crosby, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-209-25T
+Descrição: Manilha de carga curva com pino roscado, Grau-6, tratada, revenida e galvanizada, Carga de Trabalho 25T, conforme US.Fed.Spec.RR-C-271.
+Prazo de Entrega: 03 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: G-2100-85T - QUIC-Threaded
+Descrição: Manilha de carga ROV, aço forjado, temperado e revenido, Carga de Trabalho 85T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-2110-17T - Non-Threaded + Handle “T” - 2038786
+Descrição: Manilha de carga ROV, aço forjado, temperado e revenido, Carga de Trabalho 17T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 210 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-2110-25T - Non-Threaded- 2038621
+Descrição: Manilha de carga ROV, aço forjado, temperado e revenido, Carga de Trabalho 25T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-2110-35T - Non-Threaded- 2038809
+Descrição: Manilha de carga ROV, aço forjado, temperado e revenido, Carga de Trabalho 35T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-2100-17T - QUIC-Threaded - 2038785
+Descrição: Manilha de carga ROV, aço forjado, temperado e revenido, Carga de Trabalho 17T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-2100-12T - QUIC-Threaded - 2038762
+Descrição: Manilha de carga ROV, aço forjado, temperado e revenido, Carga de Trabalho 12T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: G-42100H-Handle “D”
+Descrição: Manípulo tipo "D" (D-Handle) para manilha ROV, em aço Liga de alta resistência, forjado, projetado especificamente para ser acoplado aos pinos das manilhas da linha ROV Release & Retrieve (G-2100 / G-2110).
+Prazo de entrega: 50 dias
+NCM: 7326.9090						
+ICMS: 18% Incluso 
+IPI: Isento
+
+Referência: G-209R-35T
+Descrição: Manilha de carga ROV, aço forjado, temperado e revenido, com pinos de Alloy, Carga de Trabalho 35T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência:G-210-8,5T - 1019310
+Descrição: Manilha de carga reta com pino roscado Grau-6, tratada, revenida e galvanizada, Carga de Trabalho 8,5T, Marca Crosby, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: Imediato
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência:G-210-17T- 1019392
+Descrição: Manilha de carga reta com pino roscado Grau-6, tratada, revenida e galvanizada, Carga de Trabalho 17T, Marca Crosby, conforme Fed.Spec.RR-C-271.
+Prazo de entrega: 
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: S-2135-200T
+Descrição: Manilha de carga curva, tipo âncora, de segurança, com pino, porca e contra pino, em aço carbono, polido, Carga de Trabalho 200T, conforme US.Fed.Spec.RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: G-213-3,25T
+Descrição: Manilha de Carga curva, Grau 6, em aço carbono forjado, e pino roscado, Carga de Trabalho 3,25T, Marca Crosby, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 80 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: S-213-25T
+Descrição: Manilha de Carga curva, Grau 6, em aço carbono forjado, pino, porca e cupilha com acabamento Polido/Natural (Self-Colored), Carga de Trabalho 25T, Marca Crosby, conforme Fed.Spec.RR-C-271.
+Prazo de Entrega: 80 dias
+NCM: 7326.9090 							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: QP-8-10 (Z101011)
+Descrição: Pino de Reposição, acoplamento com trava para o CL-8-10.
+Prazo de entrega: 05 dias                                              
+NCM: 73159000
+
+Referência: QP-10-10 (Z101012)
+Descrição: Pino de Reposição, acoplamento com trava para o CL-10-10.
+Prazo de entrega: 05 dias                                              
+NCM: 73159000
+
+Referência: QP-13-10 (Z101013)
+Descrição: Pino de Reposição, acoplamento com trava para o CL-13-10.
+Prazo de entrega: 05 dias                                              
+NCM: 73159000
+
+Referência: QP-16-10 (Z101014)
+Descrição: Pino de Reposição, acoplamento com trava para o CL-16-10.
+Prazo de entrega: 05 dias                                              
+NCM: 73159000
+
+Referência: GBK-8-10
+Descrição: Gancho Clévis Automático, Grau-10 para corrente de 8mm, Carga de Trabalho 2,5T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias                                                                    
+Fator de Segurança: 4:1
+NCM: 7326.9090
+ICMS:18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: GBK-10-10
+Descrição: Gancho Clévis Automático, Grau-10 para corrente de 10mm, Carga de Trabalho 4T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias                                                                    
+Fator de Segurança: 4:1
+NCM: 73269090
+ICMS:18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: SKLI-7/8-8 - Z100316
+Descrição: Destorcedor rolamentado tipo SKLI-7/8-8.			
+Prazo de entrega: 70 dias
+NCM: 7315.9000
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: SKLI-13-8 – Z100415
+Descrição: Destorcedor rolamentado tipo SKLI de 13mm, Grau 8, marca GUNNEBO, Carga de Trabalho 5,4T, conforme Norma EN-1677.		
+Prazo de entrega: 01 peça para 05 dias, saldo para 130 dias
+NCM: 7315.9000
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: SKLI-16-8 – Z100416
+Descrição: Destorcedor rolamentado tipo SKLI-6-8, marca GUNNEBO, Grau 8, Carga de Trabalho 8T, conforme Norma EN-1677.		
+Prazo de entrega: 80 dias
+NCM: 7315.9000
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: 5-S-1 – JAW X HOOK
+Descrição: Destorcedor Jaw x Hook de 16mm, Carga Trabalho 5T, com rolamento de rolos cônicos, conforme Norma EN 1677.
+Prazo de Entrega: 80 dias   
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: 10-S-1 – JAW X HOOK
+Descrição: Destorcedor Jaw x Hook de 22mm, Carga Trabalho 10T, com rolamento de rolos cônicos, conforme Norma EN 1677.
+Prazo de Entrega: 80 dias   
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: 5-S-2 – JAW X JAW
+Descrição: Destorcedor Manilha x Manilha de 16mm, Carga Trabalho 5T, com rolamento de rolos cônicos, conforme Norma EN 1677.
+Prazo de Entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: 3-S-3 – JAW X EYE
+Descrição: Destorcedor Manilha x Olhal de 13mm, Carga Trabalho 3T, com rolamento de rolos cônicos, conforme Norma EN 1677.
+Prazo de Entrega: 03 peças em 05 dias, saldo   
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: S-5 – EYE X EYE
+Descrição: Destorcedor Olhal x Olhal de 32mm, Carga Trabalho 25T, com rolamento de rolos cônicos, conforme Norma EN 1677.
+Prazo de Entrega: 03 peças em 05 dias, saldo   
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: AS-5 – EYE X EYE
+Descrição: Destorcedor Olhal x Olhal de 32mm, Carga Trabalho 22,5T, com rolamento de contato angular, conforme Norma EN 1677.
+Prazo de Entrega: 
+NCM: 7326.9090							
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: S-279 ‘3/4 - 9900235
+Descrição: Parafuso Olhal CROSBY, S-279 “3/4, em Aço Forjado, temperado e Revenido, conforme Norma ASME B30.26.
+Prazo de entrega: 80 dias  
+NCM: 7326.9090					     
+ Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI:          5% Incluso
+
+Referência: S-279 ‘1/2 - 9900217
+Descrição: Parafuso Olhal CROSBY, S-279 “1/2, em Aço Forjado, temperado e Revenido, conforme Norma ASME B30.26.
+Prazo de entrega: 05 dias  
+NCM: 7326.9090					      
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: GABARITO PARA INSPEÇÃO (Z769490)
+Descrição: Gabarito para Inspeção 
+Prazo de entrega:05 dias                                                           
+NCM: 9017.3090
+Material Importado
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: MANILHA SA-7/8
+Descrição: Manilha de carga Grau-8 de 8mm, Carga de Trabalho 1,5T, conforme Norma EM-1677
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Incluso
+
+
+Referência: MANILHA SA-10-8
+Descrição: Manilha Grau 8, reta, com pino e porca, Carga de Trabalho 3,2T, conforme Norma 
+EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: MANILHA SA-13-8 
+Descrição: Manilha Grau 8, reta, com pino e porca, Carga de Trabalho 5,4T, conforme Norma 
+EN-1677. 
+Prazo de entrega: 05 dias
+NCM: 7326.9090							
+Fator de Segurança: 6:1
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: PLAQUETA DE IDENTIFICAÇÃO DE CARGA 
+Descrição: Plaqueta de identificação de carga em aço inox. 
+Prazo de Entrega: 03 dias
+NCM: 8310.0000
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: 2SKRSKT/CO2TX1900MM
+Descrição: Linga deCinta de poliéster, dois ramais, com acoplamento tipo SKR nas extremidades, com gancho Olhal Automático Grau-10 nas extremidades, Carga de Trabalho 2,8T, comprimento total 19000mm, conforme Norma EN-1492 e NBR-15637
+Carga de Trabalho: 2,8T
+Prazo de entrega: 05 dias                                                           
+Fator de Segurança: 4:1
+NCM: 5607.50.90
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LEVANTADOR MAGNÉTICO – 300Kg
+Descrição: Levantador Magnético capacidade 300Kg
+Carga de Trabalho: 300Kg      				
+Prazo de Entrega: 03 dias
+NCM: 8505.9080     
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LEVANTADOR MAGNÉTICO – 600Kg
+Descrição: Levantador Magnético capacidade 600Kg
+Carga de Trabalho: 600Kg      				
+Prazo de Entrega: 03 dias
+NCM: 8505.9080     
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LEVANTADOR MAGNÉTICO – 1000Kg
+Descrição: Levantador Magnético capacidade 1.000Kg
+Carga de Trabalho:1.000Kg				
+Prazo de Entrega: 03 dias
+NCM: 8505.9080     
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: LEVANTADOR MAGNÉTICO – 2000Kg – MARCA CROSBY USA
+Descrição: Levantador Magnético capacidade 2.000Kg
+Carga de Trabalho: 2.000Kg				
+Prazo de Entrega: 03 dias
+NCM: 8505.9080     
+ICMS: 18% Incluso
+IPI: Isento
+
+Referência: 3TIPSC 10
+Descrição: Grampo pega-chapas para transporte e tombamento de chapas e peças, Carga de Trabalho 3T, abertura de 0 – 60mm
+Prazo de Entrega: 05 dias
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: 3TSCC
+Descrição: Grampo pega-chapas para transporte e tombamento de chapas e peças, Caraga de Trabalho 3T, abertura de 0 - 60mm.
+Prazo de Entrega: 02 dias
+NCM: 8431.39.00
+ICMS: 18% Incluso
+IPI: Incluso
+
+
+Referência: 3TSCC
+Descrição: Grampo pega-chapas para transporte e tombamento de chapas e peças, Carga de Trabalho 3T, abertura de 0 – 60mm
+Prazo de Entrega: 60/75 dias
+NCM: 8431.3900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: IP10 0,5T
+Descrição: Grampo pega-chapas na posição vertical, Carga de Trabalho 0,5T, abertura de 0 – 16mm.
+Prazo de Entrega: 80 dias
+NCM: 8431.3900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: 2TSE
+Descrição: Grampo pega-chapas na posição vertical, Carga de Trabalho 2T, abertura de 0 – 35mm
+Prazo de Entrega: 60/75 dias
+NCM: 8431.3900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: HXW 3T
+Descrição: Grampo pega-chapas na posição horizontal, Carga de Trabalho 3T/par, abertura de 0 – 60mm
+Prazo de Entrega: 60/75 dias
+NCM: 8431.3900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: 2FHX
+Descrição: Grampo pega-chapas na posição horizontal, Carga de Trabalho 2T/par, abertura de 0 – 60mm.
+Prazo de Entrega: Imediato
+NCM: 8431.3900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: 3FHX
+Descrição: Grampo pega-chapas na posição horizontal, Carga de Trabalho 3T/par, abertura de 0 – 60mm.
+Prazo de Entrega: Imediato
+NCM: 8431.3900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: 4FHX
+Descrição: Grampo pega-chapas na posição horizontal, Carga de Trabalho 4T/par, abertura de 0 – 60mm
+Prazo de Entrega: 60/75 dias
+NCM: 8431.3900
+ICMS: 18% Incluso
+IPI: Incluso
+
+Referência: 1,5TSCC
+Descrição: Grampo pega chapas, para transporte tombamento de peças e movimentação de chapas na vertical, Carga de Trabalho 1,5T, abertura de 0 – 40mm
+Prazo de Entrega: 05 dias    
+NCM: 8431.3900
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: TVKH 0,6T
+Descrição: Grampo pega-tambor na posição vertical, capacidade 600Kg
+Prazo de entrega:03 dias                         
+NCM: 8431.3900
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: GTSEU – 1,5T
+Descrição: Grampo pega chapas na posição horizontal e vertical, com olhal articulado, Carga de Trabalho 1,5T, abertura de 0 – 25mm
+Prazo de Entrega: Imediato       
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: S-1316 – 16mm
+Descrição: Gancho olhal SHUR-LOC, em aço liga, temperado e revenido, Carga de Trabalho 10,3T, conforme Norma.
+Prazo de Entrega: 05 dias          
+NCM: 7326.9090			
+Fator de Segurança: 4:1 
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: S-1326 – 22mm
+Descrição: Gancho olhal SHUR-LOC, giratório rolamentado com trava automática, em aço liga, forjado, temperado e revenido, Carga de Trabalho 20T, conforme Norma.
+Prazo de Entrega: 05 dias          
+NCM: 7326.9090				
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: S-13326H – 18/20mm
+Descrição: Gancho olhal SHUR-LOC, com alça, giratório rolamentado com trava automática, em aço liga, forjado, temperado e revenido, Carga de Trabalho 16T, conforme Norma.
+Prazo de Entrega: 05 dias          
+NCM: 7326.9090				
+Fator de Segurança: 4:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: PATESCA 431 30T BB 
+Descrição: Patesca 431 para cabo de aço de 26-32mm, com manilha, carga de trabalho de 30T, conforme os requisitos da norma ASME B30.26.
+Marca: CROSBY
+Prazo de Entrega: 05 dias		
+NCM: 8425.1990							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: PATESCA 417 12T BB 
+Descrição: Patesca 417 para cabo de aço de 19-22mm, com manilha, carga de trabalho de 12T, conforme os requisitos da norma ASME B30.26.
+Marca: CROSBY
+Prazo de Entrega: 05 dias		
+NCM: 8425.1990							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: PATESCA 418 4T BB 
+Descrição: Patesca 418 para cabo de aço de 10-13mm, com gancho com trava de segurança, carga de trabalho de 4T, conforme os requisitos da norma ASME B30.26.
+Marca: CROSBY
+Prazo de Entrega: 05 dias		
+NCM: 8425.1990							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: PATESCA 430 25T BB 
+Descrição: Patesca 430 para cabo de aço de 26-32mm, com gancho com trava de segurança, carga de trabalho de 25T, conforme os requisitos da norma ASME B30.26.
+Marca: CROSBY
+Prazo de Entrega: 170 dias		
+NCM: 8425.1990							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: PATESCA 419 8T BB - 109545
+Descrição: Patesca 419 para cabo de aço de 19mm, carga de trabalho de 8T, conforme os requisitos da norma ASME B30.26.
+Marca: CROSBY
+Prazo de Entrega: 05 dias		
+NCM: 8425.1990							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: PATESCA 419 15T BB - 109643
+Descrição: Patesca 419 para cabo de aço de 26mm, carga de trabalho de 15T, conforme os requisitos da norma ASME B30.26.
+Marca: CROSBY
+Prazo de Entrega: 05 dias		
+NCM: 8425.1990							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: PATESCA M35T16H – PN 2011796
+Descrição: Patesca modelo M35T16H para cabo de aço de 14-22mm, carga de trabalho de 35T, da linha de produtos McKissick da CROSBY, conforme norma EN 13155.
+Prazo de entrega: 
+NCM: 7315.9000				
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: G-416 – “1-1/4 - 1-3/8 32-35mm
+Descrição: Soquete Aberto para cabo de aço “1-1/4 - 1-3/8 32-35mm, com pino, porca e contra pino, tipo G-416, CROSBY.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-416 – “7/8 20-22mm
+Descrição: Soquete Aberto para cabo de aço “7/8 20-22mm, com pino, porca e contra pino, tipo G-416, CROSBY.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: SOQUETE S-421T – “5/8 14-16mm
+Descrição: Soquete tipo cunha para cabo de aço “5/8 14-16mm, com pino e grampo para o cabo de aço, tipo S-421T, CROSBY, conforme os requisitos da EN 13411-6.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: SOQUETE S-421T – “3/4 18-19mm
+Descrição: Soquete tipo cunha para cabo de aço “3/4 18-19mm, com pino e grampo para o cabo de aço, tipo S-421T, CROSBY, conforme os requisitos da EN 13411-6.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: SOQUETE S-421T – “7/8 20-22mm
+Descrição: Soquete tipo cunha para cabo de aço “7/8 20-22mm, com pino e grampo para o cabo de aço, tipo S-421T, CROSBY, conforme os requisitos da EN 13411-6.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-416 – “3/4 14-16mm
+Descrição: Soquete aberto para cabo de aço “3/4 14-16mm mm, soquete tipo G-416, CROSBY. 
+Prazo de Entrega: 01 peça para 05 dias, saldo 80 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-417 – “1 24-26mm - 1040019
+Descrição: Soquete fechado para cabo de aço “1 24-26mm, soquete tipo pera, G-417, CROSBY. 
+Prazo de Entrega: 05 peças em 05 dias saldo 80 dias	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-417 – “1-1/4 - 1-3/8 32-35mm
+Descrição: Soquete fechado para cabo de aço “1-1/4 - 1-3/8 32-35mm, soquete tipo pera, G-417, CROSBY. 
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: S-505 – “2.1/2 62-65mm
+Descrição: Luva de Prensagem (Swaging Sleeve) para cabo de aço, modelo S-505 – “2.1/2 62-65mm, marca CROSBY, conforme norma ABNT NBR 13541(ASME B30.9).
+Prazo de Entrega: 170 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso 
+
+Referência: S-501 – “1 (24-26mm) - 1039209
+Descrição: Soquete Aberto de prensagem para cabo de aço “1 (24-26mm), com pino, porca e contra pino, tipo S-501, CROSBY, conforme norma EN 13411-3:2004.
+Prazo de Entrega: 80 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: S-501 – “1-1/8 (28mm) - 1039227
+Descrição: Soquete Aberto de prensagem para cabo de aço “1-1/8 (28mm), com pino, porca e contra pino, tipo S-501, CROSBY, conforme norma EN 13411-3:2004.
+Prazo de Entrega: 80 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: S-502 – “1-1/2(38-40mm) - 1039584 
+Descrição: Soquete Aberto de prensagem para cabo de aço “1-1/2 (38-40mm), com pino, porca e contra pino, tipo S-502, CROSBY, conforme norma EN 13411-3:2004.
+Prazo de Entrega: 80 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso 
+
+Referência: G-411 – “5/8 - 1037372
+Descrição: Sapatilha para cabo de aço “5/8 16mm, G-411, CROSBY, carga de trabalho de atende ou excede todos os requisitos da ASME B30.26.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-411 – “1/4 - 1037292
+Descrição: Sapatilha para cabo de aço “1/4 6-7mm, G-411, CROSBY, carga de trabalho de atende ou excede todos os requisitos da ASME B30.26.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: GRAMPO G-450 – “3/4 - 1010195
+Descrição: Grampo para cabo de aço “3/4 18-20mm, tipo G-450, CROSBY, Clipe-galvanizado inteiro para resistir à ação corrosiva e ferrugem, atende ou excede todos os requisitos da ASME B30.26.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: GRAMPO G-450 – “3/8 9-10mm
+Descrição: Grampo para cabo de aço “3/8 9-10mm, tipo G-450, CROSBY, Clipe-galvanizado inteiro para resistir à ação corrosiva e ferrugem, atende ou excede todos os requisitos da ASME B30.26.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: GRAMPO G-450 – “5/8 14-16mm
+Descrição: Grampo para cabo de aço “5/8 14-16mm, tipo G-450, CROSBY, Clipe-galvanizado inteiro para resistir à ação corrosiva e ferrugem, atende ou excede todos os requisitos da ASME B30.26.
+Prazo de Entrega: 05 dias                                                          	
+NCM: 7326.9090
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: G-340 – 19mm - 1014137
+Descrição:  Anel G-340 Crosby de 19mm, feito de aço carbono forjado, temperado e revenido. Galvanizado a quente, carga de trabalho de 6,35T, conforme os requisitos de desempenho da Especificação Federal RR-C-271F.
+Prazo de Entrega: 80 dias                                                          	
+NCM: 7315.9000						
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: BKD-18/20-10 - Z101156
+Descrição: Gancho automático Olhal Grau 10 de 18/20mm com trava dupla e gatilho embutido, Carga Trabalho 16T, conforme Norma EN 1677.
+Prazo de Entrega: 100 dias 
+NCM: 7326.9090 							
+Fator de Segurança: 4:1 
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: HR-1000 3/4 - 10 x 2.5
+Descrição: Olhal giratório tipo HR-1000 “3/4 – 10 x 2.5, limite da carga de trabalho 2,268KG.
+Prazo de Entrega: 2pçs em 05 dias e saldo em 80 dias                                                          	
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: L-140 LEBUS R-A (1/2 - 5/8) - 1048440
+Descrição: Esticador tipo catraca, para a faixa de corrente de 1/2- 5/8", modelo L-140 LEBUS R-A, Carga de Trabalho de 7,36T, conforme norma WSTDA-T-6.
+Prazo de Entrega: 80 dias
+NCM: 7326.9090				    
+Fator de Segurança: 3:1
+ICMS: 18% Incluso  
+IPI: 5% Incluso
+
+Referência: A-330 5/16" - PN 1027267
+Descrição: Gancho encurtador Grau-8 de 8mm, Carga de trabalho 2,04T, conforme norma EN1677.
+Prazo de Entrega: 80 dias  
+NCM: 7326.9090				
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: HG-228 – JAW & JAW - 1032938
+Descrição: Esticadores de Mandíbula, manilha-manilha, 1-1/2 x 12, Carga de Trabalho de 9,71T, temperados e revenidos ou normalizados, os corpos tratados a calor por normalização, em Aço galvanizado por imersão a quente.
+Marca: CROSBY
+Prazo de Entrega: 140 dias                                                                       
+Fator de Segurança: 5:1
+NCM: 7326.9090
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: HG-227 – JAW & EYE - 1031993
+Descrição: Esticadores de Mandíbula, manilha-eye, 5/8 x 6, Carga de Trabalho de 1,59T, temperados e revenidos ou normalizados, os corpos tratados a calor por normalização, em Aço galvanizado por imersão a quente.
+Marca: CROSBY
+Prazo de Entrega: 80 dias                                                                       
+Fator de Segurança: 5:1
+NCM: 7326.9090
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: HG-226 – 7/8 x 12 EYE & EYE
+Descrição: Esticadores de Mandíbula, olhal-olhal, 7/8 x 12, Carga de Trabalho de 3,27T, temperados e revenidos ou normalizados, os corpos tratados a calor por normalização, em Aço galvanizado por imersão a quente.
+Marca: CROSBY
+Prazo de Entrega: 80 dias
+NCM: 7326.9090							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso 
+IPI: 5% Incluso
+
+Referência: A-342 – 17,7T
+Descrição: Anel de Carga 1-1/4W, modelo “wide style”, Carga de Trabalho 17,7T, conforme Norma EN 1677.
+Prazo de entrega: 80 dias
+NCM: 7315.9000						
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: A-342 – 38,5T
+Descrição: Anel de Carga 1-3/4, modelo “wide style”, Carga de Trabalho 38,5T, conforme Norma EN 1677.
+Prazo de entrega: 20 dias
+NCM: 7315.9000						
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: A-345 – 11,8T
+Descrição: Anel de carga com sub elos para linga grau 10 de 04 pernas de 10mm, Carga de Trabalho 11,8T, conforme Norma EN-1677.
+Prazo de entrega: 
+NCM: 7315.9000
+Fator de Segurança: 5:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: A-1346 – 14,5T - 1256917
+Descrição: Anel de carga com sub elos para linga grau 10 de 04 pernas de 13mm, Carga de Trabalho 14,5T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: A-347 – 14,5T - 1258142
+Descrição: Anel de carga com sub elos para linga grau 10 de 04 pernas de 13mm, Carga de Trabalho 14,5T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: A-347 – 17T
+Descrição: Anel de carga com sub elos para linga grau 10 de 04 pernas de 13mm, Carga de Trabalho 17T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 5:1
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: A-1343 38,3T
+Descrição: Anel de carga Grau-10 para corrente de 26mm, marca CROSBY, Carga de Trabalho 38,3T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000				
+Fator de Segurança: 5:1 
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: A-344 – 8,9T - 1257332
+Descrição: Anel de Carga para corrente de 13mm, Carga de Trabalho 8,9T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: A-344 – 11,5T- 1257282
+Descrição: Anel de Carga Grau 8 para corrente de 16mm, Carga de Trabalho 11,5T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: A-344 – 13T- 1257382
+Descrição: Anel de Carga Grau 8 para corrente de 16mm, Carga de Trabalho 13T, conforme Norma EN 1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS:	18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: A-344 17T- 1257422
+Descrição: Anel de carga Grau-8 para corrente de 18/20mm, marca CROSBY, Carga de Trabalho 17T, conforme Norma EN-1677.
+Prazo de Entrega: 10 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: A-344 – 24T- 1257492
+Descrição: Anel de carga Grau-8 para corrente de 20/22mm, marca CROSBY, Carga de Trabalho 24T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: A-344 – 31,5T- 1257502
+Descrição: Anel de carga Grau-8 para corrente de 22/26mm, marca CROSBY, Carga de Trabalho 31,5T,
+conforme Norma EN-1677.
+Prazo de Entrega: 10 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: A-344 – 45T- 1257632
+Descrição: Anel de carga Grau-8 para corrente de 26mm, marca CROSBY, Carga de Trabalho 45T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: A-344 – 67T- 1257573 1257632
+Descrição: Anel de carga Grau-8 para corrente de 32mm, marca CROSBY, Carga de Trabalho 67T, conforme Norma EN-1677.
+Prazo de Entrega: 05 dias
+NCM: 7315.9000						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: A-347 – 23,6T
+Descrição: Anel de carga com sub elos para linga grau 10 de 04 pernas de 16mm, Carga de Trabalho 23,6T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7315.9000							
+Fator de Segurança: 5:1
+ICMS:	18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: LEBUS L-140 R7 (“5/16 - 3/8)
+Descrição: Tensionador de Catraca (Ratchet Load Binder) forjado, L-140 R-7, “5/16 - 3/8, com mecanismo de catraca e os ganchos de garra nas extremidades.
+Prazo de entrega: 80 dias
+NCM: 7315.9000						
+ICMS:	18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: L-320R – 45T
+Descrição: Gancho olhal com trava de segurança, Carga de Trabalho 45T, conforme Norma EN-1677.
+Prazo de entrega: 60 dias
+NCM: 7326.90.90				
+Fator de Segurança: 4.1
+ICMS: 18% Incluso			
+IPI: 5% Incluso
+
+Referência: L-320AN –60T - 1023609
+Descrição: Gancho olhal L-320AN com trava de segurança Crosby, em Aço Liga (Alloy Steel) Forjado – Temperado e Revenido, Carga de Trabalho 60T, conforme Norma EN-1677.
+Prazo de entrega: 35 dias
+NCM: 7326.90.90					
+Fator de Segurança: 4.5.1
+ICMS: 18% Incluso			
+IPI: 5% Incluso 
+
+Referência: L-320CN –OC 20T
+Descrição: Gancho olhal L-320CN com trava de segurança Crosby Nut, em Aço Forjado, Tratado Termicamente, Carga de Trabalho 20T, conforme Norma EN-1677.
+Prazo de entrega: 03 dias
+NCM: 7326.90.90					
+Fator de Segurança: 5.1
+ICMS: 18% Incluso			
+IPI: 5% Incluso 
+
+Referência: L-562A ROV 5,4T- 1297722
+Descrição: Gancho de haste ocular Crosby L-562A ROV, carga de trabalho de 5,4T, temperado e revenido, trava estampada de alta resistência que se interliga à ponta do gancho, conforme norma.
+Prazo de entrega: 07 dias
+NCM: 7326.90.90						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: L-562A ROV 11,5T
+Descrição: Gancho de haste ocular Crosby L-562A ROV, carga de trabalho de 11,5T, temperado e revenido, trava estampada de alta resistência que se interliga à ponta do gancho, conforme norma.
+Prazo de entrega: 08 dias
+NCM: 7326.90.90						
+Fator de Segurança: 4:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: L-562A ROV 31,5T
+Descrição: Gancho de haste ocular Crosby L-562A ROV, carga de trabalho de 31,5T, temperado e revenido, trava estampada de alta resistência que se interliga à ponta do gancho, conforme norma.
+Prazo de entrega: 05 dias
+NCM: 7326.90.90						
+Fator de Segurança: 4:1
+ICMS:	18% Incluso	
+IPI: 5% Incluso
+
+Referência: VC_RY1
+Descrição: Talha elétrica de cabo de aço, marca KITO, modelo DV_RYLA032IHIS. Capacidade: 3,2T, Elevação: 12M, Velocidade da Talha: IH, Velocidade da Trole: IS, Capacidade Trole: 3,2T, Voltagem: 380V/440V 60Hz, Tipo de Botoeira: 4+1, Abertura do Eixo: 176-350mm Tamanho do cabo da botoeira: 12M
+Prazo de entrega: 120 dias                                               
+NCM: 8425.1100							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: TALHA MANUAL – CB200
+Descrição: Talha manual KITO, tipo CB200, com aplicação Fixa, Capacidade da carga de 20T, modelo CB3 ELEV:12,5 CORR MÃO:13,5 ESFOR ELEV CARG NOM:36 X 2 PUX CORR ELEV 1M:396 X 2 [M] DIAM CORR X TRAMOS:9.0MM X 8, CARGA DE TESTE:25.0T, PESO LIQ PADRÃO:235.0KG, PESO ADIC 1M CORR:15.8KG ALT CONSTR C:1180MM.
+Prazo de entrega: 02 peças em 10 dias, saldo 30 dias                                               
+NCM: 8425.1910							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: KDB25-057 
+Descrição: TALHA PNEUMATICA KITO, modelo TCHH1QPD, Capacidade da carga de 10T, Elevação de 20M, sem container; Botoeira: 2 botões com 15m de comprimento
+Prazo de entrega: 200 dias                                               
+NCM: 8425.1990							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: VC_LB5
+Descrição: Talha de alavanca marca KITO, modelo KB LB016, capacidade de 1,6T, elevação 5M.
+Prazo de entrega: 05 dias                                               
+NCM: 8425.1910							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: VC_ER2
+Descrição: Talha elétrica de corrente, marca KITO, modelo KB_ER2020IS. Aplicação: FIXA, Capacidade: 2T, Elevação: 16M, Velocidade da Talha: IS, Voltagem: 220V 60Hz, Tipo de Botoeira: 2+1, Container: Lona G, Tamanho Cabo da Botoeira: 6 metros, Eixo: Padrão, Cabo de Alimentação: 5 metros.
+Prazo de entrega: 10 dias                                               
+NCM: 8425.1100							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: LB5-000364
+Descrição: Talha manual de alavanca marca KITO, modelo LB063 STD, capacidade de 6,3T, elevação 1,5M.
+Prazo de entrega: 07 dias                                               
+NCM: 8425.1910							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: VC_ER2
+Descrição: Talha elétrica de corrente, marca KITO, modelo KB_ER2M032ISIS. Aplicação: Motorizado, Capacidade: 3,2T, Elevação: 30M, Velocidade da Talha: IS, Voltagem: 380V/440V 60Hz, Capacidade Trole: 3T, Tipo de Botoeira: 4+1, Container: Aço, Tamanho Cabo da Botoeira: 6 metros, Eixo: Padrão, Cabo de Alimentação: 10 metros.
+Prazo de entrega: 05 dias                                               
+NCM: 8425.1100							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: VC_CB3
+Descrição: Talha manual de corrente, marca KITO, modelo KB_CBSG020, capacidade de 2T, Aplicação Mecânico: TSG, Capacidade Trole: 2T, Elevação 6M, Corrente de acionamento Talha: 6M, Corrente de acionamento Trole: 6M, Eixo Padrão.
+Prazo de entrega: 10 dias                                               
+NCM: 8425.1910							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: TALHA MANUAL – CB3-000102 
+Descrição: Talha manual de corrente KITO, modelo CB030 com elevação 5.0M, e corrente manual 
+de 5.0M. Capacidade da carga de 3T. 
+Prazo de entrega: 05 dias 
+NCM: 8425.1910        
+ICMS: 18% Incluso  
+IPI: Isento
+
+Referência: TALHA LB5063
+Descrição: Talha manual de alavanca, modelo LB5063, Capacidade de 6T, STD C/ ELEV 1,5M, marca KITO.
+Prazo de entrega: 07 dias                                               
+NCM: 8425.1910							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: G-450 – “3/4
+Descrição: Grampo para cabo de aço CROSBY, 3/4, diâmetro do cabo de 18-20mm, Clipe-galvanizado inteiro para resistir à ação corrosiva e ferrugem, atende todos os requisitos da ASME B30.26
+Prazo de entrega: 31pçs imediato e saldo em 80 dias
+NCM: 7326.90.90  
+ICMS: 18% Incluso			
+IPI: 9,75% Incluso
+
+Referência: PEGA TAMBOR 0.6 t
+Descrição: Grampo pega-tambor na posição vertical, capacidade 600Kg
+Prazo de entrega: 07 dias                                               
+NCM: 8431.3900							
+ICMS: 18% Incluso	
+IPI: Isento
+
+Referência: Manilha ROV No 863
+Descrição: Manilha de carga curva com porca, equipado com parafuso e dois pinos de travamento, Aço de alta resistência, temperado e revenido, Carga de Trabalho 17T, conforme Norma Fed. Spec RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.90.90				
+Fator de Segurança: 5:1
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: Manilha ROV No 863
+Descrição: Manilha de carga curva com porca, equipado com parafuso e dois pinos de travamento, Aço de alta resistência, temperado e revenido, Carga de Trabalho 8,5T, conforme Norma Fed. Spec RR-C-271.
+Prazo de entrega: 05 dias
+NCM: 7326.90.90				
+Fator de Segurança: 5:1
+ICMS:	18% Incluso	
+IPI: 5% Incluso
+
+Referência: HR-125 - 3/4 x 2.25 - 10
+Descrição: Olhal giratório tipo HR-125, CROSBY, Diâmetro do parafuso/rosca: 3/4"-10. A especificação do parafuso é um parafuso de cabeça sextavada de liga de grau 129 conforme DIN 912.
+Prazo de entrega: 05 dias
+NCM: 7326.9090						
+Fator de Segurança: 5:1
+ICMS: 18% Incluso
+IPI: 5% Incluso
+
+Referência: S-265 3,2T- 1290848
+Descrição: Olhal de Elevação Soldável, tipo S-265, Carga de Trabalho 3,2T.
+Prazo de entrega: 80 dias    
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS:	18% Incluso	
+IPI: 5% Incluso
+
+Referência: S-265 5,3T- 1290857
+Descrição: Olhal de Elevação Soldável, tipo S-265, Carga de Trabalho 5,3T.
+Prazo de entrega: 80 dias    
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS:	18% Incluso	
+IPI: 5% Incluso
+
+Referência: S-265 8T - 1290866
+Descrição: Olhal de Elevação Soldável, tipo S-265, Carga de Trabalho 8T.
+Prazo de entrega: 80 dias    
+NCM: 7326.90.90
+ICMS:	18% Incluso	
+IPI: 5% Incluso
+
+Referência: S-265 15T - 1290875
+Descrição: Olhal de Elevação Soldável, tipo S-265, Carga de Trabalho 15T.
+Prazo de entrega: 05 dias  
+NCM: 7326.90.90							
+Fator de Segurança: 4:1
+ICMS:	18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: G-400 – EYE NUTS – 1250lb
+Descrição: Crosby® 3/8" Eye Nut – G-400 - Aço Forjado - Temperado e Revenido
+Galvanizado a quente.
+Prazo de entrega: 80 dias  
+NCM: 7326.90.90
+ICMS: 18% Incluso	
+IPI: 5% Incluso
+
+Referência: CINTA PLANA QUADRUPLA 15T X 5000MM
+Descrição: Cinta plana de poliéster com olhais reforçados, quadrupla, carga de trabalho de 15T, e comprimento de 5 metros, largura de 240mm, com 2 metros de proteção em Couro costurada no centro da cinta, conforme Norma NBR 15637-1:23. 
+Prazo de Entrega: 07 dias					
+Fator de Segurança: 4:1 
+NCM: 6307.9090
+ICMS: 18% Incluso 
+IPI: Isento
+
+Referência: CINTA PLANA 15T X 6M C/PROTEÇÃO EM POLIÉSTER
+Descrição: Cinta plana de poliéster com olhais reforçados, carga de trabalho de 15T, e comprimento de 6 metros, largura de 240mm, com 1,5 metros de proteção em poliéster costurada na cinta e nos olhais, conforme Norma NBR 15637-1:23. 
+Prazo de Entrega: 07 dias					
+Fator de Segurança: 7:1 
+NCM: 6307.9090
+ICMS: 18% Incluso 
+IPI: Isento
+
+Referência: WRIN STR Handle – STRG20
+Descrição: Cabo de Segurança para Gancho em aço Inoxidável (Stainless Steel).
+Prazo de Entrega: 05 dias
+NCM: 7326.9090					
+Fator de Segurança: 4:1	
+ICMS: 18% Incluso 
+IPI: 9,75% Incluso
+
+Referência: S-264 - 1090740
+Descrição: Olha Mestre Alongado Oval para Solda, Aço Liga Forjado - Tratado Termicamente, conforme Norma ASME B30.26.
+Prazo de entrega: Imediato
+NCM: 7326.9090					
+Fator de Segurança: 5:1	
+ICMS:	18% Incluso	
+IPI: 9,75% Incluso
+
+Referência: L-140 R-A RATCHET BINDER 3/8-1/2 - PN 1048422
+Descrição: Esticador de Corrente tipo Catraca (Ratchet Type Load Binder), modelo L-140 R-A 3/8-1/2, para amarração e fixação de cargas pesadas, carga de trabalho de 6,8T, conforme a norma ASME B30.26.
+Prazo de Entrega: 80 dias
+NCM: 7326.9090						
+Fator de Segurança: 3:1
+ICMS: 18% Incluso
+IPI: 9,75% Incluso
+
+Referência: KSC7N — PN Z2780716
+Descrição: Embreagem/Garra de Encurtamento com Trava de Segurança Grau 10 para Corrente de 7mm, Carga de Trabalho 2,6T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090				
+Fator de Segurança: 4:1 
+ICMS: 18% Incluso	
+IPI:  Incluso
+
+Referência: KDN7N — PN Z2781369
+Descrição: Embreagem/Garra de Encurtamento com Trava de Segurança Grau 10 para Corrente de 7mm, Carga de Trabalho 2,6T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090				
+Fator de Segurança: 4:1 
+ICMS: 18% Incluso	
+IPI:  Incluso
+
+Referência: KDN10N — PN Z2781378
+Descrição: Embreagem/Garra de Encurtamento com Trava de Segurança Grau 10 para Corrente de 10mm, Carga de Trabalho 4T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090				
+Fator de Segurança: 4:1 
+ICMS: 18% Incluso	
+IPI:  Incluso
+
+Referência: S-1311N 5/16 (8MM) — PN 1017878
+Descrição: Elo Encurtador de Corrente "Crosby Eliminator®" Simples Grau 10 de 8mm, Carga de Trabalho 2,6T, conforme Norma EN-1677.
+Prazo de entrega: 05 dias
+NCM: 7326.9090				
+Fator de Segurança: 4:1 
+ICMS: 18% Incluso	
+IPI:  Incluso
+
+Referência: PL-N - 1092001
+Descrição: Kit de Reparo (Pino e Bucha) para elo de ligação de 26mm, marca GUNNEBO, conforme Norma EN-1677.
+Prazo de entrega: 80 dias
+NCM: 7315.90.00
+ICMS: 18% Incluso		
+IPI   9,75% Incluso      
+
+Referência: DIN-15401-16P
+Descrição: Gancho para ponte rolante, forjado, tratado e galvanizado Nº16, classe P, haste bruta, com trava de segurança, fabricação conforme Norma 
+Prazo de Entrega: 10 dias
+NCM: 	7326.90.90     			                          	
+Fator de Segurança: 4:1
+ICMS: 18% Incluso
+IPI:  Incluso
