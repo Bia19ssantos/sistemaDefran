@@ -251,7 +251,6 @@ with aba4:
     if cliente_escolhido and cliente_escolhido in mapa_clientes:
         dados_cli = mapa_clientes[cliente_escolhido]
 
-    # CAMPOS LIMPOS / VAZIOS (ou preenchidos dinamicamente apenas se o cliente for selecionado)
     col_c1, col_c2, col_c3 = st.columns(3)
     num_orc = col_c1.text_input("Nº da Proposta", value="")
     
@@ -275,7 +274,6 @@ with aba4:
     email_orc = col_c8.text_input("E-mail", value=str(dados_cli.get("email", "")) if cliente_escolhido else "")
     vendedor_orc = st.text_input("Vendedor(a)", value="")
 
-    # CONDIÇÕES COMERCIAIS (Vazias até selecionar o cliente ou digitar)
     col_cond1, col_cond2 = st.columns(2)
     cond_pgto_orc = col_cond1.text_input("Condição de Pagamento", value=str(dados_cli.get("cond_pgto", "")) if cliente_escolhido else "")
     cond_entrega_orc = col_cond2.text_input("Condição de Entrega", value=str(dados_cli.get("cond_transporte", "")) if cliente_escolhido else "")
@@ -288,11 +286,21 @@ with aba4:
     if "editando_indice" not in st.session_state:
         st.session_state.editando_indice = None
 
+    # Inicializa variáveis de controle de limpeza no session_state se não existirem
+    if "limpar_campos_item" not in st.session_state:
+        st.session_state.limpar_campos_item = False
+
+    # Se a flag de limpeza estiver ativa, resetamos os seletores da sessão para limpos
+    if st.session_state.limpar_campos_item:
+        st.session_state["tipo_item_orcamento"] = "Produto"
+        st.session_state["ref_produto_orc"] = ""
+        st.session_state["ref_linga_orc"] = ""
+        st.session_state.limpar_campos_item = False
+
     item_editando = {}
     if st.session_state.editando_indice is not None and st.session_state.editando_indice < len(st.session_state.itens_orcamento):
         item_editando = st.session_state.itens_orcamento[st.session_state.editando_indice]
     
-    # --- SELETOR DE TIPO E REFERÊNCIA ---
     tipos_disponiveis = ["Produto", "Linga"]
     tipo_atual = item_editando.get("tipo", "Produto")
     
@@ -304,33 +312,30 @@ with aba4:
         key="tipo_item_orcamento"
     )
 
-    # Define qual base consultar dependendo da escolha (Produto ou Linga)
     base_selecionada = base_produtos if tipo_item == "Produto" else base_lingas
 
-    # Campo único de busca de referência dinâmico
+    # Chave dinâmica para o seletor de referência com base no tipo
+    chave_ref_selectbox = f"ref_{tipo_item.lower()}_orc"
+    
     ref_digitada = col_t2.selectbox(
         f"Buscar Referência de {tipo_item}:", 
         [""] + list(base_selecionada.keys()), 
-        index=0, 
-        key=f"ref_{tipo_item.lower()}_orc"
+        key=chave_ref_selectbox
     )
 
     dados_encontrados = {}
     if ref_digitada and ref_digitada in base_selecionada:
         dados_encontrados = base_selecionada.get(ref_digitada, {})
 
-    # Se estiver editando, prioriza os dados do item em edição; senão, usa o produto/linga selecionado
     if st.session_state.editando_indice is not None:
         fonte_dados = item_editando
     else:
         fonte_dados = dados_encontrados
 
-    # Formulário de edição/adição
     with st.form("form_item_orc", clear_on_submit=True):
         if st.session_state.editando_indice is not None:
             st.info(f"Editando o Item #{st.session_state.editando_indice + 1}")
 
-        # Se houver uma referência selecionada nos seletores acima, prioriza ela, caso contrário usa a do item em edição
         val_ref = ref_digitada if ref_digitada else fonte_dados.get("referencia", "")
         item_ref = st.text_input("Referência Exata", value=val_ref)
 
@@ -349,9 +354,7 @@ with aba4:
         
         col_extra1, col_extra2, col_extra3, col_extra4 = st.columns(4)
         item_prazo = col_extra1.text_input("Prazo de Entrega", value=fonte_dados.get("prazo", "07 dias"))
-        
         item_ncm = col_extra2.text_input("NCM", value=fonte_dados.get("ncm", ""))
-        
         item_ipi = col_extra3.text_input("IPI", value=fonte_dados.get("ipi", "Incluso"))
         item_fator = col_extra4.text_input("Fator de Seg.", value=fonte_dados.get("fator", "4:1"))
         
@@ -381,6 +384,8 @@ with aba4:
                 st.session_state.itens_orcamento.append(novo_dado_item)
                 st.success("Item adicionado com sucesso!")
             
+            # Ativa a flag para limpar os seletores fora do formulário no próximo ciclo
+            st.session_state.limpar_campos_item = True
             st.rerun()
 
     if st.session_state.editando_indice is not None:
@@ -412,8 +417,6 @@ with aba4:
             st.session_state.itens_orcamento = []
             st.session_state.editando_indice = None
             st.rerun()
-            
-        st.markdown("---")
         
         def gerar_pdf_defran(num, data, cliente, cidade, estado, tel, contato, email, vendedor, cond_pgto, cond_entrega, itens):
             buffer = BytesIO()
