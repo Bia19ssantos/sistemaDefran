@@ -45,7 +45,6 @@ def carregar_estoque_do_google():
         return pd.DataFrame()
 
 def carregar_dados():
-    # Definindo colunas para garantir a leitura correta
     cols_gunnebo = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'comprimento', 'valor_venda', 'preco_linga']
     cols_crosby = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda']
     
@@ -55,18 +54,30 @@ def carregar_dados():
         "Manilhas Crosby": ("manilhas_crosby.csv", cols_crosby)
     }
     
-    dados = {}
+    dados_carregados = {}
     
     for nome, (arquivo, colunas) in arquivos.items():
         caminho = f"dados/{arquivo}"
         if os.path.exists(caminho):
-            # header=None porque seus dados parecem não ter uma linha de cabeçalho no CSV (exceto talvez em Crosby)
-            # Se o arquivo tiver cabeçalho, remova header=None e adicione names=colunas
-            dados[nome] = pd.read_csv(caminho, sep=';', names=colunas, encoding='latin1', header=0 if nome != "Produtos Gunnebo" else None)
+            try:
+                dados_carregados[nome] = pd.read_csv(caminho, sep=';', names=colunas, encoding='latin1', header=0)
+            except Exception as e:
+                dados_carregados[nome] = pd.DataFrame()
         else:
-            dados[nome] = pd.DataFrame()
+            dados_carregados[nome] = pd.DataFrame()
             
-    return dados
+    dados_carregados["Estoque Defran"] = carregar_estoque_do_google()
+     
+    # Carregar Clientes
+    caminho_clientes = "dados/clientes.csv"
+    if os.path.exists(caminho_clientes):
+        dados_carregados["Clientes"] = pd.read_csv(caminho_clientes, sep=',', encoding='latin1')
+    else:
+        dados_carregados["Clientes"] = pd.DataFrame()
+        
+    return dados_carregados
+
+dados_carregados = carregar_dados()
     
 # --- FUNÇÃO PARA LER AS BASES DE PRODUTOS E LINGAS (TXT) ---
 def carregar_bases_txt():
@@ -154,33 +165,51 @@ aba1, aba2, aba3, aba4 = st.tabs([
 with aba1:
     st.header("📦 Consulta de Produtos")
     
-    selecao_aba1 = st.selectbox("Escolha a base:", ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"])
+    selecao_aba1 = st.selectbox(
+        "Escolha a base:",
+        ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"],
+        key="select_base_aba1"
+    )
 
     if selecao_aba1 in dados_carregados and not dados_carregados[selecao_aba1].empty:
         df_aba1 = dados_carregados[selecao_aba1].copy()
 
-        # Filtro
-        termo_aba1 = st.text_input("Filtrar por Referência:")
-        if termo_aba1:
-            df_aba1 = df_aba1[df_aba1['ref_prod'].astype(str).str.contains(termo_aba1, case=False, na=False)]
+        termo_aba1 = st.text_input("Filtrar referência (Produtos):", key=f"filtro_aba1_{selecao_aba1}")
 
-        # Renomeação para exibição amigável
+        if termo_aba1:
+            df_aba1 = df_aba1[
+                df_aba1['ref_prod']
+                .astype(str)
+                .str.contains(termo_aba1, case=False, na=False)
+            ]
+
+        # Mapeamento limpo para exibição amigável
         mapeamento = {
             'ref_prod': 'Referência',
             'desc_prod': 'Descrição',
+            'ncm': 'NCM',
             'sap': 'Código SAP',
+            'ipi': 'IPI',
+            'tipo': 'Tipo',
             'valor_custo': 'Preço Custo',
+            'carga_trabalho': 'Carga Trabalho',
+            'comprimento': 'Comprimento',
             'valor_venda': 'Preço Venda',
-            'preco_linga': 'Preço Linga',
-            'carga_trabalho': 'Carga (T)'
+            'preco_linga': 'Preço Linga'
         }
         
-        df_exibicao = df_aba1.rename(columns=mapeamento)
+        df_exibicao_aba1 = df_aba1.rename(columns=mapeamento)
         
-        # Seleciona apenas colunas que fazem sentido exibir
-        colunas_finais = [c for c in mapeamento.values() if c in df_exibicao.columns]
-        
-        st.dataframe(df_exibicao[colunas_finais], use_container_width=True)
+        # Filtra estritamente apenas as colunas que existem no DataFrame atual
+        colunas_existentes = [c for c in mapeamento.values() if c in df_exibicao_aba1.columns]
+        df_exibicao_aba1 = df_exibicao_aba1[colunas_existentes]
+
+        st.dataframe(
+            df_exibicao_aba1,
+            use_container_width=True
+        )
+    else:
+        st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
 # --- ABA 2: ESTOQUE DEFRAN ---
 with aba2:
