@@ -158,25 +158,17 @@ aba1, aba2, aba3, aba4 = st.tabs([
 with aba1:
     st.header("📦 Consulta de Produtos")
     
-    # Mapeamento exato dos nomes da tela para as chaves reais dos arquivos CSV
-    opcoes_bases_aba1 = {
-        "Produtos Gunnebo": "prod_gunnebo",
-        "Produtos Crosby": "prod_crosby",
-        "Manilhas Crosby": "manilhas_crosby"
-    }
-
+    # As chaves aqui devem ser exatamente iguais às definidas na sua função carregar_dados()
     selecao_aba1 = st.selectbox(
         "Escolha a base:",
-        list(opcoes_bases_aba1.keys()),
+        ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"],
         key="select_base_aba1"
     )
 
-    chave_real_aba1 = opcoes_bases_aba1[selecao_aba1]
+    if selecao_aba1 in dados_carregados and not dados_carregados[selecao_aba1].empty:
+        df_aba1 = dados_carregados[selecao_aba1].copy()
 
-    if chave_real_aba1 in dados_carregados:
-        df_aba1 = dados_carregados[chave_real_aba1].copy()
-
-        termo_aba1 = st.text_input("Filtrar referência (Produtos):", key=f"filtro_aba1_{chave_real_aba1}")
+        termo_aba1 = st.text_input("Filtrar referência (Produtos):", key=f"filtro_aba1_{selecao_aba1}")
 
         if termo_aba1:
             df_aba1 = df_aba1[
@@ -211,7 +203,6 @@ with aba1:
                 'valor_venda': 'Preço Venda'
             })
 
-            # Não exibir estas colunas no Crosby/Manilhas
             df_exibicao_aba1 = df_exibicao_aba1.drop(
                 columns=['carga_trabalho', 'comprimento'],
                 errors='ignore'
@@ -222,7 +213,7 @@ with aba1:
             use_container_width=True
         )
     else:
-        st.warning(f"A base '{selecao_aba1}' não foi encontrada nos dados carregados.")
+        st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
 with aba2:
     st.header("Estoque Defran")
