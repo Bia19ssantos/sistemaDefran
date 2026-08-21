@@ -183,25 +183,41 @@ with aba1:
                 .str.contains(termo_aba1, case=False, na=False)
             ]
 
-        # Mapeamento limpo para exibição amigável
-        mapeamento = {
-            'ref_prod': 'Referência',
-            'desc_prod': 'Descrição',
-            'ncm': 'NCM',
-            'sap': 'Código SAP',
-            'ipi': 'IPI',
-            'tipo': 'Tipo',
-            'valor_custo': 'Preço Custo',
-            'carga_trabalho': 'Carga Trabalho',
-            'comprimento': 'Comprimento',
-            'valor_venda': 'Preço Venda',
-            'preco_linga': 'Preço Linga'
-        }
-        
-        df_exibicao_aba1 = df_aba1.rename(columns=mapeamento)
-        
-        # Filtra estritamente apenas as colunas que existem no DataFrame atual
-        colunas_existentes = [c for c in mapeamento.values() if c in df_exibicao_aba1.columns]
+        # =========================
+        # PRODUTOS GUNNEBO
+        # =========================
+        if selecao_aba1 == "Produtos Gunnebo":
+            df_exibicao_aba1 = df_aba1.rename(columns={
+                'sap': 'SAP',
+                'ref_prod': 'Referência',
+                'ipi': 'IPI',
+                'comprimento': 'Comprimento',
+                'valor_custo': 'Valor Custo',
+                'valor_venda': 'Valor Venda',
+                'preco_linga': 'Valor Linga'
+            })
+            
+            # Ordem exata solicitada para Gunnebo
+            colunas_desejadas = ['SAP', 'Referência', 'IPI', 'Comprimento', 'Valor Custo', 'Valor Venda', 'Valor Linga']
+
+        # =========================
+        # CROSBY E MANILHAS CROSBY
+        # =========================
+        else:
+            df_exibicao_aba1 = df_aba1.rename(columns={
+                'sap': 'SAP',
+                'ref_prod': 'Referência',
+                'ncm': 'NCM',
+                'ipi': 'IPI',
+                'valor_custo': 'Valor Custo',
+                'valor_venda': 'Valor Venda'
+            })
+            
+            # Ordem exata solicitada para Crosby / Manilhas Crosby
+            colunas_desejadas = ['SAP', 'Referência', 'NCM', 'IPI', 'Valor Custo', 'Valor Venda']
+
+        # Filtra e reordena estritamente apenas as colunas que existem
+        colunas_existentes = [c for c in colunas_desejadas if c in df_exibicao_aba1.columns]
         df_exibicao_aba1 = df_exibicao_aba1[colunas_existentes]
 
         st.dataframe(
