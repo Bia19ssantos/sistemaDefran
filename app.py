@@ -84,16 +84,27 @@ def carregar_bases_txt():
     produtos_dict = {}
     lingas_dict = {}
     
-    # Base de Produtos
+    # Base de Produtos (Mapeia por Código SAP e também por Referência para compatibilidade)
     caminho_prod = "docs/produtos_info.txt"
     if os.path.exists(caminho_prod):
         with open(caminho_prod, "r", encoding="utf-8") as f:
             conteudo = f.read()
         for bloco in conteudo.split("\n\n"):
             linhas = bloco.strip().split("\n")
+            if not linhas or not linhas[0]:
+                continue
+            
             dados_item = {}
+            sap_encontrado = ""
             ref_encontrada = ""
-            for linha in linhas:
+            
+            # A primeira linha do bloco é o Código SAP (ex: B14460)
+            primeira_linha = linhas[0].strip()
+            if ":" not in primeira_linha:
+                sap_encontrado = primeira_linha
+                dados_item["sap"] = primeira_linha
+            
+            for linha in linhas[1:]:
                 if ":" in linha:
                     chave, valor = linha.split(":", 1)
                     chave_limpa = chave.strip().lower()
@@ -113,12 +124,14 @@ def carregar_bases_txt():
                         dados_item["icms"] = valor_limpo
                     elif "ipi" in chave_limpa:
                         dados_item["ipi"] = valor_limpo
+            
+            if sap_encontrado:
+                produtos_dict[sap_encontrado] = dados_item
             if ref_encontrada:
                 produtos_dict[ref_encontrada] = dados_item
 
     # Base de Lingas
     caminho_lingas = "docs/lingas.info.txt" 
-   
     if os.path.exists(caminho_lingas):
         with open(caminho_lingas, "r", encoding="utf-8") as f:
             conteudo_l = f.read()
@@ -174,16 +187,13 @@ with aba1:
     if selecao_aba1 in dados_carregados and not dados_carregados[selecao_aba1].empty:
         df_aba1 = dados_carregados[selecao_aba1].copy()
 
-        # Campo de busca atualizado para procurar por Referência ou Código SAP
         termo_aba1 = st.text_input("Filtrar por Referência ou Código SAP:", key=f"filtro_aba1_{selecao_aba1}")
 
         if termo_aba1:
-            # Filtra se o termo estiver presente na coluna de referência OU na coluna 'sap'
             filtro_ref = df_aba1['ref_prod'].astype(str).str.contains(termo_aba1, case=False, na=False)
             filtro_sap = df_aba1['sap'].astype(str).str.contains(termo_aba1, case=False, na=False)
             df_aba1 = df_aba1[filtro_ref | filtro_sap]
 
-        # Função auxiliar para formatar valores em Reais (R$ 2.000,00)
         def formatar_moeda(val):
             try:
                 num = float(val)
@@ -191,9 +201,6 @@ with aba1:
             except:
                 return val
 
-        # =========================
-        # PRODUTOS GUNNEBO
-        # =========================
         if selecao_aba1 == "Produtos Gunnebo":
             for col in ['valor_custo', 'valor_venda', 'preco_linga']:
                 if col in df_aba1.columns:
@@ -208,12 +215,7 @@ with aba1:
                 'valor_venda': 'Valor Venda',
                 'preco_linga': 'Valor Linga'
             })
-            
             colunas_desejadas = ['SAP', 'Referência', 'IPI', 'Comprimento', 'Valor Custo', 'Valor Venda', 'Valor Linga']
-
-        # =========================
-        # CROSBY E MANILHAS CROSBY
-        # =========================
         else:
             for col in ['valor_custo', 'valor_venda']:
                 if col in df_aba1.columns:
@@ -227,17 +229,12 @@ with aba1:
                 'valor_custo': 'Valor Custo',
                 'valor_venda': 'Valor Venda'
             })
-            
             colunas_desejadas = ['SAP', 'Referência', 'NCM', 'IPI', 'Valor Custo', 'Valor Venda']
 
-        # Filtra e reordena estritamente apenas as colunas que existem
         colunas_existentes = [c for c in colunas_desejadas if c in df_exibicao_aba1.columns]
         df_exibicao_aba1 = df_exibicao_aba1[colunas_existentes]
 
-        st.dataframe(
-            df_exibicao_aba1,
-            use_container_width=True
-        )
+        st.dataframe(df_exibicao_aba1, use_container_width=True)
     else:
         st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
@@ -290,12 +287,10 @@ with aba2:
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
 with aba3:
     st.header("📊 Carga de Trabalho - Lingas")
-    
     caminho_pdf = "docs/cargas_lingas.pdf"
     
     if os.path.exists(caminho_pdf):
         st.info("O visualizador integrado pode ser bloqueado por alguns navegadores. Utilize o botão abaixo para baixar ou visualizar o documento completo com facilidade.")
-        
         with open(caminho_pdf, "rb") as f:
             st.download_button(
                 label="📥 Baixar / Visualizar PDF de Carga de Trabalho",
@@ -304,17 +299,13 @@ with aba3:
                 mime="application/pdf",
                 use_container_width=True
             )
-            
         st.markdown("---")
-        
         with open(caminho_pdf, "rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-            
-        pdf_display = f'<object data="data:application/pdf;base64,{base64_pdf}" type="application/pdf" width="100%" height="700px"><p>Seu navegador não suporta a visualização direta de PDFs. Utilize o botão de download acima.</p></object>'
+        pdf_display = f'<object data="data:application/pdf;base64,{base64_pdf}" type="application/pdf" width="100%" height="700px"><p>Seu navegador não suporta a visualização direta de PDFs.</p></object>'
         st.markdown(pdf_display, unsafe_allow_html=True)
-        
     else:
-        st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
+        st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}.")
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
@@ -376,6 +367,7 @@ with aba4:
 
     if st.session_state.limpar_campos_item:
         st.session_state["tipo_item_orcamento"] = "Produto"
+        st.session_state["sap_produto_orc"] = ""
         st.session_state["ref_produto_orc"] = ""
         st.session_state["ref_linga_orc"] = ""
         st.session_state.limpar_campos_item = False
@@ -397,28 +389,61 @@ with aba4:
 
     base_selecionada = base_produtos if tipo_item == "Produto" else base_lingas
 
-    chave_ref_selectbox = f"ref_{tipo_item.lower()}_orc"
-    
-    ref_digitada = col_t2.selectbox(
-        f"Buscar Referência de {tipo_item}:", 
-        [""] + list(base_selecionada.keys()), 
-        key=chave_ref_selectbox
-    )
-
+    # Se for Produto, adicionamos a opção de buscar por Código SAP ou Referência
     dados_encontrados = {}
-    if ref_digitada and ref_digitada in base_selecionada:
-        dados_encontrados = base_selecionada.get(ref_digitada, {})
+    if tipo_item == "Produto":
+        col_b1, col_b2 = st.columns(2)
+        
+        # Filtra chaves que parecem códigos SAP (ex: começam com B) ou referências
+        lista_saps = sorted([k for k in base_selecionada.keys() if str(k).startswith("B")])
+        lista_refs = sorted([k for k in base_selecionada.keys() if not str(k).startswith("B")])
+        
+        sap_digitado = col_b1.selectbox("Buscar por Código SAP:", [""] + lista_saps, key="sap_produto_orc")
+        ref_digitada = col_b2.selectbox("Ou Buscar por Referência:", [""] + lista_refs, key="ref_produto_orc")
+        
+        chave_busca = sap_digitado if sap_digitado else ref_digitada
+        if chave_busca and chave_busca in base_selecionada:
+            dados_encontrados = base_selecionada.get(chave_busca, {})
+    else:
+        ref_digitada = col_t2.selectbox(
+            "Buscar Referência de Linga:", 
+            [""] + list(base_selecionada.keys()), 
+            key="ref_linga_orc"
+        )
+        if ref_digitada and ref_digitada in base_selecionada:
+            dados_encontrados = base_selecionada.get(ref_digitada, {})
+
+    # Buscar preço unitário automaticamente na planilha de Produtos Gunnebo se houver Código SAP ou Referência
+    preco_sugerido_planilha = 0.0
+    ref_ou_sap_alvo = dados_encontrados.get("referencia", "") or dados_encontrados.get("sap", "")
+    if not ref_ou_sap_alvo and tipo_item == "Produto":
+        ref_ou_sap_alvo = st.session_state.get("sap_produto_orc", "") or st.session_state.get("ref_produto_orc", "")
+
+    if ref_ou_sap_alvo and "Produtos Gunnebo" in dados_carregados:
+        df_gun = dados_carregados["Produtos Gunnebo"]
+        if not df_gun.empty:
+            match = df_gun[
+                df_gun['ref_prod'].astype(str).str.contains(ref_ou_sap_alvo, case=False, na=False) |
+                df_gun['sap'].astype(str).str.contains(ref_ou_sap_alvo, case=False, na=False)
+            ]
+            if not match.empty:
+                try:
+                    preco_sugerido_planilha = float(match.iloc[0]['valor_venda'])
+                except:
+                    pass
 
     if st.session_state.editando_indice is not None:
         fonte_dados = item_editando
     else:
         fonte_dados = dados_encontrados
+        if preco_sugerido_planilha > 0 and not fonte_dados.get("unitario"):
+            fonte_dados["unitario"] = preco_sugerido_planilha
 
     with st.form("form_item_orc", clear_on_submit=True):
         if st.session_state.editando_indice is not None:
             st.info(f"Editando o Item #{st.session_state.editando_indice + 1}")
 
-        val_ref = ref_digitada if ref_digitada else fonte_dados.get("referencia", "")
+        val_ref = ref_ou_sap_alvo if ref_ou_sap_alvo else fonte_dados.get("referencia", "")
         item_ref = st.text_input("Referência Exata", value=val_ref)
 
         col_i1, col_i2, col_i3 = st.columns(3)
@@ -430,7 +455,11 @@ with aba4:
         idx_unidade = unidades_disponiveis.index(unidade_atual) if unidade_atual in unidades_disponiveis else 0
         item_unidade = col_i2.selectbox("Unidade", unidades_disponiveis, index=idx_unidade)
         
-        item_val = col_i3.number_input("Valor Unitário (R$)", min_value=0.0, value=float(fonte_dados.get("unitario", 0.0)), step=0.10)
+        val_inicial_unit = float(fonte_dados.get("unitario", 0.0))
+        if val_inicial_unit == 0.0 and preco_sugerido_planilha > 0:
+            val_inicial_unit = preco_sugerido_planilha
+            
+        item_val = col_i3.number_input("Valor Unitário (R$)", min_value=0.0, value=val_inicial_unit, step=0.10)
         
         item_desc = st.text_area("Descrição Completa", value=fonte_dados.get("descricao", ""))
         
@@ -611,25 +640,21 @@ with aba4:
             buffer.seek(0)
             return buffer
 
-        # Função para limpar a tela após o clique no download
         def limpar_tela_pos_pdf():
             st.session_state.itens_orcamento = []
             st.session_state.editando_indice = None
 
-        # Gerar o PDF com os dados atuais
         pdf_buffer = gerar_pdf_defran(
             num_orc, data_orc, cliente_orc, 
             cidade_orc, estado_orc, tel_orc, contato_orc, 
             email_orc, vendedor_orc, cond_pgto_orc, cond_entrega_orc, st.session_state.itens_orcamento
         )
         
-        # Montar o nome formatado do arquivo
         primeira_palavra_cliente = cliente_orc.strip().split()[0] if cliente_orc else "CLIENTE"
         num_limpo = num_orc.split('/')[0] if '/' in num_orc else num_orc
         ano_atual = "26"
         nome_sugerido = f"ORC {num_limpo}/{ano_atual} - {primeira_palavra_cliente} - {contato_orc}.pdf"
 
-        # Botão de download unificado
         st.download_button(
             label="📥 Baixar PDF do Orçamento Defran",
             data=pdf_buffer,
