@@ -45,32 +45,29 @@ def carregar_estoque_do_google():
         return pd.DataFrame()
 
 def carregar_dados():
-    colunas_prod = [
-        'ref_prod', 'sap', 'ipi', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda'
-    ]
+    # Definindo colunas para garantir a leitura correta
+    cols_gunnebo = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'comprimento', 'valor_venda', 'preco_linga']
+    cols_crosby = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda']
+    
     arquivos = {
-        "Produtos Gunnebo": "prod_gunnebo.csv",
-        "Produtos Crosby": "prod_crosby.csv",
-        "Manilhas Crosby": "manilhas_crosby.csv"
+        "Produtos Gunnebo": ("prod_gunnebo.csv", cols_gunnebo),
+        "Produtos Crosby": ("prod_crosby.csv", cols_crosby),
+        "Manilhas Crosby": ("manilhas_crosby.csv", cols_crosby)
     }
+    
     dados = {}
-    for nome, arquivo in arquivos.items():
+    
+    for nome, (arquivo, colunas) in arquivos.items():
         caminho = f"dados/{arquivo}"
         if os.path.exists(caminho):
-            dados[nome] = pd.read_csv(caminho, sep=';', encoding='latin1', names=colunas_prod, header=0)
-    dados["Estoque Defran"] = carregar_estoque_do_google()
-    
-    # Carregar Clientes
-    caminho_clientes = "dados/clientes.csv"
-    if os.path.exists(caminho_clientes):
-        dados["Clientes"] = pd.read_csv(caminho_clientes, sep=',', encoding='latin1')
-    else:
-        dados["Clientes"] = pd.DataFrame()
-        
+            # header=None porque seus dados parecem não ter uma linha de cabeçalho no CSV (exceto talvez em Crosby)
+            # Se o arquivo tiver cabeçalho, remova header=None e adicione names=colunas
+            dados[nome] = pd.read_csv(caminho, sep=';', names=colunas, encoding='latin1', header=0 if nome != "Produtos Gunnebo" else None)
+        else:
+            dados[nome] = pd.DataFrame()
+            
     return dados
-
-dados_carregados = carregar_dados()
-
+    
 # --- FUNÇÃO PARA LER AS BASES DE PRODUTOS E LINGAS (TXT) ---
 def carregar_bases_txt():
     produtos_dict = {}
@@ -157,70 +154,33 @@ aba1, aba2, aba3, aba4 = st.tabs([
 with aba1:
     st.header("📦 Consulta de Produtos")
     
-    selecao_aba1 = st.selectbox(
-        "Escolha a base:",
-        ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"],
-        key="select_base_aba1"
-    )
+    selecao_aba1 = st.selectbox("Escolha a base:", ["Produtos Gunnebo", "Produtos Crosby", "Manilhas Crosby"])
 
     if selecao_aba1 in dados_carregados and not dados_carregados[selecao_aba1].empty:
         df_aba1 = dados_carregados[selecao_aba1].copy()
 
-        termo_aba1 = st.text_input("Filtrar referência (Produtos):", key=f"filtro_aba1_{selecao_aba1}")
-
+        # Filtro
+        termo_aba1 = st.text_input("Filtrar por Referência:")
         if termo_aba1:
-            df_aba1 = df_aba1[
-                df_aba1['ref_prod']
-                .astype(str)
-                .str.contains(termo_aba1, case=False, na=False)
-            ]
+            df_aba1 = df_aba1[df_aba1['ref_prod'].astype(str).str.contains(termo_aba1, case=False, na=False)]
 
-        # =========================
-        # PRODUTOS GUNNEBO
-        # =========================
-        if selecao_aba1 == "Produtos Gunnebo":
-            df_exibicao_aba1 = df_aba1.rename(columns={
-                'sap': 'Código SAP',
-                'ref_prod': 'Referência',
-                'ipi': 'IPI',
-                'carga_trabalho': 'Comprimento',
-                'valor_custo': 'Preço Custo',
-                'comprimento': 'Preço Venda',
-                'valor_venda': 'Preço Linga'
-            })
-            
-            # Definimos estritamente APENAS estas colunas
-            colunas_desejadas = ['Código SAP', 'Referência', 'IPI', 'Comprimento', 'Preço Custo', 'Preço Venda', 'Preço Linga']
-            
-            # Filtramos o DataFrame usando apenas as colunas que existem na lista acima
-            colunas_existentes = [c for c in colunas_desejadas if c in df_exibicao_aba1.columns]
-            df_exibicao_aba1 = df_exibicao_aba1[colunas_existentes]
-
-        # =========================
-        # CROSBY E MANILHAS
-        # =========================
-        else:
-            df_exibicao_aba1 = df_aba1.rename(columns={
-                'sap': 'SAP',
-                'ref_prod': 'Referência',            
-                'ipi': 'IPI',
-                'valor_custo': 'Preço Custo',
-                'valor_venda': 'Preço Venda'
-            })
-            
-            # Definimos estritamente APENAS estas colunas
-            colunas_desejadas = ['SAP', 'Referência', 'IPI', 'Preço Custo', 'Preço Venda']
-            
-            # Filtramos o DataFrame descartando qualquer outra coluna indesejada
-            colunas_existentes = [c for c in colunas_desejadas if c in df_exibicao_aba1.columns]
-            df_exibicao_aba1 = df_exibicao_aba1[colunas_existentes]
-
-        st.dataframe(
-            df_exibicao_aba1,
-            use_container_width=True
-        )
-    else:
-        st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
+        # Renomeação para exibição amigável
+        mapeamento = {
+            'ref_prod': 'Referência',
+            'desc_prod': 'Descrição',
+            'sap': 'Código SAP',
+            'valor_custo': 'Preço Custo',
+            'valor_venda': 'Preço Venda',
+            'preco_linga': 'Preço Linga',
+            'carga_trabalho': 'Carga (T)'
+        }
+        
+        df_exibicao = df_aba1.rename(columns=mapeamento)
+        
+        # Seleciona apenas colunas que fazem sentido exibir
+        colunas_finais = [c for c in mapeamento.values() if c in df_exibicao.columns]
+        
+        st.dataframe(df_exibicao[colunas_finais], use_container_width=True)
 
 # --- ABA 2: ESTOQUE DEFRAN ---
 with aba2:
