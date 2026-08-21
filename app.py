@@ -180,10 +180,10 @@ with aba1:
             df_exibicao = df.rename(columns={
                 
                 'sap': 'Código SAP',
-                'ref_prod': 'Referência Gunnebo',
+                'ref_prod': 'Referência',
                 'ipi': 'IPI',
-                'valor_custo': 'Custo',
                 'carga_trabalho': 'Comprimento',
+                'valor_custo': 'Preço Custo',
                 'comprimento': 'Preço Venda',
                 'valor_venda': 'Preço Linga'
             })
@@ -197,8 +197,8 @@ with aba1:
                 'sap': 'SAP',
                 'ref_prod': 'Referência',              
                 'ipi': 'IPI',
-                'valor_custo': 'Valor de Custo',
-                'valor_venda': 'Preço de Venda'
+                'valor_custo': 'Preço Custo',
+                'valor_venda': 'Preço Venda'
             })
 
             # Não exibir estas colunas no Crosby/Manilhas
