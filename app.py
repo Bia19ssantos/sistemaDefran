@@ -302,7 +302,24 @@ with aba4:
                                  index=tipos_disponiveis.index(tipo_atual) if tipo_atual in tipos_disponiveis else 0,
                                  key="tipo_item_orcamento")
 
+    base_selecionada = base_produtos if tipo_item == "Produto" else base_lingas
+
+    ref_digitada = col_t2.selectbox(
+        f"Buscar Referência de {tipo_item}:", 
+        [""] + list(base_selecionada.keys()), 
+        index=0, 
+        key=f"ref_{tipo_item.lower()}_orc"
+    )
+
     dados_encontrados = {}
+    if ref_digitada and ref_digitada in base_selecionada:
+        dados_encontrados = base_selecionada.get(ref_digitada, {})
+
+    if st.session_state.editando_indice is not None:
+        fonte_dados = item_editando
+    else:
+        fonte_dados = dados_encontrados
+        
     if tipo_item == "Produto":
         ref_digitada = col_t2.selectbox("Buscar Referência de Produto:", [""] + list(base_produtos.keys()), 
                                         index=0, key="ref_produto_orc")
@@ -341,7 +358,9 @@ with aba4:
         
         col_extra1, col_extra2, col_extra3, col_extra4 = st.columns(4)
         item_prazo = col_extra1.text_input("Prazo de Entrega", value=fonte_dados.get("prazo", "07 dias"))
-        item_ncm = col_extra2.text_input("NCM", value=fonte_dados.get("ncm", "7315.12.90"))
+        
+        item_ncm = col_extra2.text_input("NCM", value=fonte_dados.get("ncm", ""))
+        
         item_ipi = col_extra3.text_input("IPI", value=fonte_dados.get("ipi", "Incluso"))
         item_fator = col_extra4.text_input("Fator de Seg.", value=fonte_dados.get("fator", "4:1"))
         
