@@ -188,9 +188,13 @@ with aba1:
                 'comprimento': 'Preço Venda',
                 'valor_venda': 'Preço Linga'
             })
-            # Ordem exata desejada para Gunnebo
-            colunas_desejadas_gunnebo = ['Código SAP', 'Referência', 'IPI', 'Comprimento', 'Preço Custo', 'Preço Venda', 'Preço Linga']
-            df_exibicao_aba1 = df_exibicao_aba1[[c for c in colunas_desejadas_gunnebo if c in df_exibicao_aba1.columns]]
+            
+            # Definimos estritamente APENAS estas colunas
+            colunas_desejadas = ['Código SAP', 'Referência', 'IPI', 'Comprimento', 'Preço Custo', 'Preço Venda', 'Preço Linga']
+            
+            # Filtramos o DataFrame usando apenas as colunas que existem na lista acima
+            colunas_existentes = [c for c in colunas_desejadas if c in df_exibicao_aba1.columns]
+            df_exibicao_aba1 = df_exibicao_aba1[colunas_existentes]
 
         # =========================
         # CROSBY E MANILHAS
@@ -203,16 +207,13 @@ with aba1:
                 'valor_custo': 'Preço Custo',
                 'valor_venda': 'Preço Venda'
             })
-
-            # Garante que removemos as colunas indesejadas antes de reordenar
-            df_exibicao_aba1 = df_exibicao_aba1.drop(
-                columns=['carga_trabalho', 'comprimento'],
-                errors='ignore'
-            )
             
-            # Ordem exata desejada para Crosby e Manilhas
-            colunas_desejadas_crosby = ['SAP', 'Referência', 'IPI', 'Preço Custo', 'Preço Venda']
-            df_exibicao_aba1 = df_exibicao_aba1[[c for c in colunas_desejadas_crosby if c in df_exibicao_aba1.columns]]
+            # Definimos estritamente APENAS estas colunas
+            colunas_desejadas = ['SAP', 'Referência', 'IPI', 'Preço Custo', 'Preço Venda']
+            
+            # Filtramos o DataFrame descartando qualquer outra coluna indesejada
+            colunas_existentes = [c for c in colunas_desejadas if c in df_exibicao_aba1.columns]
+            df_exibicao_aba1 = df_exibicao_aba1[colunas_existentes]
 
         st.dataframe(
             df_exibicao_aba1,
