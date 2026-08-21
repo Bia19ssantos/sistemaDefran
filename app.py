@@ -611,6 +611,22 @@ with aba4:
             buffer.seek(0)
             return buffer
 
+        primeira_palavra_cliente = cliente_orc.strip().split()[0] if cliente_orc else "CLIENTE"
+num_limpo = num_orc.split('/')[0] if '/' in num_orc else num_orc
+ano_atual = "26"
+
+nome_sugerido = f"ORC {num_limpo}/{ano_atual} - {primeira_palavra_cliente} - {contato_orc}.pdf"
+
+# 3. Finalmente, coloque o botão de download com o nome sugerido
+st.download_button(
+    label="📥 Baixar PDF do Orçamento Defran",
+    data=pdf_buffer,           # O buffer que você recebeu no passo 1
+    file_name=nome_sugerido,   # O nome que você montou no passo 2
+    mime="application/pdf"
+)
+
+        
+
         def limpar_tela_pos_pdf():
             st.session_state.itens_orcamento = []
             st.session_state.editando_indice = None
