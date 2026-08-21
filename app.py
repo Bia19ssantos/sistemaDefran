@@ -210,27 +210,32 @@ with aba2:
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
 with aba3:
-    st.header("")
+    st.header("📊 Carga de Trabalho - Lingas")
     
     caminho_pdf = "docs/cargas_lingas.pdf"
     
     if os.path.exists(caminho_pdf):
-        with open(caminho_pdf, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        st.info("O visualizador integrado pode ser bloqueado por alguns navegadores. Utilize o botão abaixo para baixar ou visualizar o documento completo com facilidade.")
         
-        # Substituindo iframe por embed para forçar o renderizador nativo do navegador
-        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="700px" type="application/pdf">'
-        st.markdown(pdf_display, unsafe_allow_html=True)
-        
-        st.markdown("<br>", unsafe_allow_html=True)
-        
+        # Botão de download direto e seguro
         with open(caminho_pdf, "rb") as f:
             st.download_button(
-                label="📥 Baixar PDF de Carga de Trabalho",
+                label="📥 Baixar / Visualizar PDF de Carga de Trabalho",
                 data=f,
                 file_name="cargas_lingas.pdf",
-                mime="application/pdf"
+                mime="application/pdf",
+                use_container_width=True
             )
+            
+        st.markdown("---")
+        
+        # Tentativa secundária com object (alternativa ao embed/iframe)
+        with open(caminho_pdf, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+            
+        pdf_display = f'<object data="data:application/pdf;base64,{base64_pdf}" type="application/pdf" width="100%" height="700px"><p>Seu navegador não suporta a visualização direta de PDFs. Utilize o botão de download acima.</p></object>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+        
     else:
         st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}. Verifique se a pasta 'docs' e o arquivo estão sincronizados no GitHub.")
 
