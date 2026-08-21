@@ -225,7 +225,7 @@ with aba3:
             st.download_button(
                 label="📥 Baixar PDF de Carga de Trabalho",
                 data=f,
-                file_name="cargaTrabalhoLingas.pdf",
+                file_name="cargas_lingas.pdf",
                 mime="application/pdf"
             )
     else:
