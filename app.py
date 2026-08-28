@@ -13,7 +13,7 @@ from datetime import datetime
 
 st.set_page_config(page_title="Sistema Defran", layout="centered")
 
-# --- EXIBIR LOGO DA EMPRESA NO TOPO ---
+
 if os.path.exists("navbar-logo.jpg"):
     st.image("navbar-logo.jpg", width=300)
 elif os.path.exists("navbar-logo.png"):
@@ -21,7 +21,7 @@ elif os.path.exists("navbar-logo.png"):
 
 st.markdown("---")
 
-# --- CONEXÃO COM GOOGLE ---
+
 @st.cache_resource
 def conectar_google():
     try:
@@ -79,12 +79,12 @@ def carregar_dados():
 
 dados_carregados = carregar_dados()
     
-# --- FUNÇÃO PARA LER AS BASES DE PRODUTOS E LINGAS (TXT) ---
+
 def carregar_bases_txt():
     produtos_dict = {}
     lingas_dict = {}
     
-    # Base de Produtos (Mapeia por Código SAP e também por Referência para compatibilidade)
+
     caminho_prod = "docs/produtos_info.txt"
     if os.path.exists(caminho_prod):
         with open(caminho_prod, "r", encoding="utf-8") as f:
@@ -98,7 +98,7 @@ def carregar_bases_txt():
             sap_encontrado = ""
             ref_encontrada = ""
             
-            # A primeira linha do bloco é o Código SAP (ex: B14460)
+
             primeira_linha = linhas[0].strip()
             if ":" not in primeira_linha:
                 sap_encontrado = primeira_linha
@@ -166,7 +166,7 @@ def carregar_bases_txt():
 
 base_produtos, base_lingas = carregar_bases_txt()
 
-# --- INTERFACE COM ÍCONES NAS ABAS ---
+# --- Aba Principal ---
 aba1, aba2, aba3, aba4 = st.tabs([
     "🔗 Produtos", 
     "📦 Estoque Defran", 
@@ -309,7 +309,7 @@ with aba3:
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
-    # --- ESTILO CSS PERSONALIZADO PARA OS BOTÕES ---
+  
     st.markdown("""
         <style>
         /* Botão Primário (Adicionar / Salvar Item) - Azul Suave */
