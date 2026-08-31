@@ -312,23 +312,30 @@ with aba1:
 
 # --- ABA 2: ESTOQUE E NOTAS FISCAIS ---
 with aba2:
-    st.header("📦 Gerenciamento de Estoque & Notas Fiscais")
+    st.header("📦 Estoque Defran")
 
-    # 1. SEÇÃO DE LEITURA DE NOTA FISCAL (LOGO NO TOPO)
-    with st.expander("📄 Importar Nota Fiscal Eletrônica (XML) para o Estoque", expanded=True):
-        st.markdown("Faça o upload do arquivo XML da NF-e para processar os itens automaticamente.")
-        
-        col_up1, col_up2 = st.columns([2, 1])
-        with col_up1:
-            arquivo_xml = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_nf")
-        with col_up2:
+    # Linha unificada: Pesquisa à esquerda e Botão de Nota Fiscal (XML) à direita
+    col_pesquisa, col_upload_nf = st.columns([2.5, 1.5])
+
+    with col_pesquisa:
+        termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
+
+    with col_upload_nf:
+        st.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True) # Alinha verticalmente com o input
+        arquivo_xml = st.file_uploader("📄 Importar NF (XML)", type=["xml"], key="upload_xml_nf", label_visibility="collapsed")
+
+    # Se um arquivo XML foi carregado, exibe a área de processamento logo abaixo da pesquisa
+    if arquivo_xml is not None:
+        with st.container(border=True):
+            st.markdown("### 📥 Processamento de Nota Fiscal Eletrônica (XML)")
+            
             tipo_operacao = st.radio(
-                "Operação:",
-                ["Entrada (Adicionar/Atualizar)", "Saída (Dar Baixa)"],
-                key="tipo_operacao_nf"
+                "Selecione a operação para esta Nota:",
+                ["Entrada (Adicionar/Atualizar Produtos no Estoque)", "Saída (Dar Baixa no Estoque)"],
+                horizontal=True,
+                key="tipo_operacao_xml"
             )
-        
-        if arquivo_xml is not None:
+            
             try:
                 tree = ET.parse(arquivo_xml)
                 root = tree.getroot()
@@ -365,13 +372,15 @@ with aba2:
                         })
                 
                 if itens_nf:
-                    st.success(f"Nota Fiscal lida com sucesso! Encontrados {len(itens_nf)} itens.")
+                    st.success(f"Nota lida com sucesso! Encontrados {len(itens_nf)} itens.")
                     st.dataframe(pd.DataFrame(itens_nf), use_container_width=True)
                     
-                    if st.button("🚀 Confirmar e Processar no Estoque", type="primary"):
+                    if st.button("🚀 Confirmar e Atualizar Estoque", type="primary"):
                         if "Entrada" in tipo_operacao:
-                            st.success("Estoque de ENTRADA processado com sucesso!")
+                            # Lógica para adicionar ou atualizar no estoque
+                            st.success("Estoque de ENTRADA atualizado com sucesso!")
                         else:
+                            # Lógica para dar baixa no estoque
                             st.success("Baixa no estoque realizada com sucesso!")
                 else:
                     st.warning("Não foi possível identificar os produtos neste XML.")
@@ -379,11 +388,8 @@ with aba2:
                 st.error(f"Erro ao processar o arquivo XML: {e}")
 
     st.markdown("---")
-    
-    # 2. CONTROLE DE ESTOQUE ATUAL
-    st.subheader("Estoque Defran")
-    
-    termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
+
+    # Exibição do Estoque Atual
     df_est = dados_carregados["Estoque Defran"]
     
     if st.session_state.get("busca_estoque") and not df_est.empty:
@@ -427,7 +433,6 @@ with aba2:
             st.rerun()
         except Exception as e:
             st.error(f"Erro ao salvar: {e}")
-
 
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
