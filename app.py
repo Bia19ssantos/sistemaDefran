@@ -309,81 +309,11 @@ with aba1:
     else:
         st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
-# --- ABA 2: ESTOQUE DEFRAN ---
-with aba2:
-    st.header("Estoque Defran")
-    termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
-    df_est = dados_carregados["Estoque Defran"]
-    if st.session_state.get("busca_estoque") and not df_est.empty:
-        termo = st.session_state.busca_estoque
-        df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False)]
-    event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
-
-    if "ultima_selecao" not in st.session_state:
-        st.session_state.ultima_selecao = None
-    if event and event.selection.rows:
-        st.session_state.ultima_selecao = event.selection.rows[0]
-
-    dados_padrao = {"id": "", "codigo": "", "ref_prod": "", "qtde": 0.0, "desc_prod": ""}
-    if st.session_state.ultima_selecao is not None and not df_est.empty:
-        try:
-            dados_padrao = df_est.iloc[st.session_state.ultima_selecao].to_dict()
-        except:
-            st.session_state.ultima_selecao = None
-
-    with st.form(key="form_estoque", clear_on_submit=True):
-        col1, col2, col3, col4 = st.columns(4)
-        id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
-        cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
-        ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
-        qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0)), step=0.01)
-        desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
-        submit = st.form_submit_button("Salvar Alteração")
-
-    if submit and client:
-        try:
-            sheet = client.open("estoque_defran").sheet1
-            cell = sheet.find(id_i) 
-            if cell:
-                sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, float(qtd_i)]])
-                st.success(f"Item {id_i} atualizado!")
-            else:
-                sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
-                st.success(f"Novo item {id_i} adicionado!")
-            st.cache_data.clear()
-            st.rerun()
-        except Exception as e:
-            st.error(f"Erro ao salvar: {e}")
-
-# --- ABA 3: CARGA DE TRABALHO LINGAS ---
-with aba3:
-    st.header("📊 Carga de Trabalho - Lingas")
-    caminho_pdf = "docs/cargas_lingas.pdf"
-    
-    if os.path.exists(caminho_pdf):
-        st.info("O visualizador integrado pode ser bloqueado por alguns navegadores. Utilize o botão abaixo para baixar ou visualizar o documento completo com facilidade.")
-        with open(caminho_pdf, "rb") as f:
-            st.download_button(
-                label="📥 Baixar / Visualizar PDF de Carga de Trabalho",
-                data=f,
-                file_name="cargas_lingas.pdf",
-                mime="application/pdf",
-                use_container_width=True
-            )
-        st.markdown("---")
-        with open(caminho_pdf, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-        pdf_display = f'<object data="data:application/pdf;base64,{base64_pdf}" type="application/pdf" width="100%" height="700px"><p>Seu navegador não suporta a visualização direta de PDFs.</p></object>'
-        st.markdown(pdf_display, unsafe_allow_html=True)
-    else:
-        st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}.")
-
-
-import xml.etree.ElementTree as ET
 
 # --- ABA DE ESTOQUE COM LEITURA DE NF-e (XML) ---
-# (Certifique-se de que esta lógica está dentro da aba correspondente ao estoque)
-st.header("📦 Gerenciamento de Estoque & Notas Fiscais")
+with aba2:
+
+    st.header("📦 Gerenciamento de Estoque & Notas Fiscais")
 
 # 1. Seção de Leitura de Nota Fiscal (XML)
 with st.expander("📄 Importar Nota Fiscal Eletrônica (XML) para o Estoque", expanded=False):
@@ -482,7 +412,81 @@ with st.expander("📄 Importar Nota Fiscal Eletrônica (XML) para o Estoque", e
 
 st.markdown("---")
 # 2. Restante da sua tela de gerenciamento de estoque atual...
+
 st.subheader("Controle de Estoque Atual")
+    st.header("Estoque Defran")
+    termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
+    df_est = dados_carregados["Estoque Defran"]
+    if st.session_state.get("busca_estoque") and not df_est.empty:
+        termo = st.session_state.busca_estoque
+        df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False)]
+    event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
+
+    if "ultima_selecao" not in st.session_state:
+        st.session_state.ultima_selecao = None
+    if event and event.selection.rows:
+        st.session_state.ultima_selecao = event.selection.rows[0]
+
+    dados_padrao = {"id": "", "codigo": "", "ref_prod": "", "qtde": 0.0, "desc_prod": ""}
+    if st.session_state.ultima_selecao is not None and not df_est.empty:
+        try:
+            dados_padrao = df_est.iloc[st.session_state.ultima_selecao].to_dict()
+        except:
+            st.session_state.ultima_selecao = None
+
+    with st.form(key="form_estoque", clear_on_submit=True):
+        col1, col2, col3, col4 = st.columns(4)
+        id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
+        cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
+        ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
+        qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0)), step=0.01)
+        desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
+        submit = st.form_submit_button("Salvar Alteração")
+
+    if submit and client:
+        try:
+            sheet = client.open("estoque_defran").sheet1
+            cell = sheet.find(id_i) 
+            if cell:
+                sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, float(qtd_i)]])
+                st.success(f"Item {id_i} atualizado!")
+            else:
+                sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
+                st.success(f"Novo item {id_i} adicionado!")
+            st.cache_data.clear()
+            st.rerun()
+        except Exception as e:
+            st.error(f"Erro ao salvar: {e}")
+
+import xml.etree.ElementTree as ET
+
+
+# --- ABA 3: CARGA DE TRABALHO LINGAS ---
+with aba3:
+    st.header("📊 Carga de Trabalho - Lingas")
+    caminho_pdf = "docs/cargas_lingas.pdf"
+    
+    if os.path.exists(caminho_pdf):
+        st.info("O visualizador integrado pode ser bloqueado por alguns navegadores. Utilize o botão abaixo para baixar ou visualizar o documento completo com facilidade.")
+        with open(caminho_pdf, "rb") as f:
+            st.download_button(
+                label="📥 Baixar / Visualizar PDF de Carga de Trabalho",
+                data=f,
+                file_name="cargas_lingas.pdf",
+                mime="application/pdf",
+                use_container_width=True
+            )
+        st.markdown("---")
+        with open(caminho_pdf, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        pdf_display = f'<object data="data:application/pdf;base64,{base64_pdf}" type="application/pdf" width="100%" height="700px"><p>Seu navegador não suporta a visualização direta de PDFs.</p></object>'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+    else:
+        st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}.")
+
+
+import xml.etree.ElementTree as ET
+
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
