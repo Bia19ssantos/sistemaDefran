@@ -13,7 +13,77 @@ from datetime import datetime
 
 st.set_page_config(page_title="Sistema Defran", layout="centered")
 
+# --- CONTROLE DE SESSÃO E LOGIN ---
+if "autenticado" not in st.session_state:
+    st.session_state.autenticado = False
+if "usuario_logado" not in st.session_state:
+    st.session_state.usuario_logado = ""
+if "etapa_boas_vindas" not in st.session_state:
+    st.session_state.etapa_boas_vindas = False
 
+# 1. TELA DE LOGIN (Caso não esteja autenticado)
+if not st.session_state.autenticado:
+    _, col_centro, _ = st.columns([1, 1.5, 1])
+    
+    with col_centro:
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        if os.path.exists("navbar-logo.jpg"):
+            st.image("navbar-logo.jpg", width=300)
+        elif os.path.exists("navbar-logo.png"):
+            st.image("navbar-logo.png", width=300)
+        elif os.path.exists("docs/logoDefran1.png"):
+            st.image("docs/logoDefran1.png", width=300)
+            
+        st.markdown("### Acesso ao Sistema Defran")
+        
+        with st.form("form_login"):
+            usuario_input = st.text_input("Usuário (Beatriz, Deise ou Roberto)")
+            senha_input = st.text_input("Senha", type="password")
+            btn_entrar = st.form_submit_button("Entrar", use_container_width=True)
+            
+            if btn_entrar:
+                # Normaliza o nome do usuário para aceitar maiúsculas/minúsculas (ex: beatriz, Beatriz)
+                usuarios_validos = {
+                    "beatriz": "626134",
+                    "deise": "626134",
+                    "roberto": "626134"
+                }
+                
+                usuario_limpo = usuario_input.strip().lower()
+                
+                if usuario_limpo in usuarios_validos and usuarios_validos[usuario_limpo] == senha_input:
+                    st.session_state.autenticado = True
+                    # Salva com a primeira letra maiúscula para ficar bonito no orçamento (Ex: Beatriz)
+                    st.session_state.usuario_logado = usuario_input.strip().capitalize()
+                    st.session_state.etapa_boas_vindas = True
+                    st.rerun()
+                else:
+                    st.error("Usuário ou senha inválidos.")
+    st.stop()
+
+# 2. TELA DE POP-UP DE BOAS-VINDAS (Após logar, antes de ir ao menu)
+if st.session_state.get("etapa_boas_vindas"):
+    _, col_centro2, _ = st.columns([1, 2, 1])
+    
+    with col_centro2:
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        if os.path.exists("navbar-logo.jpg"):
+            st.image("navbar-logo.jpg", width=350)
+        elif os.path.exists("navbar-logo.png"):
+            st.image("navbar-logo.png", width=350)
+        elif os.path.exists("docs/logoDefran1.png"):
+            st.image("docs/logoDefran1.png", width=350)
+            
+        st.markdown(f"### Olá, {st.session_state.usuario_logado}! Bem-vindo(a) ao Sistema Defran")
+        st.markdown("Gerenciamento de Produtos, Estoque e Propostas Comerciais.")
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        if st.button("🚀 Ir ao Menu Principal", type="primary", use_container_width=True):
+            st.session_state.etapa_boas_vindas = False
+            st.rerun()
+            
+    st.stop()
+    
 if os.path.exists("navbar-logo.jpg"):
     st.image("navbar-logo.jpg", width=300)
 elif os.path.exists("navbar-logo.png"):
@@ -379,7 +449,7 @@ with aba4:
     col_c7, col_c8 = st.columns(2)
     contato_orc = col_c7.text_input("Contato", value=str(dados_cli.get("contato", "")) if cliente_escolhido else "")
     email_orc = col_c8.text_input("E-mail", value=str(dados_cli.get("email", "")) if cliente_escolhido else "")
-    vendedor_orc = st.text_input("Vendedor(a)", value="")
+    vendedor_orc = st.text_input("Vendedor(a)", value=st.session_state.get("usuario_logado", ""))
 
     col_cond1, col_cond2 = st.columns(2)
     cond_pgto_orc = col_cond1.text_input("Condição de Pagamento", value=str(dados_cli.get("cond_pgto", "")) if cliente_escolhido else "")
