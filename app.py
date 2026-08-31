@@ -310,116 +310,107 @@ with aba1:
         st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
 
-# --- ABA DE ESTOQUE COM LEITURA DE NF-e (XML) ---
+# --- ABA DE ESTOQUE ---
 with aba2:
-
     st.header("📦 Gerenciamento de Estoque & Notas Fiscais")
 
-# 1. Seção de Leitura de Nota Fiscal (XML)
-with st.expander("📄 Importar Nota Fiscal Eletrônica (XML) para o Estoque", expanded=False):
-    st.markdown("Faça o upload do arquivo XML da NF-e para processar os itens automaticamente.")
-    
-    arquivo_xml = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_nf")
-    
-    tipo_operacao = st.radio(
-        "Selecione a operação desta Nota Fiscal:",
-        ["Entrada (Adicionar / Atualizar Produtos no Estoque)", "Saída (Dar baixa no Estoque)"],
-        horizontal=True
-    )
-    
-    if arquivo_xml is not None:
-        try:
-            # Parse do arquivo XML usando a biblioteca padrão do Python
-            tree = ET.parse(arquivo_xml)
-            root = tree.getroot()
-            
-            # Namespace padrão da NF-e da Receita Federal
-            # O XML de NF-e costuma usar tags com namespaces (ex: {http://www.portalfiscal.inf.br/nfe}det)
-            ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
-            
-            # Tenta encontrar os itens (det) da nota
-            det_items = root.findall('.//nfe:det', ns)
-            
-            # Caso o XML não use namespaces explícitos no formato esperado, tenta a busca genérica
-            if not det_items:
-                det_items = root.findall('.//det')
+    # 1. Seção de Leitura de Nota Fiscal (XML) dentro da aba
+    with st.expander("📄 Importar Nota Fiscal Eletrônica (XML) para o Estoque", expanded=False):
+        st.markdown("Faça o upload do arquivo XML da NF-e para processar os itens automaticamente.")
+        
+        arquivo_xml = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_nf")
+        
+        tipo_operacao = st.radio(
+            "Selecione a operação desta Nota Fiscal:",
+            ["Entrada (Adicionar / Atualizar Produtos no Estoque)", "Saída (Dar baixa no Estoque)"],
+            horizontal=True
+        )
+        
+        if arquivo_xml is not None:
+            try:
+                tree = ET.parse(arquivo_xml)
+                root = tree.getroot()
                 
-            itens_nf = []
-            for det in det_items:
-                prod = det.find('nfe:prod', ns)
-                if prod is None:
-                    prod = det.find('prod')
+                ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
+                det_items = root.findall('.//nfe:det', ns)
+                
+                if not det_items:
+                    det_items = root.findall('.//det')
                     
-                if prod is not None:
-                    # Extraindo as tags comuns de produtos da NF-e
-                    c_prod = prod.find('nfe:cProd', ns)
-                    if c_prod is None: c_prod = prod.find('cProd')
-                    
-                    x_prod = prod.find('nfe:xProd', ns)
-                    if x_prod is None: x_prod = prod.find('xProd')
-                    
-                    q_com = prod.find('nfe:qCom', ns)
-                    if q_com is None: q_com = prod.find('qCom')
-                    
-                    u_com = prod.find('uCom', ns)
-                    if u_com is None: u_com = prod.find('uCom')
-                    
-                    v_un_com = prod.find('vUnCom', ns)
-                    if v_un_com is None: v_un_com = prod.find('vUnCom')
+                itens_nf = []
+                for det in det_items:
+                    prod = det.find('nfe:prod', ns)
+                    if prod is None:
+                        prod = det.find('prod')
+                        
+                    if prod is not None:
+                        c_prod = prod.find('nfe:cProd', ns)
+                        if c_prod is None: c_prod = prod.find('cProd')
+                        
+                        x_prod = prod.find('nfe:xProd', ns)
+                        if x_prod is None: x_prod = prod.find('xProd')
+                        
+                        q_com = prod.find('nfe:qCom', ns)
+                        if q_com is None: q_com = prod.find('qCom')
+                        
+                        u_com = prod.find('uCom', ns)
+                        if u_com is None: u_com = prod.find('uCom')
+                        
+                        v_un_com = prod.find('vUnCom', ns)
+                        if v_un_com is None: v_un_com = prod.find('vUnCom')
 
-                    codigo = c_prod.text if c_prod is not None else ""
-                    descricao = x_prod.text if x_prod is not None else ""
-                    quantidade = float(q_com.text) if q_com is not None else 0.0
-                    unidade = u_com.text if u_com is not None else "PÇ"
-                    valor_unit = float(v_un_com.text) if v_un_com is not None else 0.0
+                        codigo = c_prod.text if c_prod is not None else ""
+                        descricao = x_prod.text if x_prod is not None else ""
+                        quantidade = float(q_com.text) if q_com is not None else 0.0
+                        unidade = u_com.text if u_com is not None else "PÇ"
+                        valor_unit = float(v_un_com.text) if v_un_com is not None else 0.0
+                        
+                        itens_nf.append({
+                            "codigo": codigo,
+                            "descricao": descricao,
+                            "quantidade": quantidade,
+                            "unidade": unidade,
+                            "valor_unitario": valor_unit
+                        })
+                
+                if itens_nf:
+                    st.success(f"Nota Fiscal lida com sucesso! Encontrados {len(itens_nf)} itens.")
                     
-                    itens_nf.append({
-                        "codigo": codigo,
-                        "descricao": descricao,
-                        "quantidade": quantidade,
-                        "unidade": unidade,
-                        "valor_unitario": valor_unit
-                    })
-            
-            if itens_nf:
-                st.success(f"Nota Fiscal lida com sucesso! Encontrados {len(itens_nf)} itens.")
-                
-                # Exibe os itens lidos em uma tabela prévia
-                df_nf_preview = pd.DataFrame(itens_nf)
-                st.dataframe(df_nf_preview, use_container_width=True)
-                
-                if st.button("Confirmar e Processar no Estoque", type="primary"):
-                    # Aqui entra a lógica para atualizar seus arquivos (ex: salvar no TXT ou na planilha)
-                    if "Entrada" in tipo_operacao:
-                        # Lógica para adicionar ou atualizar os produtos na base (ex: base_produtos / produtos_info.txt)
-                        for item in itens_nf:
-                            # Exemplo de salvamento ou atualização de estoque de entrada
-                            pass
-                        st.success("Estoque de ENTRADA atualizado com sucesso com base na NF-e!")
-                    else:
-                        # Lógica para abater a quantidade do estoque atual (Saída / Baixa)
-                        for item in itens_nf:
-                            codigo_alvo = item["codigo"]
-                            qtd_baixa = item["quantidade"]
-                            # Exemplo de baixa de estoque baseada no código SAP/Referência
-                            pass
-                        st.success("Baixa no estoque realizada com sucesso com base na NF-e de SAÍDA!")
-            else:
-                st.warning("Não foi possível identificar os produtos neste XML. Verifique se o arquivo é uma NF-e válida.")
-                
-        except Exception as e:
+                    df_nf_preview = pd.DataFrame(itens_nf)
+                    st.dataframe(df_nf_preview, use_container_width=True)
+                    
+                    if st.button("Confirmar e Processar no Estoque", type="primary"):
+                        if "Entrada" in tipo_operacao:
+                            for item in itens_nf:
+                                # Lógica para gravar entrada no Google Sheets/Planilha
+                                pass
+                            st.success("Estoque de ENTRADA atualizado com sucesso com base na NF-e!")
+                        else:
+                            for item in itens_nf:
+                                codigo_alvo = item["codigo"]
+                                qtd_baixa = item["quantidade"]
+                                # Lógica para abater do estoque no Google Sheets/Planilha
+                                pass
+                            st.success("Baixa no estoque realizada com sucesso com base na NF-e de SAÍDA!")
+                else:
+                    st.warning("Não foi possível identificar os produtos neste XML. Verifique se o arquivo é uma NF-e válida.")
+                    
+            except Exception as e:
                 st.error(f"Erro ao processar o arquivo XML da Nota Fiscal: {e}")
 
-st.markdown("---")
-# 2. Restante da sua tela de gerenciamento de estoque atual...
-
-st.subheader("Controle de Estoque Atual")
+    st.markdown("---")
+    
+    # 2. Controle de Estoque Atual
+    st.subheader("Controle de Estoque Atual")
     st.header("Estoque Defran")
+    
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"]
+    
     if st.session_state.get("busca_estoque") and not df_est.empty:
         termo = st.session_state.busca_estoque
         df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False)]
+        
     event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
 
     if "ultima_selecao" not in st.session_state:
@@ -458,10 +449,10 @@ st.subheader("Controle de Estoque Atual")
         except Exception as e:
             st.error(f"Erro ao salvar: {e}")
 
-import xml.etree.ElementTree as ET
 
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
+
 with aba3:
     st.header("📊 Carga de Trabalho - Lingas")
     caminho_pdf = "docs/cargas_lingas.pdf"
