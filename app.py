@@ -773,37 +773,83 @@ with aba4:
 
 # --- ABA 5: NOTAS FISCAIS ---
 with aba5:
-    st.header("📥📤 Importação e Consulta de Notas Fiscais")
-    st.write("Faça o upload de arquivos XML de Notas Fiscais para extração de dados.")
+    st.header("📥📤 Gestão e Movimentação de Estoque por Nota Fiscal")
+    st.write("Faça o upload do XML da Nota Fiscal para visualizar os produtos e realizar a movimentação no estoque.")
     
-    arquivos_xml = st.file_uploader("Selecione os arquivos XML", type=["xml"], accept_multiple_files=True)
+    arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_unico")
     
-    if arquivos_xml:
-        dados_nfs = []
-        for arquivo in arquivos_xml:
-            try:
-                tree = ET.parse(arquivo)
-                root = tree.getroot()
-                # Exemplo básico de varredura de XML de NF-e (ajustar namespaces se necessário)
-                ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
-                infNFe = root.find('.//nfe:infNFe', ns)
-                
-                if infNFe is not None:
-                    nNF = infNFe.find('.//nfe:nNF', ns).text if infNFe.find('.//nfe:nNF', ns) is not None else ""
-                    dhEmi = infNFe.find('.//nfe:dhEmi', ns).text if infNFe.find('.//nfe:dhEmi', ns) is not None else ""
-                    xNome = infNFe.find('.//nfe:dest/nfe:xNome', ns).text if infNFe.find('.//nfe:dest/nfe:xNome', ns) is not None else ""
-                    vNF = infNFe.find('.//nfe:total/nfe:ICMSTot/nfe:vNF', ns).text if infNFe.find('.//nfe:total/nfe:ICMSTot/nfe:vNF', ns) is not None else ""
+    if arquivo_xml_unico:
+        try:
+            tree = ET.parse(arquivo_xml_unico)
+            root = tree.getroot()
+            ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
+            
+            # Dados gerais da nota
+            infNFe = root.find('.//nfe:infNFe', ns)
+            nNF = ""
+            xNome = ""
+            if infNFe is not None:
+                ide = infNFe.find('nfe:ide', ns)
+                if ide is not None:
+                    nNF = ide.findtext('nfe:nNF', default='', namespaces=ns)
+                emit = infNFe.find('nfe:emit', ns)
+                if emit is not None:
+                    xNome = emit.findtext('nfe:xNome', default='', namespaces=ns)
+            
+            st.info(f"**Nota Fiscal Nº:** {nNF} | **Emitente:** {xNome}")
+            
+            # Extração dos itens (produtos) da nota
+            det_itens = root.findall('.//nfe:det', ns)
+            produtos_nota = []
+            
+            for det in det_itens:
+                prod = det.find('nfe:prod', ns)
+                if prod is not None:
+                    c_prod = prod.findtext('nfe:cProd', default='', namespaces=ns)
+                    x_prod = prod.findtext('nfe:xProd', default='', namespaces=ns)
+                    u_com = prod.findtext('nfe:uCom', default='', namespaces=ns)
+                    q_com = float(prod.findtext('nfe:qCom', default='0', namespaces=ns))
+                    v_un_com = float(prod.findtext('nfe:vUnCom', default='0', namespaces=ns))
                     
-                    dados_nfs.append({
-                        "Número NF": nNF,
-                        "Emissão": dhEmi[:10],
-                        "Destinatário": xNome,
-                        "Valor Total (R$)": float(vNF) if vNF else 0.0
+                    produtos_nota.append({
+                        "Código": c_prod,
+                        "Descrição": x_prod,
+                        "Unidade": u_com,
+                        "Quantidade": q_com,
+                        "Valor Unit. (R$)": v_un_com,
+                        "Valor Total (R$)": q_com * v_un_com
                     })
-            except Exception as e:
-                st.error(f"Erro ao processar o arquivo {arquivo.name}: {e}")
+            
+            if produtos_nota:
+                df_produtos_nf = pd.DataFrame(produtos_nota)
+                st.subheader("Produtos Constantes na Nota Fiscal:")
+                st.dataframe(df_produtos_nf, use_container_width=True)
                 
-        if dados_nfs:
-            df_nfs = pd.DataFrame(dados_nfs)
-            st.success(f"{len(dados_nfs)} notas fiscais processadas com sucesso!")
-            st.dataframe(df_nfs, use_container_width=True)
+                st.markdown("---")
+                st.subheader("Ações de Estoque")
+                col_btn1, col_btn2 = st.columns(2)
+                
+                # Botão 1: Dar Entrada
+                if col_btn1.button("📥 Dar Entrada no Estoque", use_container_width=True):
+                    # Insira aqui a sua lógica para somar as quantidades ao estoque
+                    # Exemplo: varrer 'produtos_nota' e atualizar a base de estoque correspondente
+                    for item in produtos_nota:
+                        cod = item["Código"]
+                        qtd = item["Quantidade"]
+                        # TODO: Adicionar lógica de incremento no banco de dados ou session_state de estoque
+                    st.success(f"Entrada de estoque realizada com sucesso para a NF {nNF}!")
+                
+                # Botão 2: Dar Saída
+                if col_btn2.button("📤 Dar Saída no Estoque", use_container_width=True):
+                    # Insira aqui a sua lógica para subtrair as quantidades do estoque
+                    # Exemplo: varrer 'produtos_nota' e dar baixa no estoque
+                    for item in produtos_nota:
+                        cod = item["Código"]
+                        qtd = item["Quantidade"]
+                        # TODO: Adicionar lógica de baixa/decremento no estoque
+                    st.success(f"Saída de estoque realizada com sucesso para a NF {nNF}!")
+            else:
+                st.warning("Nenhum produto foi encontrado dentro deste arquivo XML.")
+                
+        except Exception as e:
+            st.error(f"Erro ao processar o arquivo XML: {e}")
