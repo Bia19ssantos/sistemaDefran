@@ -311,17 +311,14 @@ with aba1:
         st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
 
-# --- ABA 2: ESTOQUE E NOTAS FISCAIS ---
+# --- ABA 2: ESTOQUE DEFRAN ---
 with aba2:
-    st.subheader("Estoque Defran")
-    
+    st.header("Estoque Defran")
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"]
-    
     if st.session_state.get("busca_estoque") and not df_est.empty:
         termo = st.session_state.busca_estoque
         df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False)]
-        
     event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
 
     if "ultima_selecao" not in st.session_state:
