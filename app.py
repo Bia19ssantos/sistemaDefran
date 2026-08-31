@@ -242,7 +242,7 @@ aba1, aba2, aba3, aba4, aba5 = st.tabs([
     "🔗 Produtos", 
     "📦 Estoque Defran", 
     "🏗️ Carga de Trabalho",
-    "📋 Orçamento"
+    "📋 Orçamento",
     "📥📤 Notas Fiscais"
 ])
 
