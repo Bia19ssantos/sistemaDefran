@@ -43,7 +43,7 @@ if not st.session_state.autenticado:
 
             
             if btn_entrar:
-                # Normaliza o nome do usuário para aceitar maiúsculas/minúsculas (ex: beatriz, Beatriz)
+               
                 usuarios_validos = {
                     "beatriz": "626134",
                     "deise": "626134",
@@ -54,7 +54,7 @@ if not st.session_state.autenticado:
                 
                 if usuario_limpo in usuarios_validos and usuarios_validos[usuario_limpo] == senha_input:
                     st.session_state.autenticado = True
-                    # Salva com a primeira letra maiúscula para ficar bonito no orçamento (Ex: Beatriz)
+                    
                     st.session_state.usuario_logado = usuario_input.strip().capitalize()
                     st.session_state.etapa_boas_vindas = True
                     st.rerun()
