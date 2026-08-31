@@ -37,7 +37,7 @@ if not st.session_state.autenticado:
         st.markdown("### Acesso ao Sistema Defran")
         
         with st.form("form_login"):
-            usuario_input = st.text_input("Usuário (Beatriz, Deise ou Roberto)")
+            usuario_input = st.text_input("Digite o Usuário")
             senha_input = st.text_input("Senha", type="password")
             btn_entrar = st.form_submit_button("Entrar", use_container_width=True)
             
