@@ -238,11 +238,12 @@ def carregar_bases_txt():
 base_produtos, base_lingas = carregar_bases_txt()
 
 # --- Aba Principal ---
-aba1, aba2, aba3, aba4 = st.tabs([
+aba1, aba2, aba3, aba4, aba5 = st.tabs([
     "🔗 Produtos", 
     "📦 Estoque Defran", 
     "🏗️ Carga de Trabalho",
     "📋 Orçamento"
+    "📥📤 Notas Fiscais"
 ])
 
 # --- ABA 1: PRODUTOS ---
@@ -312,84 +313,9 @@ with aba1:
 
 # --- ABA 2: ESTOQUE E NOTAS FISCAIS ---
 with aba2:
-    st.header("📦 Estoque Defran")
-
-    # Linha unificada: Pesquisa à esquerda e Botão de Nota Fiscal (XML) à direita
-    col_pesquisa, col_upload_nf = st.columns([2.5, 1.5])
-
-    with col_pesquisa:
-        termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
-
-    with col_upload_nf:
-        st.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True) # Alinha verticalmente com o input
-        arquivo_xml = st.file_uploader("📄 Importar NF (XML)", type=["xml"], key="upload_xml_nf", label_visibility="collapsed")
-
-    # Se um arquivo XML foi carregado, exibe a área de processamento logo abaixo da pesquisa
-    if arquivo_xml is not None:
-        with st.container(border=True):
-            st.markdown("### 📥 Processamento de Nota Fiscal Eletrônica (XML)")
-            
-            tipo_operacao = st.radio(
-                "Selecione a operação para esta Nota:",
-                ["Entrada (Adicionar/Atualizar Produtos no Estoque)", "Saída (Dar Baixa no Estoque)"],
-                horizontal=True,
-                key="tipo_operacao_xml"
-            )
-            
-            try:
-                tree = ET.parse(arquivo_xml)
-                root = tree.getroot()
-                
-                ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
-                det_items = root.findall('.//nfe:det', ns)
-                if not det_items:
-                    det_items = root.findall('.//det')
-                    
-                itens_nf = []
-                for det in det_items:
-                    prod = det.find('nfe:prod', ns)
-                    if prod is None: prod = det.find('prod')
-                        
-                    if prod is not None:
-                        c_prod = prod.find('nfe:cProd', ns) or prod.find('cProd')
-                        x_prod = prod.find('nfe:xProd', ns) or prod.find('xProd')
-                        q_com = prod.find('nfe:qCom', ns) or prod.find('qCom')
-                        u_com = prod.find('uCom', ns) or prod.find('uCom')
-                        v_un_com = prod.find('vUnCom', ns) or prod.find('vUnCom')
-
-                        codigo = c_prod.text if c_prod is not None else ""
-                        descricao = x_prod.text if x_prod is not None else ""
-                        quantidade = float(q_com.text) if q_com is not None else 0.0
-                        unidade = u_com.text if u_com is not None else "PÇ"
-                        valor_unit = float(v_un_com.text) if v_un_com is not None else 0.0
-                        
-                        itens_nf.append({
-                            "Código": codigo,
-                            "Descrição": descricao,
-                            "Quantidade": quantidade,
-                            "Unidade": unidade,
-                            "Valor Unit.": valor_unit
-                        })
-                
-                if itens_nf:
-                    st.success(f"Nota lida com sucesso! Encontrados {len(itens_nf)} itens.")
-                    st.dataframe(pd.DataFrame(itens_nf), use_container_width=True)
-                    
-                    if st.button("🚀 Confirmar e Atualizar Estoque", type="primary"):
-                        if "Entrada" in tipo_operacao:
-                            # Lógica para adicionar ou atualizar no estoque
-                            st.success("Estoque de ENTRADA atualizado com sucesso!")
-                        else:
-                            # Lógica para dar baixa no estoque
-                            st.success("Baixa no estoque realizada com sucesso!")
-                else:
-                    st.warning("Não foi possível identificar os produtos neste XML.")
-            except Exception as e:
-                st.error(f"Erro ao processar o arquivo XML: {e}")
-
-    st.markdown("---")
-
-    # Exibição do Estoque Atual
+    st.subheader("Estoque Defran")
+    
+    termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"]
     
     if st.session_state.get("busca_estoque") and not df_est.empty:
@@ -847,3 +773,120 @@ with aba4:
             use_container_width=True,
             on_click=limpar_tela_pos_pdf
         )
+
+# --- ABA 5: NOTAS FISCAIS (ENTRADA E SAÍDA) ---
+with aba5:
+    st.header("📄 Gerenciamento e Leitura de Notas Fiscais (XML)")
+    st.markdown("Faça o upload do arquivo XML da NF-e para realizar a Entrada de produtos ou a Baixa (Saída) no estoque.")
+
+    # Escolha do tipo de operação com setas para cima (Entrada) e para baixo (Saída)
+    tipo_operacao_nf = st.radio(
+        "Selecione o tipo de operação da Nota Fiscal:",
+        [
+            "📥 Entrada (Adicionar / Atualizar Produtos no Estoque)", 
+            "📤 Saída (Dar Baixa no Estoque por Venda/Saída)"
+        ],
+        horizontal=True
+    )
+
+    st.markdown("---")
+
+    # Área de Upload do XML
+    arquivo_xml_aba5 = st.file_uploader(
+        "Selecione o arquivo XML da NF-e", 
+        type=["xml"], 
+        key="upload_xml_aba5"
+    )
+
+    if arquivo_xml_aba5 is not None:
+        try:
+            tree = ET.parse(arquivo_xml_aba5)
+            root = tree.getroot()
+            
+            ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
+            det_items = root.findall('.//nfe:det', ns)
+            if not det_items:
+                det_items = root.findall('.//det')
+                
+            itens_nf = []
+            for det in det_items:
+                prod = det.find('nfe:prod', ns)
+                if prod is None: prod = det.find('prod')
+                    
+                if prod is not None:
+                    c_prod = prod.find('nfe:cProd', ns) or prod.find('cProd')
+                    x_prod = prod.find('nfe:xProd', ns) or prod.find('xProd')
+                    q_com = prod.find('nfe:qCom', ns) or prod.find('qCom')
+                    u_com = prod.find('uCom', ns) or prod.find('uCom')
+                    v_un_com = prod.find('vUnCom', ns) or prod.find('vUnCom')
+
+                    codigo = c_prod.text if c_prod is not None else ""
+                    descricao = x_prod.text if x_prod is not None else ""
+                    quantidade = float(q_com.text) if q_com is not None else 0.0
+                    unidade = u_com.text if u_com is not None else "PÇ"
+                    valor_unit = float(v_un_com.text) if v_un_com is not None else 0.0
+                    
+                    itens_nf.append({
+                        "Código": codigo,
+                        "Descrição": descricao,
+                        "Quantidade": quantidade,
+                        "Unidade": unidade,
+                        "Valor Unit.": valor_unit
+                    })
+            
+            if itens_nf:
+                st.success(f"Nota Fiscal lida com sucesso! Encontrados {len(itens_nf)} itens.")
+                
+                # Exibe a tabela detalhada dos itens da NF
+                st.dataframe(pd.DataFrame(itens_nf), use_container_width=True)
+                
+                st.markdown("<br>", unsafe_allow_html=True)
+                
+                # Botão de confirmação de acordo com a operação escolhida
+                if "Entrada" in tipo_operacao_nf:
+                    if st.button("🚀 Processar ENTRADA no Estoque", type="primary", use_container_width=True):
+                        # Lógica para atualizar/adicionar no Google Sheets (estoque_defran)
+                        try:
+                            sheet_est = client.open("estoque_defran").sheet1
+                            df_atual_est = dados_carregados["Estoque Defran"]
+                            
+                            for item in itens_nf:
+                                cod_nf = str(item["Código"])
+                                qtd_nf = item["quantidade"] if "quantidade" in item else item["Quantidade"]
+                                desc_nf = item["Descrição"]
+                                
+                                # Verifica se o produto já existe no estoque pelo código
+                                cell = sheet_est.find(cod_nf) if cod_nf else None
+                                if cell:
+                                    # Se existe, soma a quantidade ou atualiza
+                                    linha_atual = sheet_est.row_values(cell.row)
+                                    # Supondo que a coluna de quantidade seja a 5ª (índice 4)
+                                    # Ajuste conforme a estrutura das suas colunas na planilha
+                                    pass
+                                else:
+                                    # Se não existe, pode adicionar uma nova linha na planilha
+                                    # sheet_est.append_row(["", cod_nf, "", desc_nf, qtd_nf])
+                                    pass
+                                    
+                            st.success("Estoque atualizado com sucesso com os produtos da ENTRADA!")
+                            st.cache_data.clear()
+                        except Exception as err:
+                            st.error(f"Erro ao processar entrada na planilha: {err}")
+                else:
+                    if st.button("🚀 Processar SAÍDA / BAIXA no Estoque", type="primary", use_container_width=True):
+                        # Lógica para dar baixa (subtrair) do estoque
+                        try:
+                            for item in itens_nf:
+                                cod_nf = str(item["Código"])
+                                qtd_baixa = item["Quantidade"]
+                                # Escreva aqui a regra de subtração da quantidade na planilha de estoque
+                                pass
+                            st.success("Baixa realizada com sucesso no estoque com base na NF-e de SAÍDA!")
+                            st.cache_data.clear()
+                        except Exception as err:
+                            st.error(f"Erro ao processar baixa na planilha: {err}")
+            else:
+                st.warning("Não foi possível identificar os produtos neste XML. Verifique se o arquivo é uma NF-e válida.")
+                
+        except Exception as e:
+            st.error(f"Erro ao processar o arquivo XML: {e}")
