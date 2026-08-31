@@ -790,6 +790,7 @@ with aba5:
                 # Exemplo básico de varredura de XML de NF-e (ajustar namespaces se necessário)
                 ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
                 infNFe = root.find('.//nfe:infNFe', ns)
+                
                 if infNFe is not None:
                     nNF = infNFe.find('.//nfe:nNF', ns).text if infNFe.find('.//nfe:nNF', ns) is not None else ""
                     dhEmi = infNFe.find('.//nfe:dhEmi', ns).text if infNFe.find('.//nfe:dhEmi', ns) is not None else ""
@@ -809,5 +810,3 @@ with aba5:
             df_nfs = pd.DataFrame(dados_nfs)
             st.success(f"{len(dados_nfs)} notas fiscais processadas com sucesso!")
             st.dataframe(df_nfs, use_container_width=True)
-        except Exception as e:
-            st.error(f"Erro ao processar o arquivo XML: {e}")
