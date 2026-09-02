@@ -848,17 +848,21 @@ with aba5:
                     # Pega todas as linhas da Coluna A da planilha do Google
                     coluna_a = sheet.col_values(1)
                     
-                    # --- BOTÃO DE ENTRADA ---
-                    if col_btn1.button("📥 Dar Entrada no Estoque", use_container_width=True):
-                        sucesso = True
-                        for item in produtos_nota:
-                            cod_nf = item["Código"]
-                            qtd_nf = item["Quantidade"]
-                            encontrado = False
-                            
-                            for idx, linha_texto in enumerate(coluna_a):
-                                if idx == 0: continue # Pula o cabeçalho
-                                partes = linha_texto.split(',')
+                    # Pega todos os valores da planilha em formato de lista de listas
+                dados_planilha = sheet.get_all_values()
+                
+                # --- BOTÃO DE ENTRADA ---
+                if col_btn1.button("📥 Dar Entrada no Estoque", use_container_width=True):
+                    sucesso = True
+                    for item in produtos_nota:
+                        cod_nf = item["Código"]
+                        qtd_nf = item["Quantidade"]
+                        encontrado = False
+                        
+                        # Percorre a partir da linha 1 (ignorando o cabeçalho na linha 0)
+                        for idx_linha, linha in enumerate(dados_planilha[1:], start=2):
+                            if linha and len(linha[0]) > 0:
+                                partes = linha[0].split(',')
                                 if len(partes) >= 5:
                                     codigo_planilha = partes[1].strip()
                                     if codigo_planilha == cod_nf:
@@ -871,26 +875,27 @@ with aba5:
                                         partes[4] = f"{nova_qtd:.2f}"
                                         nova_linha_texto = ",".join(partes)
                                         
-                                        sheet.update(f"A{idx+1}", [[nova_linha_texto]])
+                                        # Atualiza diretamente a célula exata na Coluna A da linha correspondente
+                                        sheet.update_cell(idx_linha, 1, nova_linha_texto)
                                         encontrado = True
                                         break
-                            if not encontrado:
-                                st.warning(f"Produto {cod_nf} não encontrado na planilha do Google.")
-                                sucesso = False
-                        if sucesso:
-                            st.success("Entrada de estoque realizada e salva no Google Sheets com sucesso!")
-                    
-                    # --- BOTÃO DE SAÍDA ---
-                    if col_btn2.button("📤 Dar Saída no Estoque", use_container_width=True):
-                        sucesso = True
-                        for item in produtos_nota:
-                            cod_nf = item["Código"]
-                            qtd_nf = item["Quantidade"]
-                            encontrado = False
-                            
-                            for idx, linha_texto in enumerate(coluna_a):
-                                if idx == 0: continue
-                                partes = linha_texto.split(',')
+                        if not encontrado:
+                            st.warning(f"Produto {cod_nf} não encontrado na planilha do Google.")
+                            sucesso = False
+                    if sucesso:
+                        st.success("Entrada de estoque realizada e salva no Google Sheets com sucesso!")
+                
+                # --- BOTÃO DE SAÍDA ---
+                if col_btn2.button("📤 Dar Saída no Estoque", use_container_width=True):
+                    sucesso = True
+                    for item in produtos_nota:
+                        cod_nf = item["Código"]
+                        qtd_nf = item["Quantidade"]
+                        encontrado = False
+                        
+                        for idx_linha, linha in enumerate(dados_planilha[1:], start=2):
+                            if linha and len(linha[0]) > 0:
+                                partes = linha[0].split(',')
                                 if len(partes) >= 5:
                                     codigo_planilha = partes[1].strip()
                                     if codigo_planilha == cod_nf:
@@ -903,15 +908,11 @@ with aba5:
                                         partes[4] = f"{nova_qtd:.2f}"
                                         nova_linha_texto = ",".join(partes)
                                         
-                                        sheet.update(f"A{idx+1}", [[nova_linha_texto]])
+                                        sheet.update_cell(idx_linha, 1, nova_linha_texto)
                                         encontrado = True
                                         break
-                            if not encontrado:
-                                st.warning(f"Produto {cod_nf} não encontrado na planilha do Google.")
-                                sucesso = False
-                        if sucesso:
-                            st.success("Saída de estoque realizada e salva no Google Sheets com sucesso!")
-                else:
-                    st.warning("Nenhum produto encontrado no XML.")
-            except Exception as e:
-                st.error(f"Erro ao processar a nota fiscal: {e}")
+                        if not encontrado:
+                            st.warning(f"Produto {cod_nf} não encontrado na planilha do Google.")
+                            sucesso = False
+                    if sucesso:
+                        st.success("Saída de estoque realizada e salva no Google Sheets com sucesso!")
