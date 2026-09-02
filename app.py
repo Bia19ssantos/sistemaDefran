@@ -88,14 +88,18 @@ elif os.path.exists("navbar-logo.png"):
     st.image("navbar-logo.png", width=300)
 
 st.markdown("---")
-@st.cache_resource
 
+@st.cache_resource
 def conectar_gspread():
     try:
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gcp_service_account"], scope)
-        return gspread.authorize(creds)
-    except Exception:
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(dict(st.secrets["gcp_service_account"]), scope)
+        client = gspread.authorize(creds)
+        # Abre o arquivo "sistemaDefran" e seleciona a aba pelo nome correto "estoque"
+        sheet = client.open("sistemaDefran").worksheet("estoque")
+        return sheet
+    except Exception as ex:
+        st.error(f"Erro na conexão com o Google Sheets: {ex}")
         return None
 
 client = conectar_gspread()
@@ -103,6 +107,9 @@ client = conectar_gspread()
 def carregar_estoque_do_google():
     try:
         sheet = conectar_gspread()
+        if sheet is None:
+            return pd.DataFrame()
+            
         dados_brutos = sheet.get_all_values()
         if len(dados_brutos) > 1:
             cabecalho = [str(c).strip().lower() for c in dados_brutos[0]]
