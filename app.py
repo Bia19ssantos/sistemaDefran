@@ -771,85 +771,147 @@ with aba4:
             on_click=limpar_tela_pos_pdf
         )
 
-# --- ABA 5: NOTAS FISCAIS ---
+# --- ABA 5: NOTAS FISCAIS (GOOGLE SHEETS - CONEXÃO CORRIGIDA) ---
 with aba5:
-    st.header("📥📤 Gestão e Movimentação de Estoque por Nota Fiscal")
-    st.write("Faça o upload do XML da Nota Fiscal para visualizar os produtos e realizar a movimentação no estoque.")
-    
-    arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_unico")
-    
-    if arquivo_xml_unico:
-        try:
-            tree = ET.parse(arquivo_xml_unico)
-            root = tree.getroot()
-            ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
-            
-            # Dados gerais da nota
-            infNFe = root.find('.//nfe:infNFe', ns)
-            nNF = ""
-            xNome = ""
-            if infNFe is not None:
-                ide = infNFe.find('nfe:ide', ns)
-                if ide is not None:
-                    nNF = ide.findtext('nfe:nNF', default='', namespaces=ns)
-                emit = infNFe.find('nfe:emit', ns)
-                if emit is not None:
-                    xNome = emit.findtext('nfe:xNome', default='', namespaces=ns)
-            
-            st.info(f"**Nota Fiscal Nº:** {nNF} | **Emitente:** {xNome}")
-            
-            # Extração dos itens (produtos) da nota
-            det_itens = root.findall('.//nfe:det', ns)
-            produtos_nota = []
-            
-            for det in det_itens:
-                prod = det.find('nfe:prod', ns)
-                if prod is not None:
-                    c_prod = prod.findtext('nfe:cProd', default='', namespaces=ns)
-                    x_prod = prod.findtext('nfe:xProd', default='', namespaces=ns)
-                    u_com = prod.findtext('nfe:uCom', default='', namespaces=ns)
-                    q_com = float(prod.findtext('nfe:qCom', default='0', namespaces=ns))
-                    v_un_com = float(prod.findtext('nfe:vUnCom', default='0', namespaces=ns))
+    import xml.etree.ElementTree as ET
+    import gspread
+    from google.oauth2.service_account import Credentials
+
+    st.header("📥📤 Gestão de Estoque via NF-e (Google Sheets)")
+    st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque diretamente no Google Sheets.")
+
+    sheet = None
+    try:
+        # Pega as credenciais de forma segura do Streamlit Secrets
+        secret_dict = dict(st.secrets["gcp_service_account"])
+        SCOPES = [
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive"
+        ]
+        creds = Credentials.from_service_account_info(secret_dict, scopes=SCOPES)
+        client = gspread.authorize(creds)
+        
+        # Tenta abrir a planilha e a aba
+        NOME_DA_PLANILHA = "sistemaDefran" 
+        planilha = client.open(NOME_DA_PLANILHA)
+        sheet = planilha.worksheet("estoque")
+        
+    except Exception as e:
+        st.error(f"Erro detalhado ao conectar com a planilha: {e}")
+
+    # Só continua se conectou com sucesso na planilha
+    if sheet is not None:
+        arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_v2")
+        
+        if arquivo_xml_unico:
+            try:
+                tree = ET.parse(arquivo_xml_unico)
+                root = tree.getroot()
+                ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
+                
+                infNFe = root.find('.//nfe:infNFe', ns)
+                nNF, xNome = "", ""
+                if infNFe is not None:
+                    ide = infNFe.find('nfe:ide', ns)
+                    if ide is not None:
+                        nNF = ide.findtext('nfe:nNF', default='', namespaces=ns)
+                    emit = infNFe.find('nfe:emit', ns)
+                    if emit is not None:
+                        xNome = emit.findtext('nfe:xNome', default='', namespaces=ns)
+                
+                st.info(f"**Nota Fiscal Nº:** {nNF} | **Emitente:** {xNome}")
+                
+                det_itens = root.findall('.//nfe:det', ns)
+                produtos_nota = []
+                
+                for det in det_itens:
+                    prod = det.find('nfe:prod', ns)
+                    if prod is not None:
+                        c_prod = prod.findtext('nfe:cProd', default='', namespaces=ns)
+                        x_prod = prod.findtext('nfe:xProd', default='', namespaces=ns)
+                        q_com = float(prod.findtext('nfe:qCom', default='0', namespaces=ns))
+                        
+                        produtos_nota.append({
+                            "Código": str(c_prod).strip(),
+                            "Descrição": x_prod,
+                            "Quantidade": q_com
+                        })
+                
+                if produtos_nota:
+                    df_produtos_nf = pd.DataFrame(produtos_nota)
+                    st.subheader("Produtos Constantes na Nota Fiscal:")
+                    st.dataframe(df_produtos_nf, use_container_width=True)
                     
-                    produtos_nota.append({
-                        "Código": c_prod,
-                        "Descrição": x_prod,
-                        "Unidade": u_com,
-                        "Quantidade": q_com,
-                        "Valor Unit. (R$)": v_un_com,
-                        "Valor Total (R$)": q_com * v_un_com
-                    })
-            
-            if produtos_nota:
-                df_produtos_nf = pd.DataFrame(produtos_nota)
-                st.subheader("Produtos Constantes na Nota Fiscal:")
-                st.dataframe(df_produtos_nf, use_container_width=True)
-                
-                st.markdown("---")
-                st.subheader("Ações de Estoque")
-                col_btn1, col_btn2 = st.columns(2)
-                
-                # Botão 1: Dar Entrada
-                if col_btn1.button("📥 Dar Entrada no Estoque", use_container_width=True):
-                    # Insira aqui a sua lógica para somar as quantidades ao estoque
-                    # Exemplo: varrer 'produtos_nota' e atualizar a base de estoque correspondente
-                    for item in produtos_nota:
-                        cod = item["Código"]
-                        qtd = item["Quantidade"]
-                        # TODO: Adicionar lógica de incremento no banco de dados ou session_state de estoque
-                    st.success(f"Entrada de estoque realizada com sucesso para a NF {nNF}!")
-                
-                # Botão 2: Dar Saída
-                if col_btn2.button("📤 Dar Saída no Estoque", use_container_width=True):
-                    # Insira aqui a sua lógica para subtrair as quantidades do estoque
-                    # Exemplo: varrer 'produtos_nota' e dar baixa no estoque
-                    for item in produtos_nota:
-                        cod = item["Código"]
-                        qtd = item["Quantidade"]
-                        # TODO: Adicionar lógica de baixa/decremento no estoque
-                    st.success(f"Saída de estoque realizada com sucesso para a NF {nNF}!")
-            else:
-                st.warning("Nenhum produto foi encontrado dentro deste arquivo XML.")
-                
-        except Exception as e:
-            st.error(f"Erro ao processar o arquivo XML: {e}")
+                    st.markdown("---")
+                    col_btn1, col_btn2 = st.columns(2)
+                    
+                    # Pega todas as linhas da Coluna A da planilha do Google
+                    coluna_a = sheet.col_values(1)
+                    
+                    # --- BOTÃO DE ENTRADA ---
+                    if col_btn1.button("📥 Dar Entrada no Estoque", use_container_width=True):
+                        sucesso = True
+                        for item in produtos_nota:
+                            cod_nf = item["Código"]
+                            qtd_nf = item["Quantidade"]
+                            encontrado = False
+                            
+                            for idx, linha_texto in enumerate(coluna_a):
+                                if idx == 0: continue # Pula o cabeçalho
+                                partes = linha_texto.split(',')
+                                if len(partes) >= 5:
+                                    codigo_planilha = partes[1].strip()
+                                    if codigo_planilha == cod_nf:
+                                        try:
+                                            qtd_atual = float(partes[4].strip())
+                                        except:
+                                            qtd_atual = 0.0
+                                        
+                                        nova_qtd = qtd_atual + qtd_nf
+                                        partes[4] = f"{nova_qtd:.2f}"
+                                        nova_linha_texto = ",".join(partes)
+                                        
+                                        sheet.update(f"A{idx+1}", [[nova_linha_texto]])
+                                        encontrado = True
+                                        break
+                            if not encontrado:
+                                st.warning(f"Produto {cod_nf} não encontrado na planilha do Google.")
+                                sucesso = False
+                        if sucesso:
+                            st.success("Entrada de estoque realizada e salva no Google Sheets com sucesso!")
+                    
+                    # --- BOTÃO DE SAÍDA ---
+                    if col_btn2.button("📤 Dar Saída no Estoque", use_container_width=True):
+                        sucesso = True
+                        for item in produtos_nota:
+                            cod_nf = item["Código"]
+                            qtd_nf = item["Quantidade"]
+                            encontrado = False
+                            
+                            for idx, linha_texto in enumerate(coluna_a):
+                                if idx == 0: continue
+                                partes = linha_texto.split(',')
+                                if len(partes) >= 5:
+                                    codigo_planilha = partes[1].strip()
+                                    if codigo_planilha == cod_nf:
+                                        try:
+                                            qtd_atual = float(partes[4].strip())
+                                        except:
+                                            qtd_atual = 0.0
+                                        
+                                        nova_qtd = max(0.0, qtd_atual - qtd_nf)
+                                        partes[4] = f"{nova_qtd:.2f}"
+                                        nova_linha_texto = ",".join(partes)
+                                        
+                                        sheet.update(f"A{idx+1}", [[nova_linha_texto]])
+                                        encontrado = True
+                                        break
+                            if not encontrado:
+                                st.warning(f"Produto {cod_nf} não encontrado na planilha do Google.")
+                                sucesso = False
+                        if sucesso:
+                            st.success("Saída de estoque realizada e salva no Google Sheets com sucesso!")
+                else:
+                    st.warning("Nenhum produto encontrado no XML.")
+            except Exception as e:
+                st.error(f"Erro ao processar a nota fiscal: {e}")
