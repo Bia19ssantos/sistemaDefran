@@ -304,17 +304,16 @@ with aba1:
 
 # --- ABA 2: ESTOQUE DEFRAN ---
 with aba2:
-    st.header("📊 Consulta de Estoque")
+    st.header("📊 Consulta e Alteração de Estoque")
     
     # Carrega os dados do estoque local
     df_estoque = carregar_estoque_local()
     
     if not df_estoque.empty:
-        # Campo de filtro único para a tabela
+        # Campo de filtro para encontrar o item mais rápido
         pesquisa = st.text_input("🔍 Filtrar por código ou referência:", key="filtro_estoque_unico")
         
         if pesquisa:
-            # Filtra considerando a coluna 'codigo' ou 'ref_prod'
             mask = (
                 df_estoque['codigo'].astype(str).str.contains(pesquisa, case=False, na=False) |
                 df_estoque['ref_prod'].astype(str).str.contains(pesquisa, case=False, na=False)
@@ -323,8 +322,52 @@ with aba2:
         else:
             df_exibicao = df_estoque
             
-        # Exibe apenas uma tabela limpa e responsiva
-        st.dataframe(df_exibicao, use_container_width=True)
+        # Exibe a tabela permitindo selecionar uma linha
+        st.write("Selecione a linha na tabela abaixo para alterar os dados do item:")
+        
+        # Usamos o data_editor ou dataframe com seleção habilitada (compatível com versões recentes do Streamlit)
+        evento_selecao = st.dataframe(
+            df_exibicao, 
+            use_container_width=True, 
+            on_select="rerun", 
+            selection_mode="single-row",
+            key="tabela_estoque_selecao"
+        )
+        
+        # Verifica se o usuário selecionou alguma linha
+        linhas_selecionadas = evento_selecao.get("selection", {}).get("rows", [])
+        
+        if linhas_selecionadas:
+            idx_selecionado_exibicao = linhas_selecionadas[0]
+            # Pega a linha correspondente no dataframe filtrado
+            item_selecionado = df_exibicao.iloc[idx_selecionado_exibicao]
+            
+            # Descobre o índice real no dataframe completo (df_estoque)
+            idx_real = item_selecionado.name
+            
+            st.markdown("---")
+            st.subheader(f"✏️ Editando Item: {item_selecionado.get('desc_prod', '')} (Código: {item_selecionado.get('codigo', '')})")
+            
+            with st.form("form_editar_estoque_item"):
+                col_e1, col_e2 = st.columns(2)
+                
+                # Campos editáveis baseados nas colunas existentes
+                nova_qtde = col_e1.number_input("Quantidade", value=float(item_selecionado.get('qtde', 0.0)), step=1.0)
+                nova_ref = col_e2.text_input("Referência", value=str(item_selecionado.get('ref_prod', '')))
+                
+                btn_salvar_alteracao = st.form_submit_button("💾 Salvar Alterações no Estoque", type="primary", use_container_width=True)
+                
+                if btn_salvar_alteracao:
+                    # Atualiza os valores no DataFrame principal
+                    df_estoque.loc[idx_real, 'qtde'] = nova_qtde
+                    df_estoque.loc[idx_real, 'ref_prod'] = nova_ref
+                    
+                    # Salva de volta no arquivo CSV local
+                    caminho_csv = "dados/estoque_defran.csv"
+                    df_estoque.to_csv(caminho_csv, index=False, encoding='utf-8')
+                    
+                    st.success("Alterações salvas com sucesso no arquivo local!")
+                    st.rerun()
     else:
         st.info("Nenhum dado encontrado no estoque local.")
 
