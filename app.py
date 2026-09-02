@@ -10,6 +10,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from datetime import datetime
+import xml.etree.ElementTree as ET
 
 st.set_page_config(page_title="Sistema Defran", layout="centered")
 
@@ -21,7 +22,7 @@ if "usuario_logado" not in st.session_state:
 if "etapa_boas_vindas" not in st.session_state:
     st.session_state.etapa_boas_vindas = False
 
-# 1. TELA DE LOGIN (Só aparece se NÃO estiver autenticado)
+# 1. TELA DE LOGIN
 if not st.session_state.autenticado:
     _, col_centro, _ = st.columns([1, 1.5, 1])
     
@@ -57,32 +58,9 @@ if not st.session_state.autenticado:
                     st.rerun()
                 else:
                     st.error("Usuário ou senha inválidos.")
-    st.stop()  # Para a execução aqui para não carregar o resto do app se não estiver logado
+    st.stop()
 
-# 2. TELA DE POP-UP DE BOAS-VINDAS (Aparece logo após logar)
-if st.session_state.get("etapa_boas_vindas"):
-    _, col_centro2, _ = st.columns([1, 2, 1])
-    
-    with col_centro2:
-        st.markdown("<br><br>", unsafe_allow_html=True)
-        if os.path.exists("navbar-logo.jpg"):
-            st.image("navbar-logo.jpg", width=350)
-        elif os.path.exists("navbar-logo.png"):
-            st.image("navbar-logo.png", width=350)
-        elif os.path.exists("docs/logoDefran1.png"):
-            st.image("docs/logoDefran1.png", width=350)
-            
-        st.markdown(f"### Olá, {st.session_state.usuario_logado}! Bem-vindo(a) ao Sistema Defran")
-        st.markdown("Gerenciamento de Produtos, Estoque e Propostas Comerciais.")
-        st.markdown("<br>", unsafe_allow_html=True)
-        
-        if st.button("🚀 Ir ao Menu Principal", type="primary", use_container_width=True):
-            st.session_state.etapa_boas_vindas = False
-            st.rerun()
-            
-    st.stop()  # Para a execução aqui enquanto estiver na tela de boas-vindas
-
-# 2. TELA DE POP-UP DE BOAS-VINDAS (Após logar, antes de ir ao menu)
+# 2. TELA DE POP-UP DE BOAS-VINDAS
 if st.session_state.get("etapa_boas_vindas"):
     _, col_centro2, _ = st.columns([1, 2, 1])
     
@@ -112,12 +90,10 @@ elif os.path.exists("navbar-logo.png"):
 
 st.markdown("---")
 
-
+# --- FUNÇÃO ROBUSTA DE CONEXÃO E LEITURA DO GOOGLE SHEETS ---
 def carregar_estoque_do_google():
     try:
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        
-        # Puxa as credenciais dos Secrets do Streamlit Cloud ou arquivo local
         if "gcp_service_account" in st.secrets:
             creds_dict = dict(st.secrets["gcp_service_account"])
             creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
@@ -125,9 +101,17 @@ def carregar_estoque_do_google():
             creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
             
         client = gspread.authorize(creds)
-        sheet = client.open("estoque_defran").sheet1
-        dados = sheet.get_all_records()
-        return pd.DataFrame(dados)
+        sheet = client.open("sistemaDefran").sheet1
+        
+        # Leitura segura baseada em valores matriciais (evita o erro <Response [200]>)
+        dados_brutos = sheet.get_all_values()
+        if len(dados_brutos) > 1:
+            cabecalho = [str(c).strip().lower() for c in dados_brutos[0]]
+            linhas = dados_brutos[1:]
+            df = pd.DataFrame(linhas, columns=cabecalho)
+            return df
+        else:
+            return pd.DataFrame()
     except Exception as ex:
         st.error(f"Erro ao carregar o estoque do Google Sheets: {ex}")
         return pd.DataFrame()
@@ -154,10 +138,8 @@ def carregar_dados():
         else:
             dados_carregados[nome] = pd.DataFrame()
             
-    # Retorna o estoque direto do Google Sheets
     dados_carregados["Estoque Defran"] = carregar_estoque_do_google()
      
-    # Carregar Clientes
     caminho_clientes = "dados/clientes.csv"
     if os.path.exists(caminho_clientes):
         dados_carregados["Clientes"] = pd.read_csv(caminho_clientes, sep=',', encoding='latin1')
@@ -167,93 +149,6 @@ def carregar_dados():
     return dados_carregados
 
 dados_carregados = carregar_dados()
-    
-
-def carregar_bases_txt():
-    produtos_dict = {}
-    lingas_dict = {}
-    
-
-    caminho_prod = "docs/produtos_info.txt"
-    if os.path.exists(caminho_prod):
-        with open(caminho_prod, "r", encoding="utf-8") as f:
-            conteudo = f.read()
-        for bloco in conteudo.split("\n\n"):
-            linhas = bloco.strip().split("\n")
-            if not linhas or not linhas[0]:
-                continue
-            
-            dados_item = {}
-            sap_encontrado = ""
-            ref_encontrada = ""
-            
-
-            primeira_linha = linhas[0].strip()
-            if ":" not in primeira_linha:
-                sap_encontrado = primeira_linha
-                dados_item["sap"] = primeira_linha
-            
-            for linha in linhas[1:]:
-                if ":" in linha:
-                    chave, valor = linha.split(":", 1)
-                    chave_limpa = chave.strip().lower()
-                    valor_limpo = valor.strip()
-                    if "referência" in chave_limpa:
-                        ref_encontrada = valor_limpo
-                        dados_item["referencia"] = valor_limpo
-                    elif "descrição" in chave_limpa:
-                        dados_item["descricao"] = valor_limpo
-                    elif "prazo de entrega" in chave_limpa:
-                        dados_item["prazo"] = valor_limpo
-                    elif "fator de segurança" in chave_limpa:
-                        dados_item["fator"] = valor_limpo
-                    elif "ncm" in chave_limpa:
-                        dados_item["ncm"] = valor_limpo
-                    elif "icms" in chave_limpa:
-                        dados_item["icms"] = valor_limpo
-                    elif "ipi" in chave_limpa:
-                        dados_item["ipi"] = valor_limpo
-            
-            if sap_encontrado:
-                produtos_dict[sap_encontrado] = dados_item
-            if ref_encontrada:
-                produtos_dict[ref_encontrada] = dados_item
-
-    # Base de Lingas
-    caminho_lingas = "docs/lingas.info.txt" 
-    if os.path.exists(caminho_lingas):
-        with open(caminho_lingas, "r", encoding="utf-8") as f:
-            conteudo_l = f.read()
-        for bloco in conteudo_l.split("\n\n"):
-            linhas = bloco.strip().split("\n")
-            dados_item = {}
-            ref_encontrada = ""
-            for linha in linhas:
-                if ":" in linha:
-                    chave, valor = linha.split(":", 1)
-                    chave_limpa = chave.strip().lower()
-                    valor_limpo = valor.strip()
-                    if "referência" in chave_limpa:
-                        ref_encontrada = valor_limpo
-                        dados_item["referencia"] = valor_limpo
-                    elif "descrição" in chave_limpa:
-                        dados_item["descricao"] = valor_limpo
-                    elif "prazo de entrega" in chave_limpa:
-                        dados_item["prazo"] = valor_limpo
-                    elif "fator de segurança" in chave_limpa:
-                        dados_item["fator"] = valor_limpo
-                    elif "ncm" in chave_limpa:
-                        dados_item["ncm"] = valor_limpo
-                    elif "icms" in chave_limpa:
-                        dados_item["icms"] = valor_limpo
-                    elif "ipi" in chave_limpa:
-                        dados_item["ipi"] = valor_limpo
-            if ref_encontrada:
-                lingas_dict[ref_encontrada] = dados_item
-                
-    return produtos_dict, lingas_dict
-
-base_produtos, base_lingas = carregar_bases_txt()
 
 # --- Aba Principal ---
 aba1, aba2, aba3, aba4, aba5 = st.tabs([
@@ -333,25 +228,7 @@ with aba1:
 with aba2:
     st.header("📊 Consulta e Alteração de Estoque (Google Sheets)")
     
-    # Função interna para carregar do Google Sheets
-    def carregar_estoque_google():
-        try:
-            scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-            if "gcp_service_account" in st.secrets:
-                creds_dict = dict(st.secrets["gcp_service_account"])
-                creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
-            else:
-                creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
-            
-            client = gspread.authorize(creds)
-            sheet = client.open("sistemaDefran").sheet1
-            dados = sheet.get_all_records()
-            return pd.DataFrame(dados)
-        except Exception as e:
-            st.error(f"Erro ao carregar do Google Sheets: {e}")
-            return pd.DataFrame()
-
-    df_estoque = carregar_estoque_google()
+    df_estoque = carregar_estoque_do_google()
     
     if not df_estoque.empty:
         pesquisa = st.text_input("🔍 Filtrar por código ou referência:", key="filtro_estoque_aba2")
@@ -395,7 +272,13 @@ with aba2:
             id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
             cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
             ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
-            qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0) if pd.notna(dados_padrao.get("qtde")) else 0), step=0.01)
+            
+            try:
+                qtd_inicial = float(dados_padrao.get("qtde", 0))
+            except:
+                qtd_inicial = 0.0
+                
+            qtd_i = col4.number_input("Qtde", value=qtd_inicial, step=0.01)
             desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
             
             submit = st.form_submit_button("Salvar Alteração / Inserir no Google Sheets", type="primary", use_container_width=True)
@@ -419,11 +302,9 @@ with aba2:
                     cell = sheet.find(id_limpo)
                     
                     if cell:
-                        # Atualiza a linha existente diretamente na planilha do Google
                         sheet.update(f"A{cell.row}:E{cell.row}", [[str(id_limpo), str(cod_i), str(ref_i), str(desc_i), float(qtd_i)]])
                         st.success(f"Item ID {id_limpo} atualizado com sucesso no Google Sheets!")
                     else:
-                        # Adiciona nova linha no final da planilha do Google
                         sheet.append_row([str(id_limpo), str(cod_i), str(ref_i), str(desc_i), float(qtd_i)])
                         st.success(f"Novo item ID {id_limpo} adicionado com sucesso no Google Sheets!")
                     
@@ -851,8 +732,6 @@ with aba4:
 
 # --- ABA 5: NOTAS FISCAIS (ATUALIZAÇÃO DE ESTOQUE VIA GOOGLE SHEETS) ---
 with aba5:
-    import xml.etree.ElementTree as ET
-
     st.header("📥📤 Gestão de Estoque via NF-e (Google Sheets)")
     st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque na nuvem")
 
@@ -900,7 +779,6 @@ with aba5:
                 st.markdown("---")
                 col_btn1, col_btn2 = st.columns(2)
                 
-                # Função auxiliar para conectar no Google Sheets dentro dos botões
                 def conectar_gspread():
                     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
                     if "gcp_service_account" in st.secrets:
@@ -911,13 +789,10 @@ with aba5:
                     client = gspread.authorize(creds)
                     return client.open("sistemaDefran").sheet1
 
-                # --- BOTÃO DE ENTRADA NO GOOGLE SHEETS ---
                 if col_btn1.button("📥 Dar Entrada no Estoque (Google Sheets)", use_container_width=True):
                     try:
                         sheet = conectar_gspread()
-                        # Puxa todos os registros atuais da planilha
-                        dados_planilha = sheet.get_all_records()
-                        df_estoque = pd.DataFrame(dados_planilha)
+                        df_estoque = carregar_estoque_do_google()
                         
                         sucesso = True
                         for item in produtos_nota:
@@ -928,19 +803,18 @@ with aba5:
                                 mask = df_estoque['codigo'].astype(str).str.strip() == cod_nf
                                 
                                 if mask.any():
-                                    # Pega a linha correspondente no Google Sheets (considerando o header, índice real = row do gspread)
-                                    # O gspread usa base 1 e o cabeçalho ocupa a linha 1, logo o índice do pandas + 2 dá a linha exata no Sheets
                                     idx_pandas = df_estoque[mask].index[0]
                                     row_number = idx_pandas + 2 
                                     
-                                    qtd_atual = float(df_estoque.loc[idx_pandas, 'qtde'])
+                                    try:
+                                        qtd_atual = float(df_estoque.loc[idx_pandas, 'qtde'])
+                                    except:
+                                        qtd_atual = 0.0
+                                        
                                     nova_qtd = qtd_atual + qtd_nf
-                                    
-                                    # Atualiza no DataFrame local e na célula específica da planilha do Google
                                     df_estoque.loc[idx_pandas, 'qtde'] = nova_qtd
                                     
-                                    # Descobre qual é a coluna 'qtde' na planilha do Google para atualizar apenas ela
-                                    colunas_sheet = sheet.row_values(1)
+                                    colunas_sheet = [str(c).strip().lower() for c in sheet.row_values(1)]
                                     if 'qtde' in colunas_sheet:
                                         col_index = colunas_sheet.index('qtde') + 1
                                         sheet.update_cell(row_number, col_index, nova_qtd)
@@ -957,12 +831,10 @@ with aba5:
                     except Exception as err:
                         st.error(f"Erro ao dar entrada no Google Sheets: {err}")
                 
-                # --- BOTÃO DE SAÍDA NO GOOGLE SHEETS ---
                 if col_btn2.button("📤 Dar Saída no Estoque (Google Sheets)", use_container_width=True):
                     try:
                         sheet = conectar_gspread()
-                        dados_planilha = sheet.get_all_records()
-                        df_estoque = pd.DataFrame(dados_planilha)
+                        df_estoque = carregar_estoque_do_google()
                         
                         sucesso = True
                         for item in produtos_nota:
@@ -976,12 +848,15 @@ with aba5:
                                     idx_pandas = df_estoque[mask].index[0]
                                     row_number = idx_pandas + 2
                                     
-                                    qtd_atual = float(df_estoque.loc[idx_pandas, 'qtde'])
+                                    try:
+                                        qtd_atual = float(df_estoque.loc[idx_pandas, 'qtde'])
+                                    except:
+                                        qtd_atual = 0.0
+                                        
                                     nova_qtd = max(0.0, qtd_atual - qtd_nf)
-                                    
                                     df_estoque.loc[idx_pandas, 'qtde'] = nova_qtd
                                     
-                                    colunas_sheet = sheet.row_values(1)
+                                    colunas_sheet = [str(c).strip().lower() for c in sheet.row_values(1)]
                                     if 'qtde' in colunas_sheet:
                                         col_index = colunas_sheet.index('qtde') + 1
                                         sheet.update_cell(row_number, col_index, nova_qtd)
