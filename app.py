@@ -841,7 +841,7 @@ with aba4:
 
 # --- ABA 5: NOTAS FISCAIS (ATUALIZAÇÃO DE ESTOQUE VIA GOOGLE SHEETS) ---
 with aba5:
-    st.header("📥📤 Gestão de Estoque via NF-e (Google Sheets)")
+    st.header("📥📤 Gestão de Estoque)")
     st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque na nuvem")
 
     arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_sheets")
