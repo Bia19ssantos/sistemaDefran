@@ -92,10 +92,15 @@ st.markdown("---")
 @st.cache_resource
 def conectar_gspread():
     try:
-        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_dict(dict(st.secrets["gcp_service_account"]), scope)
+        scopes = [
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive"
+        ]
+        creds = Credentials.from_service_account_info(
+            dict(st.secrets["gcp_service_account"]), 
+            scopes=scopes
+        )
         client = gspread.authorize(creds)
-        # Abre o arquivo "sistemaDefran" e seleciona a aba pelo nome correto "estoque"
         sheet = client.open("sistemaDefran").worksheet("estoque")
         return sheet
     except Exception as ex:
