@@ -106,9 +106,28 @@ client = conectar_google()
 
 def carregar_estoque_do_google():
     try:
-        sheet = client.open("estoque_defran").sheet1
-        data = sheet.get_all_records()
-        return pd.DataFrame(data)
+        # Tenta conectar explicitamente na aba chamada "estoque"
+        secret_dict = dict(st.secrets["gcp_service_account"])
+        SCOPES = [
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/drive"
+        ]
+        creds = Credentials.from_service_account_info(secret_dict, scopes=SCOPES)
+        client = gspread.authorize(creds)
+        
+        planilha = client.open("sistemaDefran")
+        sheet = planilha.worksheet("estoque") # <--- AQUI: Pega a aba exata pelo nome
+        
+        # Pega todos os valores como lista de listas para montar o DataFrame de forma blindada
+        dados = sheet.get_all_values()
+        if len(dados) > 1:
+            cabecalho = dados[0]
+            linhas = dados[1:]
+            df = pd.DataFrame(linhas, columns=cabecalho)
+            return df
+        else:
+            return pd.DataFrame()
+            
     except Exception as e:
         st.warning(f"Usando arquivo local (Erro no Google: {e})")
         if os.path.exists("dados/estoque_defran.csv"):
