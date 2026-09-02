@@ -4,13 +4,12 @@ import os
 import base64
 from io import BytesIO
 import gspread
-from google.oauth2.service_account import Credentials
+from oauth2client.service_account import ServiceAccountCredentials
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from datetime import datetime
-import xml.etree.ElementTree as ET
 
 st.set_page_config(page_title="Sistema Defran", layout="centered")
 
@@ -89,15 +88,17 @@ elif os.path.exists("navbar-logo.png"):
     st.image("navbar-logo.png", width=300)
 
 st.markdown("---")
+@st.cache_resource
 
-# --- CONEXÃO NATIVA E ROBUSTA COM O GOOGLE SHEETS ---
-def conectar_gspread():
-    if "gcp_service_account" in st.secrets:
-        creds_dict = dict(st.secrets["gcp_service_account"])
-        client = gspread.service_account_from_dict(creds_dict)
-    else:
-        client = gspread.service_account(filename="credenciais.json")
-    return client.open("sistemaDefran").sheet1
+def conectar_google():
+    try:
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gcp_service_account"], scope)
+        return gspread.authorize(creds)
+    except Exception:
+        return None
+
+client = conectar_google()
 
 def carregar_estoque_do_google():
     try:
