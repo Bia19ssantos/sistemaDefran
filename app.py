@@ -98,15 +98,13 @@ def carregar_estoque_local():
     if os.path.exists(caminho_csv):
         try:
             return pd.read_csv(caminho_csv, sep=',', encoding='utf-8')
-        except Exception as e:
+        except:
             try:
-                # Tenta com latin1 caso o utf-8 dê conflito de codificação
                 return pd.read_csv(caminho_csv, sep=',', encoding='latin1')
             except Exception as ex:
-                st.error(f"Erro ao ler o arquivo CSV local: {ex}")
+                st.error(f"Erro ao ler o estoque local: {ex}")
                 return pd.DataFrame()
     else:
-        st.warning(f"Arquivo local não encontrado em: {caminho_csv}")
         return pd.DataFrame()
 
 def carregar_dados():
