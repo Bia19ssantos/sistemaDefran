@@ -3,8 +3,6 @@ import pandas as pd
 import os
 import base64
 from io import BytesIO
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -305,7 +303,6 @@ with aba1:
 
 
 # --- ABA 2: ESTOQUE DEFRAN ---
-
 with aba2:
     st.header("📊 Consulta de Estoque")
     
@@ -750,7 +747,7 @@ with aba5:
     import xml.etree.ElementTree as ET
 
     st.header("📥📤 Gestão de Estoque via NF-e (Arquivo Local CSV)")
-    st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque diretamente no arquivo `estoque_defran.csv`.")
+    st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque")
 
     arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_csv")
     
