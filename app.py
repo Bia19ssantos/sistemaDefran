@@ -119,11 +119,22 @@ def carregar_estoque_do_google():
             linhas = dados_brutos[1:]
             df = pd.DataFrame(linhas, columns=cabecalho)
             
-            # --- LIMPEZA E CORREÇÃO DE TIPOS PARA O PYARROW ---
-            # Remove espaços em branco dos nomes das colunas e garante unicidade
-            df.columns = [c.strip() for c in df.columns]
+            # --- TRATAMENTO PARA COLUNAS DUPLICADAS OU VAZIAS ---
+            novas_colunas = []
+            vistos = {}
+            for col in df.columns:
+                nome_col = str(col).strip()
+                if not nome_col:
+                    nome_col = "coluna_vazia"
+                if nome_col in vistos:
+                    vistos[nome_col] += 1
+                    novas_colunas.append(f"{nome_col}_{vistos[nome_col]}")
+                else:
+                    vistos[nome_col] = 0
+                    novas_colunas.append(nome_col)
+            df.columns = novas_colunas
             
-            # Converte colunas numéricas de forma segura (substituindo vírgula por ponto se houver)
+            # Converte colunas numéricas de forma segura
             if 'qtde' in df.columns:
                 df['qtde'] = df['qtde'].astype(str).str.replace(',', '.', regex=False)
                 df['qtde'] = pd.to_numeric(df['qtde'], errors='coerce').fillna(0.0)
@@ -131,7 +142,7 @@ def carregar_estoque_do_google():
             if 'id' in df.columns:
                 df['id'] = pd.to_numeric(df['id'], errors='coerce').fillna(0).astype(int)
                 
-            # Garante que todas as outras colunas de texto sejam estritamente strings (evita conflito misto do pyarrow)
+            # Converte o restante para string
             for col in df.columns:
                 if col not in ['qtde', 'id']:
                     df[col] = df[col].astype(str).fillna("")
