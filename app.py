@@ -356,14 +356,27 @@ with aba1:
         st.warning(f"A base '{selecao_aba1}' não foi encontrada ou está vazia.")
 
 
+
 # --- ABA 2: ESTOQUE DEFRAN ---
 with aba2:
     st.header("Estoque Defran")
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
-    df_est = dados_carregados["Estoque Defran"]
+    df_est = dados_carregados["Estoque Defran"].copy()
+    
+    # Garante nomes de colunas únicos e sem espaços para evitar crash do PyArrow
+    if not df_est.empty:
+        df_est.columns = [str(c).strip().lower() for c in df_est.columns]
+        # Remove duplicatas renomeando se houver colunas repetidas
+        cols = pd.Series(df_est.columns)
+        for dup in cols[cols.duplicated()].unique(): 
+            cols[cols == dup] = [f"{dup}_{i}" if i != 0 else dup for i in range(sum(cols == dup))]
+        df_est.columns = cols
+
     if st.session_state.get("busca_estoque") and not df_est.empty:
         termo = st.session_state.busca_estoque
-        df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False)]
+        if 'codigo' in df_est.columns and 'ref_prod' in df_est.columns:
+            df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False, na=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False, na=False)]
+            
     event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
 
     if "ultima_selecao" not in st.session_state:
@@ -383,28 +396,30 @@ with aba2:
         id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
         cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
         ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
-        qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0)), step=0.01)
+        qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0) or 0), step=0.01)
         desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
         submit = st.form_submit_button("Salvar Alteração")
 
-    if submit and client:
+    if submit:
         try:
-            sheet = client.open("estoque_defran").sheet1
-            cell = sheet.find(id_i) 
-            if cell:
-                sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, float(qtd_i)]])
-                st.success(f"Item {id_i} atualizado!")
+            sheet = conectar_gspread()
+            if sheet:
+                cell = sheet.find(str(id_i)) 
+                if cell:
+                    sheet.update(f"A{cell.row}:E{cell.row}", [[str(id_i), str(cod_i), str(ref_i), str(desc_i), float(qtd_i)]])
+                    st.success(f"Item {id_i} atualizado!")
+                else:
+                    sheet.append_row([str(id_i), str(cod_i), str(ref_i), str(desc_i), float(qtd_i)])
+                    st.success(f"Novo item {id_i} adicionado!")
+                st.rerun()
             else:
-                sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
-                st.success(f"Novo item {id_i} adicionado!")
-            st.cache_data.clear()
-            st.rerun()
+                st.error("Não foi possível conectar ao Google Sheets para salvar.")
         except Exception as e:
             st.error(f"Erro ao salvar: {e}")
 
+
+
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
-
-
 
 with aba3:
 
