@@ -363,10 +363,14 @@ with aba2:
             st.error(f"Erro ao salvar: {e}")
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
+
+
+
 with aba3:
+
     st.header("📊 Carga de Trabalho - Lingas")
     caminho_pdf = "docs/cargas_lingas.pdf"
-    
+
     if os.path.exists(caminho_pdf):
         st.info("O visualizador integrado pode ser bloqueado por alguns navegadores. Utilize o botão abaixo para baixar ou visualizar o documento completo com facilidade.")
         with open(caminho_pdf, "rb") as f:
@@ -377,6 +381,7 @@ with aba3:
                 mime="application/pdf",
                 use_container_width=True
             )
+
         st.markdown("---")
         with open(caminho_pdf, "rb") as f:
             base64_pdf = base64.b64encode(f.read()).decode('utf-8')
@@ -384,6 +389,9 @@ with aba3:
         st.markdown(pdf_display, unsafe_allow_html=True)
     else:
         st.error(f"O arquivo PDF não foi encontrado no caminho: {caminho_pdf}.")
+
+import xml.etree.ElementTree as E
+
 
 # --- ABA 4: CADASTRO DE ORÇAMENTO ---
 with aba4:
