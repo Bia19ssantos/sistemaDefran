@@ -92,15 +92,20 @@ st.markdown("---")
 @st.cache_resource
 def conectar_gspread():
     try:
+        from google.oauth2.service_account import Credentials
+        
         scopes = [
             "https://www.googleapis.com/auth/spreadsheets",
             "https://www.googleapis.com/auth/drive"
         ]
-        creds = Credentials.from_service_account_info(
-            dict(st.secrets["gcp_service_account"]), 
-            scopes=scopes
-        )
+        
+        # Converte o segredo do Streamlit em um dicionário puro
+        secrets_dict = dict(st.secrets["gcp_service_account"])
+        
+        creds = Credentials.from_service_account_info(secrets_dict, scopes=scopes)
         client = gspread.authorize(creds)
+        
+        # Tenta abrir pelo nome da planilha e selecionar a aba "estoque"
         sheet = client.open("sistemaDefran").worksheet("estoque")
         return sheet
     except Exception as ex:
