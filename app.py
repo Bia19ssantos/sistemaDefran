@@ -102,7 +102,7 @@ client = conectar_google()
 
 def carregar_estoque_do_google():
     try:
-        sheet = conectar_gspread()
+        sheet = conectar_google()
         dados_brutos = sheet.get_all_values()
         if len(dados_brutos) > 1:
             cabecalho = [str(c).strip().lower() for c in dados_brutos[0]]
