@@ -19,7 +19,7 @@ if "usuario_logado" not in st.session_state:
 if "etapa_boas_vindas" not in st.session_state:
     st.session_state.etapa_boas_vindas = False
 
-# 1. TELA DE LOGIN (Caso não esteja autenticado)
+# 1. TELA DE LOGIN (Só aparece se NÃO estiver autenticado)
 if not st.session_state.autenticado:
     _, col_centro, _ = st.columns([1, 1.5, 1])
     
@@ -38,10 +38,8 @@ if not st.session_state.autenticado:
             usuario_input = st.text_input("Usuário")
             senha_input = st.text_input("Senha", type="password")
             btn_entrar = st.form_submit_button("Entrar", use_container_width=True)
-
             
             if btn_entrar:
-               
                 usuarios_validos = {
                     "beatriz": "626134",
                     "deise": "626134",
@@ -52,13 +50,35 @@ if not st.session_state.autenticado:
                 
                 if usuario_limpo in usuarios_validos and usuarios_validos[usuario_limpo] == senha_input:
                     st.session_state.autenticado = True
-                    
                     st.session_state.usuario_logado = usuario_input.strip().capitalize()
                     st.session_state.etapa_boas_vindas = True
                     st.rerun()
                 else:
                     st.error("Usuário ou senha inválidos.")
-    st.stop()
+    st.stop()  # Para a execução aqui para não carregar o resto do app se não estiver logado
+
+# 2. TELA DE POP-UP DE BOAS-VINDAS (Aparece logo após logar)
+if st.session_state.get("etapa_boas_vindas"):
+    _, col_centro2, _ = st.columns([1, 2, 1])
+    
+    with col_centro2:
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        if os.path.exists("navbar-logo.jpg"):
+            st.image("navbar-logo.jpg", width=350)
+        elif os.path.exists("navbar-logo.png"):
+            st.image("navbar-logo.png", width=350)
+        elif os.path.exists("docs/logoDefran1.png"):
+            st.image("docs/logoDefran1.png", width=350)
+            
+        st.markdown(f"### Olá, {st.session_state.usuario_logado}! Bem-vindo(a) ao Sistema Defran")
+        st.markdown("Gerenciamento de Produtos, Estoque e Propostas Comerciais.")
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        if st.button("🚀 Ir ao Menu Principal", type="primary", use_container_width=True):
+            st.session_state.etapa_boas_vindas = False
+            st.rerun()
+            
+    st.stop()  # Para a execução aqui enquanto estiver na tela de boas-vindas
 
 # 2. TELA DE POP-UP DE BOAS-VINDAS (Após logar, antes de ir ao menu)
 if st.session_state.get("etapa_boas_vindas"):
