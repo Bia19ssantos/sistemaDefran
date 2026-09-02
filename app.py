@@ -308,55 +308,28 @@ with aba1:
 
 with aba2:
     st.header("📊 Consulta de Estoque")
+    
+    # Carrega os dados do estoque local
     df_estoque = carregar_estoque_local()
     
     if not df_estoque.empty:
-        st.dataframe(df_estoque, use_container_width=True)
+        # Campo de filtro único para a tabela
+        pesquisa = st.text_input("🔍 Filtrar por código ou referência:", key="filtro_estoque_unico")
+        
+        if pesquisa:
+            # Filtra considerando a coluna 'codigo' ou 'ref_prod'
+            mask = (
+                df_estoque['codigo'].astype(str).str.contains(pesquisa, case=False, na=False) |
+                df_estoque['ref_prod'].astype(str).str.contains(pesquisa, case=False, na=False)
+            )
+            df_exibicao = df_estoque[mask]
+        else:
+            df_exibicao = df_estoque
+            
+        # Exibe apenas uma tabela limpa e responsiva
+        st.dataframe(df_exibicao, use_container_width=True)
     else:
         st.info("Nenhum dado encontrado no estoque local.")
-        
-    termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
-    df_est = dados_carregados["Estoque Defran"]
-    if st.session_state.get("busca_estoque") and not df_est.empty:
-        termo = st.session_state.busca_estoque
-        df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False)]
-    event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
-
-    if "ultima_selecao" not in st.session_state:
-        st.session_state.ultima_selecao = None
-    if event and event.selection.rows:
-        st.session_state.ultima_selecao = event.selection.rows[0]
-
-    dados_padrao = {"id": "", "codigo": "", "ref_prod": "", "qtde": 0.0, "desc_prod": ""}
-    if st.session_state.ultima_selecao is not None and not df_est.empty:
-        try:
-            dados_padrao = df_est.iloc[st.session_state.ultima_selecao].to_dict()
-        except:
-            st.session_state.ultima_selecao = None
-
-    with st.form(key="form_estoque", clear_on_submit=True):
-        col1, col2, col3, col4 = st.columns(4)
-        id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
-        cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
-        ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
-        qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0)), step=0.01)
-        desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
-        submit = st.form_submit_button("Salvar Alteração")
-
-    if submit and client:
-        try:
-            sheet = client.open("estoque_defran").sheet1
-            cell = sheet.find(id_i) 
-            if cell:
-                sheet.update(f"A{cell.row}:E{cell.row}", [[id_i, cod_i, ref_i, desc_i, float(qtd_i)]])
-                st.success(f"Item {id_i} atualizado!")
-            else:
-                sheet.append_row([id_i, cod_i, ref_i, desc_i, float(qtd_i)])
-                st.success(f"Novo item {id_i} adicionado!")
-            st.cache_data.clear()
-            st.rerun()
-        except Exception as e:
-            st.error(f"Erro ao salvar: {e}")
 
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
