@@ -93,17 +93,16 @@ st.markdown("---")
 # --- FUNÇÃO ROBUSTA DE CONEXÃO E LEITURA DO GOOGLE SHEETS ---
 def carregar_estoque_do_google():
     try:
-        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
         if "gcp_service_account" in st.secrets:
             creds_dict = dict(st.secrets["gcp_service_account"])
-            creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+            creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
         else:
-            creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
+            creds = Credentials.from_service_account_file("credenciais.json", scopes=scope)
             
         client = gspread.authorize(creds)
         sheet = client.open("sistemaDefran").sheet1
         
-        # Leitura segura baseada em valores matriciais (evita o erro <Response [200]>)
         dados_brutos = sheet.get_all_values()
         if len(dados_brutos) > 1:
             cabecalho = [str(c).strip().lower() for c in dados_brutos[0]]
@@ -288,12 +287,12 @@ with aba2:
                 if not id_i.strip():
                     st.error("O campo 'Id' não pode estar vazio para salvar.")
                 else:
-                    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+                    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
                     if "gcp_service_account" in st.secrets:
                         creds_dict = dict(st.secrets["gcp_service_account"])
-                        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+                        creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
                     else:
-                        creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
+                        creds = Credentials.from_service_account_file("credenciais.json", scopes=scope)
                     
                     client = gspread.authorize(creds)
                     sheet = client.open("sistemaDefran").sheet1
@@ -780,12 +779,12 @@ with aba5:
                 col_btn1, col_btn2 = st.columns(2)
                 
                 def conectar_gspread():
-                    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+                    scope = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
                     if "gcp_service_account" in st.secrets:
                         creds_dict = dict(st.secrets["gcp_service_account"])
-                        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+                        creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
                     else:
-                        creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
+                        creds = Credentials.from_service_account_file("credenciais.json", scopes=scope)
                     client = gspread.authorize(creds)
                     return client.open("sistemaDefran").sheet1
 
