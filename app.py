@@ -330,8 +330,8 @@ with aba2:
     df_estoque = carregar_estoque_local()
     
     if not df_estoque.empty:
-        # Campo de filtro para encontrar o item mais rápido
-        pesquisa = st.text_input("🔍 Filtrar por código ou referência:", key="filtro_estoque_unico")
+        # Campo de pesquisa opcional para filtrar a tabela se necessário
+        pesquisa = st.text_input("🔍 Filtrar por código ou referência:", key="filtro_estoque_aba2")
         
         if pesquisa:
             mask = (
@@ -342,55 +342,88 @@ with aba2:
         else:
             df_exibicao = df_estoque
             
-        # Exibe a tabela permitindo selecionar uma linha
-        st.write("Selecione a linha na tabela abaixo para alterar os dados do item:")
-        
-        # Usamos o data_editor ou dataframe com seleção habilitada (compatível com versões recentes do Streamlit)
-        evento_selecao = st.dataframe(
+        # Exibe a tabela com a seleção habilitada
+        event = st.dataframe(
             df_exibicao, 
             use_container_width=True, 
             on_select="rerun", 
             selection_mode="single-row",
-            key="tabela_estoque_selecao"
+            key="tabela_estoque"
         )
         
-        # Verifica se o usuário selecionou alguma linha
-        linhas_selecionadas = evento_selecao.get("selection", {}).get("rows", [])
+        # Gerencia a última seleção na sessão
+        if "ultima_selecao" not in st.session_state:
+            st.session_state.ultima_selecao = None
+            
+        if event and event.selection.rows:
+            st.session_state.ultima_selecao = event.selection.rows[0]
+
+        dados_padrao = {"id": "", "codigo": "", "ref_prod": "", "qtde": 0.0, "desc_prod": ""}
         
-        if linhas_selecionadas:
-            idx_selecionado_exibicao = linhas_selecionadas[0]
-            # Pega a linha correspondente no dataframe filtrado
-            item_selecionado = df_exibicao.iloc[idx_selecionado_exibicao]
+        if st.session_state.ultima_selecao is not None and not df_exibicao.empty:
+            try:
+                # Pega os dados da linha selecionada no dataframe exibido
+                dados_padrao = df_exibicao.iloc[st.session_state.ultima_selecao].to_dict()
+            except:
+                st.session_state.ultima_selecao = None
+
+        st.markdown("---")
+        st.subheader("📝 Gerenciar / Alterar Item Selecionado")
+
+        with st.form(key="form_estoque", clear_on_submit=False):
+            col1, col2, col3, col4 = st.columns(4)
+            id_i = col1.text_input("Id", value=str(dados_padrao.get("id", "")))
+            cod_i = col2.text_input("Codigo", value=str(dados_padrao.get("codigo", "")))
+            ref_i = col3.text_input("Referencia", value=str(dados_padrao.get("ref_prod", "")))
+            qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0) if pd.notna(dados_padrao.get("qtde")) else 0), step=0.01)
+            desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
             
-            # Descobre o índice real no dataframe completo (df_estoque)
-            idx_real = item_selecionado.name
-            
-            st.markdown("---")
-            st.subheader(f"✏️ Editando Item: {item_selecionado.get('desc_prod', '')} (Código: {item_selecionado.get('codigo', '')})")
-            
-            with st.form("form_editar_estoque_item"):
-                col_e1, col_e2 = st.columns(2)
+            submit = st.form_submit_button("Salvar Alteração / Inserir", type="primary", use_container_width=True)
+
+        if submit:
+            try:
+                caminho_csv = "dados/estoque_defran.csv"
                 
-                # Campos editáveis baseados nas colunas existentes
-                nova_qtde = col_e1.number_input("Quantidade", value=float(item_selecionado.get('qtde', 0.0)), step=1.0)
-                nova_ref = col_e2.text_input("Referência", value=str(item_selecionado.get('ref_prod', '')))
-                
-                btn_salvar_alteracao = st.form_submit_button("💾 Salvar Alterações no Estoque", type="primary", use_container_width=True)
-                
-                if btn_salvar_alteracao:
-                    # Atualiza os valores no DataFrame principal
-                    df_estoque.loc[idx_real, 'qtde'] = nova_qtde
-                    df_estoque.loc[idx_real, 'ref_prod'] = nova_ref
+                # Certifica-se de que o ID não está vazio
+                if not id_i.strip():
+                    st.error("O campo 'Id' não pode estar vazio para salvar.")
+                else:
+                    # Converte a coluna id para string para comparar sem erro de tipo
+                    df_estoque['id'] = df_estoque['id'].astype(str).str.strip()
+                    id_limpo = str(id_i).strip()
                     
-                    # Salva de volta no arquivo CSV local
-                    caminho_csv = "dados/estoque_defran.csv"
+                    # Verifica se o ID já existe no DataFrame
+                    if id_limpo in df_estoque['id'].values:
+                        # Atualiza os dados da linha existente
+                        mask_id = df_estoque['id'] == id_limpo
+                        df_estoque.loc[mask_id, 'codigo'] = cod_i
+                        df_estoque.loc[mask_id, 'ref_prod'] = ref_i
+                        df_estoque.loc[mask_id, 'desc_prod'] = desc_i
+                        df_estoque.loc[mask_id, 'qtde'] = float(qtd_i)
+                        st.success(f"Item ID {id_limpo} atualizado com sucesso!")
+                    else:
+                        # Adiciona uma nova linha se o ID não existir
+                        nova_linha = pd.DataFrame([{
+                            "id": id_limpo,
+                            "codigo": cod_i,
+                            "ref_prod": ref_i,
+                            "desc_prod": desc_i,
+                            "qtde": float(qtd_i)
+                        }])
+                        df_estoque = pd.concat([df_estoque, nova_linha], ignore_index=True)
+                        st.success(f"Novo item ID {id_limpo} adicionado com sucesso!")
+                    
+                    # Salva permanentemente no arquivo CSV local
                     df_estoque.to_csv(caminho_csv, index=False, encoding='utf-8')
                     
-                    st.success("Alterações salvas com sucesso no arquivo local!")
+                    # Limpa a seleção e recarrega a página
+                    st.session_state.ultima_selecao = None
                     st.rerun()
+                    
+            except Exception as e:
+                st.error(f"Erro ao salvar no arquivo local: {e}")
     else:
         st.info("Nenhum dado encontrado no estoque local.")
-
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
 
