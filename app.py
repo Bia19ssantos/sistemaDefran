@@ -90,7 +90,7 @@ elif os.path.exists("navbar-logo.png"):
 st.markdown("---")
 @st.cache_resource
 
-def conectar_google():
+def conectar_gspread():
     try:
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
         creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gcp_service_account"], scope)
@@ -102,7 +102,7 @@ client = conectar_google()
 
 def carregar_estoque_do_google():
     try:
-        sheet = conectar_google()
+        sheet = conectar_gspread()
         dados_brutos = sheet.get_all_values()
         if len(dados_brutos) > 1:
             cabecalho = [str(c).strip().lower() for c in dados_brutos[0]]
