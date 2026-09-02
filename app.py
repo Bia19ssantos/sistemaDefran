@@ -115,24 +115,26 @@ def carregar_estoque_do_google():
             
         dados_brutos = sheet.get_all_values()
         if len(dados_brutos) > 1:
-            cabecalho = [str(c).strip().lower() for c in dados_brutos[0]]
+            cabecalho_bruto = dados_brutos[0]
             linhas = dados_brutos[1:]
-            df = pd.DataFrame(linhas, columns=cabecalho)
             
-            # --- TRATAMENTO PARA COLUNAS DUPLICADAS OU VAZIAS ---
-            novas_colunas = []
+            # Garante nomes de colunas únicos, sem espaços e sem vazios
+            colunas_limpas = []
             vistos = {}
-            for col in df.columns:
-                nome_col = str(col).strip()
-                if not nome_col:
-                    nome_col = "coluna_vazia"
-                if nome_col in vistos:
-                    vistos[nome_col] += 1
-                    novas_colunas.append(f"{nome_col}_{vistos[nome_col]}")
+            for idx, c in enumerate(cabecalho_bruto):
+                nome = str(c).strip().lower()
+                if not nome or nome == "nan":
+                    nome = f"col_{idx}"
+                
+                if nome in vistos:
+                    vistos[nome] += 1
+                    nome_final = f"{nome}_{vistos[nome]}"
                 else:
-                    vistos[nome_col] = 0
-                    novas_colunas.append(nome_col)
-            df.columns = novas_colunas
+                    vistos[nome] = 0
+                    nome_final = nome
+                colunas_limpas.append(nome_final)
+                
+            df = pd.DataFrame(linhas, columns=colunas_limpas)
             
             # Converte colunas numéricas de forma segura
             if 'qtde' in df.columns:
@@ -142,7 +144,7 @@ def carregar_estoque_do_google():
             if 'id' in df.columns:
                 df['id'] = pd.to_numeric(df['id'], errors='coerce').fillna(0).astype(int)
                 
-            # Converte o restante para string
+            # Converte o restante para string pura para evitar conflito de tipos
             for col in df.columns:
                 if col not in ['qtde', 'id']:
                     df[col] = df[col].astype(str).fillna("")
@@ -362,21 +364,23 @@ with aba2:
     st.header("Estoque Defran")
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"].copy()
-    
-    # Garante nomes de colunas únicos e sem espaços para evitar crash do PyArrow
-    if not df_est.empty:
-        df_est.columns = [str(c).strip().lower() for c in df_est.columns]
-        # Remove duplicatas renomeando se houver colunas repetidas
-        cols = pd.Series(df_est.columns)
-        for dup in cols[cols.duplicated()].unique(): 
-            cols[cols == dup] = [f"{dup}_{i}" if i != 0 else dup for i in range(sum(cols == dup))]
-        df_est.columns = cols
 
     if st.session_state.get("busca_estoque") and not df_est.empty:
         termo = st.session_state.busca_estoque
-        if 'codigo' in df_est.columns and 'ref_prod' in df_est.columns:
-            df_est = df_est[df_est['codigo'].astype(str).str.contains(termo, case=False, na=False) | df_est['ref_prod'].astype(str).str.contains(termo, case=False, na=False)]
+        # Procura nas colunas correspondentes de forma segura
+        cols_disponiveis = df_est.columns.tolist()
+        col_cod = next((c for c in cols_disponiveis if 'cod' in c), None)
+        col_ref = next((c for c in cols_disponiveis if 'ref' in c), None)
+        
+        condicao = pd.Series([False] * len(df_est))
+        if col_cod:
+            condicao = condicao | df_est[col_cod].astype(str).str.contains(termo, case=False, na=False)
+        if col_ref:
+            condicao = condicao | df_est[col_ref].astype(str).str.contains(termo, case=False, na=False)
             
+        if col_cod or col_ref:
+            df_est = df_est[condicao]
+
     event = st.dataframe(df_est, use_container_width=True, on_select="rerun", selection_mode="single-row")
 
     if "ultima_selecao" not in st.session_state:
