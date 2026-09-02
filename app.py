@@ -3,6 +3,8 @@ import pandas as pd
 import os
 import base64
 from io import BytesIO
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -111,18 +113,23 @@ elif os.path.exists("navbar-logo.png"):
 st.markdown("---")
 
 
-def carregar_estoque_local():
-    caminho_csv = "dados/estoque_defran.csv"
-    if os.path.exists(caminho_csv):
-        try:
-            return pd.read_csv(caminho_csv, sep=',', encoding='utf-8')
-        except:
-            try:
-                return pd.read_csv(caminho_csv, sep=',', encoding='latin1')
-            except Exception as ex:
-                st.error(f"Erro ao ler o estoque local: {ex}")
-                return pd.DataFrame()
-    else:
+def carregar_estoque_do_google():
+    try:
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        
+        # Puxa as credenciais dos Secrets do Streamlit Cloud ou arquivo local
+        if "gcp_service_account" in st.secrets:
+            creds_dict = dict(st.secrets["gcp_service_account"])
+            creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+        else:
+            creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
+            
+        client = gspread.authorize(creds)
+        sheet = client.open("estoque_defran").sheet1
+        dados = sheet.get_all_records()
+        return pd.DataFrame(dados)
+    except Exception as ex:
+        st.error(f"Erro ao carregar o estoque do Google Sheets: {ex}")
         return pd.DataFrame()
 
 def carregar_dados():
@@ -147,8 +154,8 @@ def carregar_dados():
         else:
             dados_carregados[nome] = pd.DataFrame()
             
-    # ALTERADO AQUI: Puxa o estoque do arquivo local CSV em vez do Google
-    dados_carregados["Estoque Defran"] = carregar_estoque_local()
+    # Retorna o estoque direto do Google Sheets
+    dados_carregados["Estoque Defran"] = carregar_estoque_do_google()
      
     # Carregar Clientes
     caminho_clientes = "dados/clientes.csv"
@@ -324,13 +331,29 @@ with aba1:
 
 # --- ABA 2: ESTOQUE DEFRAN ---
 with aba2:
-    st.header("📊 Consulta e Alteração de Estoque")
+    st.header("📊 Consulta e Alteração de Estoque (Google Sheets)")
     
-    # Carrega os dados do estoque local
-    df_estoque = carregar_estoque_local()
+    # Função interna para carregar do Google Sheets
+    def carregar_estoque_google():
+        try:
+            scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+            if "gcp_service_account" in st.secrets:
+                creds_dict = dict(st.secrets["gcp_service_account"])
+                creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+            else:
+                creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
+            
+            client = gspread.authorize(creds)
+            sheet = client.open("sistemaDefran").sheet1
+            dados = sheet.get_all_records()
+            return pd.DataFrame(dados)
+        except Exception as e:
+            st.error(f"Erro ao carregar do Google Sheets: {e}")
+            return pd.DataFrame()
+
+    df_estoque = carregar_estoque_google()
     
     if not df_estoque.empty:
-        # Campo de pesquisa opcional para filtrar a tabela se necessário
         pesquisa = st.text_input("🔍 Filtrar por código ou referência:", key="filtro_estoque_aba2")
         
         if pesquisa:
@@ -342,7 +365,6 @@ with aba2:
         else:
             df_exibicao = df_estoque
             
-        # Exibe a tabela com a seleção habilitada
         event = st.dataframe(
             df_exibicao, 
             use_container_width=True, 
@@ -351,7 +373,6 @@ with aba2:
             key="tabela_estoque"
         )
         
-        # Gerencia a última seleção na sessão
         if "ultima_selecao" not in st.session_state:
             st.session_state.ultima_selecao = None
             
@@ -362,7 +383,6 @@ with aba2:
         
         if st.session_state.ultima_selecao is not None and not df_exibicao.empty:
             try:
-                # Pega os dados da linha selecionada no dataframe exibido
                 dados_padrao = df_exibicao.iloc[st.session_state.ultima_selecao].to_dict()
             except:
                 st.session_state.ultima_selecao = None
@@ -378,52 +398,43 @@ with aba2:
             qtd_i = col4.number_input("Qtde", value=float(dados_padrao.get("qtde", 0) if pd.notna(dados_padrao.get("qtde")) else 0), step=0.01)
             desc_i = st.text_input("Descricao", value=str(dados_padrao.get("desc_prod", "")))
             
-            submit = st.form_submit_button("Salvar Alteração / Inserir", type="primary", use_container_width=True)
+            submit = st.form_submit_button("Salvar Alteração / Inserir no Google Sheets", type="primary", use_container_width=True)
 
         if submit:
             try:
-                caminho_csv = "dados/estoque_defran.csv"
-                
-                # Certifica-se de que o ID não está vazio
                 if not id_i.strip():
                     st.error("O campo 'Id' não pode estar vazio para salvar.")
                 else:
-                    # Converte a coluna id para string para comparar sem erro de tipo
-                    df_estoque['id'] = df_estoque['id'].astype(str).str.strip()
-                    id_limpo = str(id_i).strip()
-                    
-                    # Verifica se o ID já existe no DataFrame
-                    if id_limpo in df_estoque['id'].values:
-                        # Atualiza os dados da linha existente
-                        mask_id = df_estoque['id'] == id_limpo
-                        df_estoque.loc[mask_id, 'codigo'] = cod_i
-                        df_estoque.loc[mask_id, 'ref_prod'] = ref_i
-                        df_estoque.loc[mask_id, 'desc_prod'] = desc_i
-                        df_estoque.loc[mask_id, 'qtde'] = float(qtd_i)
-                        st.success(f"Item ID {id_limpo} atualizado com sucesso!")
+                    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+                    if "gcp_service_account" in st.secrets:
+                        creds_dict = dict(st.secrets["gcp_service_account"])
+                        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
                     else:
-                        # Adiciona uma nova linha se o ID não existir
-                        nova_linha = pd.DataFrame([{
-                            "id": id_limpo,
-                            "codigo": cod_i,
-                            "ref_prod": ref_i,
-                            "desc_prod": desc_i,
-                            "qtde": float(qtd_i)
-                        }])
-                        df_estoque = pd.concat([df_estoque, nova_linha], ignore_index=True)
-                        st.success(f"Novo item ID {id_limpo} adicionado com sucesso!")
+                        creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
                     
-                    # Salva permanentemente no arquivo CSV local
-                    df_estoque.to_csv(caminho_csv, index=False, encoding='utf-8')
+                    client = gspread.authorize(creds)
+                    sheet = client.open("sistemaDefran").sheet1
                     
-                    # Limpa a seleção e recarrega a página
+                    id_limpo = str(id_i).strip()
+                    cell = sheet.find(id_limpo)
+                    
+                    if cell:
+                        # Atualiza a linha existente diretamente na planilha do Google
+                        sheet.update(f"A{cell.row}:E{cell.row}", [[str(id_limpo), str(cod_i), str(ref_i), str(desc_i), float(qtd_i)]])
+                        st.success(f"Item ID {id_limpo} atualizado com sucesso no Google Sheets!")
+                    else:
+                        # Adiciona nova linha no final da planilha do Google
+                        sheet.append_row([str(id_limpo), str(cod_i), str(ref_i), str(desc_i), float(qtd_i)])
+                        st.success(f"Novo item ID {id_limpo} adicionado com sucesso no Google Sheets!")
+                    
+                    st.cache_data.clear()
                     st.session_state.ultima_selecao = None
                     st.rerun()
                     
             except Exception as e:
-                st.error(f"Erro ao salvar no arquivo local: {e}")
+                st.error(f"Erro ao salvar no Google Sheets: {e}")
     else:
-        st.info("Nenhum dado encontrado no estoque local.")
+        st.info("Nenhum dado encontrado no Google Sheets.")
 
 # --- ABA 3: CARGA DE TRABALHO LINGAS ---
 
@@ -838,14 +849,14 @@ with aba4:
             on_click=limpar_tela_pos_pdf
         )
 
-# --- ABA 5: NOTAS FISCAIS (ATUALIZAÇÃO DE ESTOQUE VIA CSV LOCAL) ---
+# --- ABA 5: NOTAS FISCAIS (ATUALIZAÇÃO DE ESTOQUE VIA GOOGLE SHEETS) ---
 with aba5:
     import xml.etree.ElementTree as ET
 
-    st.header("📥📤 Gestão de Estoque via NF-e (Arquivo Local CSV)")
-    st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque")
+    st.header("📥📤 Gestão de Estoque via NF-e (Google Sheets)")
+    st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque na nuvem")
 
-    arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_csv")
+    arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_sheets")
     
     if arquivo_xml_unico:
         try:
@@ -889,63 +900,103 @@ with aba5:
                 st.markdown("---")
                 col_btn1, col_btn2 = st.columns(2)
                 
-                caminho_csv = "dados/estoque_defran.csv"
-                
-                # --- BOTÃO DE ENTRADA NO CSV ---
-                if col_btn1.button("📥 Dar Entrada no Estoque Local", use_container_width=True):
-                    if os.path.exists(caminho_csv):
-                        df_estoque = carregar_estoque_local()
-                        sucesso = True
+                # Função auxiliar para conectar no Google Sheets dentro dos botões
+                def conectar_gspread():
+                    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+                    if "gcp_service_account" in st.secrets:
+                        creds_dict = dict(st.secrets["gcp_service_account"])
+                        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+                    else:
+                        creds = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json", scope)
+                    client = gspread.authorize(creds)
+                    return client.open("sistemaDefran").sheet1
+
+                # --- BOTÃO DE ENTRADA NO GOOGLE SHEETS ---
+                if col_btn1.button("📥 Dar Entrada no Estoque (Google Sheets)", use_container_width=True):
+                    try:
+                        sheet = conectar_gspread()
+                        # Puxa todos os registros atuais da planilha
+                        dados_planilha = sheet.get_all_records()
+                        df_estoque = pd.DataFrame(dados_planilha)
                         
+                        sucesso = True
                         for item in produtos_nota:
                             cod_nf = item["Código"]
                             qtd_nf = item["Quantidade"]
                             
-                            # Procura o código na coluna 'codigo' do DataFrame local
-                            # Certifique-se de que a coluna no seu CSV se chama exatamente 'codigo'
-                            mask = df_estoque['codigo'].astype(str).str.strip() == cod_nf
-                            
-                            if mask.any():
-                                # Pega a quantidade atual, soma a da NF
-                                qtd_atual = float(df_estoque.loc[mask, 'qtde'].values[0])
-                                nova_qtd = qtd_atual + qtd_nf
-                                df_estoque.loc[mask, 'qtde'] = nova_qtd
+                            if not df_estoque.empty and 'codigo' in df_estoque.columns:
+                                mask = df_estoque['codigo'].astype(str).str.strip() == cod_nf
+                                
+                                if mask.any():
+                                    # Pega a linha correspondente no Google Sheets (considerando o header, índice real = row do gspread)
+                                    # O gspread usa base 1 e o cabeçalho ocupa a linha 1, logo o índice do pandas + 2 dá a linha exata no Sheets
+                                    idx_pandas = df_estoque[mask].index[0]
+                                    row_number = idx_pandas + 2 
+                                    
+                                    qtd_atual = float(df_estoque.loc[idx_pandas, 'qtde'])
+                                    nova_qtd = qtd_atual + qtd_nf
+                                    
+                                    # Atualiza no DataFrame local e na célula específica da planilha do Google
+                                    df_estoque.loc[idx_pandas, 'qtde'] = nova_qtd
+                                    
+                                    # Descobre qual é a coluna 'qtde' na planilha do Google para atualizar apenas ela
+                                    colunas_sheet = sheet.row_values(1)
+                                    if 'qtde' in colunas_sheet:
+                                        col_index = colunas_sheet.index('qtde') + 1
+                                        sheet.update_cell(row_number, col_index, nova_qtd)
+                                else:
+                                    st.warning(f"Produto {cod_nf} não encontrado no Google Sheets.")
+                                    sucesso = False
                             else:
-                                st.warning(f"Produto {cod_nf} não encontrado no CSV local.")
+                                st.warning("A planilha do Google Sheets está vazia ou sem a coluna 'codigo'.")
                                 sucesso = False
-                        
-                        # Salva as alterações de volta no arquivo CSV
-                        df_estoque.to_csv(caminho_csv, index=False, encoding='utf-8')
+                                
                         if sucesso:
-                            st.success("Estoque atualizado e salvo no arquivo CSV local com sucesso!")
-                    else:
-                        st.error(f"O arquivo {caminho_csv} não foi encontrado.")
+                            st.success("Entrada registrada e salva no Google Sheets com sucesso!")
+                            st.cache_data.clear()
+                    except Exception as err:
+                        st.error(f"Erro ao dar entrada no Google Sheets: {err}")
                 
-                # --- BOTÃO DE SAÍDA NO CSV ---
-                if col_btn2.button("📤 Dar Saída no Estoque Local", use_container_width=True):
-                    if os.path.exists(caminho_csv):
-                        df_estoque = carregar_estoque_local()
-                        sucesso = True
+                # --- BOTÃO DE SAÍDA NO GOOGLE SHEETS ---
+                if col_btn2.button("📤 Dar Saída no Estoque (Google Sheets)", use_container_width=True):
+                    try:
+                        sheet = conectar_gspread()
+                        dados_planilha = sheet.get_all_records()
+                        df_estoque = pd.DataFrame(dados_planilha)
                         
+                        sucesso = True
                         for item in produtos_nota:
                             cod_nf = item["Código"]
                             qtd_nf = item["Quantidade"]
                             
-                            mask = df_estoque['codigo'].astype(str).str.strip() == cod_nf
-                            
-                            if mask.any():
-                                qtd_atual = float(df_estoque.loc[mask, 'qtde'].values[0])
-                                nova_qtd = max(0.0, qtd_atual - qtd_nf)
-                                df_estoque.loc[mask, 'qtde'] = nova_qtd
+                            if not df_estoque.empty and 'codigo' in df_estoque.columns:
+                                mask = df_estoque['codigo'].astype(str).str.strip() == cod_nf
+                                
+                                if mask.any():
+                                    idx_pandas = df_estoque[mask].index[0]
+                                    row_number = idx_pandas + 2
+                                    
+                                    qtd_atual = float(df_estoque.loc[idx_pandas, 'qtde'])
+                                    nova_qtd = max(0.0, qtd_atual - qtd_nf)
+                                    
+                                    df_estoque.loc[idx_pandas, 'qtde'] = nova_qtd
+                                    
+                                    colunas_sheet = sheet.row_values(1)
+                                    if 'qtde' in colunas_sheet:
+                                        col_index = colunas_sheet.index('qtde') + 1
+                                        sheet.update_cell(row_number, col_index, nova_qtd)
+                                else:
+                                    st.warning(f"Produto {cod_nf} não encontrado no Google Sheets.")
+                                    sucesso = False
                             else:
-                                st.warning(f"Produto {cod_nf} não encontrado no CSV local.")
+                                st.warning("A planilha do Google Sheets está vazia ou sem a coluna 'codigo'.")
                                 sucesso = False
-                        
-                        df_estoque.to_csv(caminho_csv, index=False, encoding='utf-8')
+                                
                         if sucesso:
-                            st.success("Saída registrada e salva no arquivo CSV local com sucesso!")
-                    else:
-                        st.error(f"O arquivo {caminho_csv} não foi encontrado.")
+                            st.success("Saída registrada e salva no Google Sheets com sucesso!")
+                            st.cache_data.clear()
+                    except Exception as err:
+                        st.error(f"Erro ao dar saída no Google Sheets: {err}")
                         
         except Exception as e:
-            st.error(f"Erro ao processar o arquivo XML ou atualizar o CSV: {e}")
+            st.error(f"Erro ao processar o arquivo XML: {e}")
