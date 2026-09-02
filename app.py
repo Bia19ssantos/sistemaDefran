@@ -118,12 +118,31 @@ def carregar_estoque_do_google():
             cabecalho = [str(c).strip().lower() for c in dados_brutos[0]]
             linhas = dados_brutos[1:]
             df = pd.DataFrame(linhas, columns=cabecalho)
+            
+            # --- LIMPEZA E CORREÇÃO DE TIPOS PARA O PYARROW ---
+            # Remove espaços em branco dos nomes das colunas e garante unicidade
+            df.columns = [c.strip() for c in df.columns]
+            
+            # Converte colunas numéricas de forma segura (substituindo vírgula por ponto se houver)
+            if 'qtde' in df.columns:
+                df['qtde'] = df['qtde'].astype(str).str.replace(',', '.', regex=False)
+                df['qtde'] = pd.to_numeric(df['qtde'], errors='coerce').fillna(0.0)
+                
+            if 'id' in df.columns:
+                df['id'] = pd.to_numeric(df['id'], errors='coerce').fillna(0).astype(int)
+                
+            # Garante que todas as outras colunas de texto sejam estritamente strings (evita conflito misto do pyarrow)
+            for col in df.columns:
+                if col not in ['qtde', 'id']:
+                    df[col] = df[col].astype(str).fillna("")
+                    
             return df
         else:
             return pd.DataFrame()
     except Exception as ex:
         st.error(f"Erro ao carregar o estoque do Google Sheets: {ex}")
         return pd.DataFrame()
+        
 
 def carregar_dados():
     cols_gunnebo = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'comprimento', 'valor_venda', 'preco_linga']
