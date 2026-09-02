@@ -98,7 +98,7 @@ def conectar_gspread():
     except Exception:
         return None
 
-client = conectar_google()
+client = conectar_gspread()
 
 def carregar_estoque_do_google():
     try:
