@@ -118,7 +118,7 @@ def carregar_estoque_do_google():
 def carregar_dados():
     cols_gunnebo = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'comprimento', 'valor_venda', 'preco_linga']
     cols_crosby = ['ref_prod', 'desc_prod', 'ncm', 'sap', 'ipi', 'tipo', 'valor_custo', 'carga_trabalho', 'comprimento', 'valor_venda']
-    
+
     arquivos = {
         "Produtos Gunnebo": ("prod_gunnebo.csv", cols_gunnebo),
         "Produtos Crosby": ("prod_crosby.csv", cols_crosby),
@@ -126,7 +126,7 @@ def carregar_dados():
     }
     
     dados_carregados = {}
-    
+
     for nome, (arquivo, colunas) in arquivos.items():
         caminho = f"dados/{arquivo}"
         if os.path.exists(caminho):
@@ -136,18 +136,111 @@ def carregar_dados():
                 dados_carregados[nome] = pd.DataFrame()
         else:
             dados_carregados[nome] = pd.DataFrame()
-            
+           
     dados_carregados["Estoque Defran"] = carregar_estoque_do_google()
-     
+
+
+    # Carregar Clientes
     caminho_clientes = "dados/clientes.csv"
     if os.path.exists(caminho_clientes):
         dados_carregados["Clientes"] = pd.read_csv(caminho_clientes, sep=',', encoding='latin1')
     else:
         dados_carregados["Clientes"] = pd.DataFrame()
-        
     return dados_carregados
-
 dados_carregados = carregar_dados()
+
+
+def carregar_bases_txt():
+    produtos_dict = {}
+    lingas_dict = {}
+
+    caminho_prod = "docs/produtos_info.txt"
+    
+    if os.path.exists(caminho_prod):
+        with open(caminho_prod, "r", encoding="utf-8") as f:
+            conteudo = f.read()
+        for bloco in conteudo.split("\n\n"):
+            linhas = bloco.strip().split("\n")
+            if not linhas or not linhas[0]:
+                continue
+
+            dados_item = {}
+            sap_encontrado = ""
+            ref_encontrada = ""
+
+            primeira_linha = linhas[0].strip()
+            if ":" not in primeira_linha:
+                sap_encontrado = primeira_linha
+                dados_item["sap"] = primeira_linha
+
+            for linha in linhas[1:]:
+                if ":" in linha:
+                    chave, valor = linha.split(":", 1)
+                    chave_limpa = chave.strip().lower()
+                    valor_limpo = valor.strip()
+                    if "referência" in chave_limpa:
+                        ref_encontrada = valor_limpo
+                        dados_item["referencia"] = valor_limpo
+                    elif "descrição" in chave_limpa:
+                        dados_item["descricao"] = valor_limpo
+                    elif "prazo de entrega" in chave_limpa:
+                        dados_item["prazo"] = valor_limpo
+                    elif "fator de segurança" in chave_limpa:
+                        dados_item["fator"] = valor_limpo
+                    elif "ncm" in chave_limpa:
+                        dados_item["ncm"] = valor_limpo
+                    elif "icms" in chave_limpa:
+                        dados_item["icms"] = valor_limpo
+                    elif "ipi" in chave_limpa:
+                        dados_item["ipi"] = valor_limpo
+      
+
+            if sap_encontrado:
+                produtos_dict[sap_encontrado] = dados_item
+            if ref_encontrada:
+                produtos_dict[ref_encontrada] = dados_item
+
+
+    # Base de Lingas
+    caminho_lingas = "docs/lingas.info.txt" 
+    
+    if os.path.exists(caminho_lingas):
+        with open(caminho_lingas, "r", encoding="utf-8") as f:
+            conteudo_l = f.read()
+        for bloco in conteudo_l.split("\n\n"):
+            linhas = bloco.strip().split("\n")
+            dados_item = {}
+            ref_encontrada = ""
+
+            for linha in linhas:
+                if ":" in linha:
+                    chave, valor = linha.split(":", 1)
+                    chave_limpa = chave.strip().lower()
+                    valor_limpo = valor.strip()
+                    
+                    if "referência" in chave_limpa:
+                        ref_encontrada = valor_limpo
+                        dados_item["referencia"] = valor_limpo
+                    elif "descrição" in chave_limpa:
+                        dados_item["descricao"] = valor_limpo
+                    elif "prazo de entrega" in chave_limpa:
+                        dados_item["prazo"] = valor_limpo
+                    elif "fator de segurança" in chave_limpa:
+                        dados_item["fator"] = valor_limpo
+                    elif "ncm" in chave_limpa:
+                        dados_item["ncm"] = valor_limpo
+                    elif "icms" in chave_limpa:
+                        dados_item["icms"] = valor_limpo
+                    elif "ipi" in chave_limpa:
+                        dados_item["ipi"] = valor_limpo
+                        
+            if ref_encontrada:
+                lingas_dict[ref_encontrada] = dados_item
+
+    return produtos_dict, lingas_dict
+
+base_produtos, base_lingas = carregar_bases_txt()
+
 
 # --- Aba Principal ---
 aba1, aba2, aba3, aba4, aba5 = st.tabs([
