@@ -93,7 +93,6 @@ elif os.path.exists("navbar-logo.png"):
 st.markdown("---")
 
 
-@st.cache_resource
 def carregar_estoque_local():
     caminho_csv = "dados/estoque_defran.csv"
     if os.path.exists(caminho_csv):
@@ -132,7 +131,8 @@ def carregar_dados():
         else:
             dados_carregados[nome] = pd.DataFrame()
             
-    dados_carregados["Estoque Defran"] = carregar_estoque_do_google()
+    # ALTERADO AQUI: Puxa o estoque do arquivo local CSV em vez do Google
+    dados_carregados["Estoque Defran"] = carregar_estoque_local()
      
     # Carregar Clientes
     caminho_clientes = "dados/clientes.csv"
