@@ -94,44 +94,20 @@ st.markdown("---")
 
 
 @st.cache_resource
-def conectar_google():
-    try:
-        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["gcp_service_account"], scope)
-        return gspread.authorize(creds)
-    except Exception:
-        return None
-
-client = conectar_google()
-
-def carregar_estoque_do_google():
-    try:
-        # Tenta conectar explicitamente na aba chamada "estoque"
-        secret_dict = dict(st.secrets["gcp_service_account"])
-        SCOPES = [
-            "https://www.googleapis.com/auth/spreadsheets",
-            "https://www.googleapis.com/auth/drive"
-        ]
-        creds = Credentials.from_service_account_info(secret_dict, scopes=SCOPES)
-        client = gspread.authorize(creds)
-        
-        planilha = client.open("sistemaDefran")
-        sheet = planilha.worksheet("estoque") # <--- AQUI: Pega a aba exata pelo nome
-        
-        # Pega todos os valores como lista de listas para montar o DataFrame de forma blindada
-        dados = sheet.get_all_values()
-        if len(dados) > 1:
-            cabecalho = dados[0]
-            linhas = dados[1:]
-            df = pd.DataFrame(linhas, columns=cabecalho)
-            return df
-        else:
-            return pd.DataFrame()
-            
-    except Exception as e:
-        st.warning(f"Usando arquivo local (Erro no Google: {e})")
-        if os.path.exists("dados/estoque_defran.csv"):
-            return pd.read_csv("dados/estoque_defran.csv", sep=',', encoding='latin1')
+def carregar_estoque_local():
+    caminho_csv = "dados/estoque_defran.csv"
+    if os.path.exists(caminho_csv):
+        try:
+            return pd.read_csv(caminho_csv, sep=',', encoding='utf-8')
+        except Exception as e:
+            try:
+                # Tenta com latin1 caso o utf-8 dê conflito de codificação
+                return pd.read_csv(caminho_csv, sep=',', encoding='latin1')
+            except Exception as ex:
+                st.error(f"Erro ao ler o arquivo CSV local: {ex}")
+                return pd.DataFrame()
+    else:
+        st.warning(f"Arquivo local não encontrado em: {caminho_csv}")
         return pd.DataFrame()
 
 def carregar_dados():
@@ -331,8 +307,16 @@ with aba1:
 
 
 # --- ABA 2: ESTOQUE DEFRAN ---
+
 with aba2:
-    st.header("Estoque Defran")
+    st.header("📊 Consulta de Estoque")
+    df_estoque = carregar_estoque_local()
+    
+    if not df_estoque.empty:
+        st.dataframe(df_estoque, use_container_width=True)
+    else:
+        st.info("Nenhum dado encontrado no estoque local.")
+        
     termo_busca = st.text_input("🔍 Filtrar por código ou referência:", key="busca_estoque")
     df_est = dados_carregados["Estoque Defran"]
     if st.session_state.get("busca_estoque") and not df_est.empty:
@@ -790,145 +774,114 @@ with aba4:
             on_click=limpar_tela_pos_pdf
         )
 
-# --- ABA 5: NOTAS FISCAIS (GOOGLE SHEETS - CORRIGIDO PARA COLUNAS REAIS) ---
+# --- ABA 5: NOTAS FISCAIS (ATUALIZAÇÃO DE ESTOQUE VIA CSV LOCAL) ---
 with aba5:
     import xml.etree.ElementTree as ET
-    import gspread
-    from google.oauth2.service_account import Credentials
 
-    st.header("📥📤 Gestão de Estoque via NF-e (Google Sheets)")
-    st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque diretamente no Google Sheets.")
+    st.header("📥📤 Gestão de Estoque via NF-e (Arquivo Local CSV)")
+    st.write("Faça o upload do XML da Nota Fiscal para atualizar o estoque diretamente no arquivo `estoque_defran.csv`.")
 
-    sheet = None
-    try:
-        secret_dict = dict(st.secrets["gcp_service_account"])
-        SCOPES = [
-            "https://www.googleapis.com/auth/spreadsheets",
-            "https://www.googleapis.com/auth/drive"
-        ]
-        creds = Credentials.from_service_account_info(secret_dict, scopes=SCOPES)
-        client = gspread.authorize(creds)
-        
-        NOME_DA_PLANILHA = "sistemaDefran" 
-        planilha = client.open(NOME_DA_PLANILHA)
-        sheet = planilha.worksheet("estoque")
-        
-    except Exception as e:
-        st.error(f"Erro detalhado ao conectar com a planilha: {e}")
-
-    if sheet is not None:
-        arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_v2")
-        
-        if arquivo_xml_unico:
-            try:
-                tree = ET.parse(arquivo_xml_unico)
-                root = tree.getroot()
-                ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
-                
-                infNFe = root.find('.//nfe:infNFe', ns)
-                nNF, xNome = "", ""
-                if infNFe is not None:
-                    ide = infNFe.find('nfe:ide', ns)
-                    if ide is not None:
-                        nNF = ide.findtext('nfe:nNF', default='', namespaces=ns)
-                    emit = infNFe.find('nfe:emit', ns)
-                    if emit is not None:
-                        xNome = emit.findtext('nfe:xNome', default='', namespaces=ns)
-                
-                st.info(f"**Nota Fiscal Nº:** {nNF} | **Emitente:** {xNome}")
-                
-                det_itens = root.findall('.//nfe:det', ns)
-                produtos_nota = []
-                
-                for det in det_itens:
-                    prod = det.find('nfe:prod', ns)
-                    if prod is not None:
-                        c_prod = prod.findtext('nfe:cProd', default='', namespaces=ns)
-                        x_prod = prod.findtext('nfe:xProd', default='', namespaces=ns)
-                        q_com = float(prod.findtext('nfe:qCom', default='0', namespaces=ns))
-                        
-                        produtos_nota.append({
-                            "Código": str(c_prod).strip(),
-                            "Descrição": x_prod,
-                            "Quantidade": q_com
-                        })
-                
-                if produtos_nota:
-                    df_produtos_nf = pd.DataFrame(produtos_nota)
-                    st.subheader("Produtos Constantes na Nota Fiscal:")
-                    st.dataframe(df_produtos_nf, use_container_width=True)
+    arquivo_xml_unico = st.file_uploader("Selecione o arquivo XML da NF-e", type=["xml"], key="upload_xml_csv")
+    
+    if arquivo_xml_unico:
+        try:
+            tree = ET.parse(arquivo_xml_unico)
+            root = tree.getroot()
+            ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
+            
+            infNFe = root.find('.//nfe:infNFe', ns)
+            nNF, xNome = "", ""
+            if infNFe is not None:
+                ide = infNFe.find('nfe:ide', ns)
+                if ide is not None:
+                    nNF = ide.findtext('nfe:nNF', default='', namespaces=ns)
+                emit = infNFe.find('nfe:emit', ns)
+                if emit is not None:
+                    xNome = emit.findtext('nfe:xNome', default='', namespaces=ns)
+            
+            st.info(f"**Nota Fiscal Nº:** {nNF} | **Emitente:** {xNome}")
+            
+            det_itens = root.findall('.//nfe:det', ns)
+            produtos_nota = []
+            
+            for det in det_itens:
+                prod = det.find('nfe:prod', ns)
+                if prod is not None:
+                    c_prod = prod.findtext('nfe:cProd', default='', namespaces=ns)
+                    x_prod = prod.findtext('nfe:xProd', default='', namespaces=ns)
+                    q_com = float(prod.findtext('nfe:qCom', default='0', namespaces=ns))
                     
-                    st.markdown("---")
-                    col_btn1, col_btn2 = st.columns(2)
-                    
-                    # --- BOTÃO DE ENTRADA ---
-                    if col_btn1.button("📥 Dar Entrada no Estoque", use_container_width=True):
-                        dados_planilha = sheet.get_all_values()
+                    produtos_nota.append({
+                        "Código": str(c_prod).strip(),
+                        "Descrição": x_prod,
+                        "Quantidade": q_com
+                    })
+            
+            if produtos_nota:
+                df_produtos_nf = pd.DataFrame(produtos_nota)
+                st.subheader("Produtos Constantes na Nota Fiscal:")
+                st.dataframe(df_produtos_nf, use_container_width=True)
+                
+                st.markdown("---")
+                col_btn1, col_btn2 = st.columns(2)
+                
+                caminho_csv = "dados/estoque_defran.csv"
+                
+                # --- BOTÃO DE ENTRADA NO CSV ---
+                if col_btn1.button("📥 Dar Entrada no Estoque Local", use_container_width=True):
+                    if os.path.exists(caminho_csv):
+                        df_estoque = carregar_estoque_local()
                         sucesso = True
                         
                         for item in produtos_nota:
                             cod_nf = item["Código"]
                             qtd_nf = item["Quantidade"]
-                            encontrado = False
                             
-                            # Varre a partir da linha 2 (ignorando cabeçalho na linha 1)
-                            for idx_linha, linha in enumerate(dados_planilha[1:], start=2):
-                                if len(linha) >= 2:
-                                    codigo_planilha = str(linha[1]).strip() # Coluna B (codigo)
-                                    
-                                    if codigo_planilha == cod_nf:
-                                        try:
-                                            qtd_atual = float(linha[4].strip()) # Coluna E (qtde)
-                                        except:
-                                            qtd_atual = 0.0
-                                        
-                                        nova_qtd = qtd_atual + qtd_nf
-                                        
-                                        # Atualiza diretamente a Coluna E (índice 5) da linha correspondente
-                                        sheet.update_cell(idx_linha, 5, f"{nova_qtd:.2f}")
-                                        encontrado = True
-                                        break
-                                        
-                            if not encontrado:
-                                st.warning(f"Produto {cod_nf} (Coluna B) não encontrado na planilha do Google.")
+                            # Procura o código na coluna 'codigo' do DataFrame local
+                            # Certifique-se de que a coluna no seu CSV se chama exatamente 'codigo'
+                            mask = df_estoque['codigo'].astype(str).str.strip() == cod_nf
+                            
+                            if mask.any():
+                                # Pega a quantidade atual, soma a da NF
+                                qtd_atual = float(df_estoque.loc[mask, 'qtde'].values[0])
+                                nova_qtd = qtd_atual + qtd_nf
+                                df_estoque.loc[mask, 'qtde'] = nova_qtd
+                            else:
+                                st.warning(f"Produto {cod_nf} não encontrado no CSV local.")
                                 sucesso = False
-                                
+                        
+                        # Salva as alterações de volta no arquivo CSV
+                        df_estoque.to_csv(caminho_csv, index=False, encoding='utf-8')
                         if sucesso:
-                            st.success("Entrada de estoque realizada e salva no Google Sheets com sucesso!")
-                    
-                    # --- BOTÃO DE SAÍDA ---
-                    if col_btn2.button("📤 Dar Saída no Estoque", use_container_width=True):
-                        dados_planilha = sheet.get_all_values()
+                            st.success("Estoque atualizado e salvo no arquivo CSV local com sucesso!")
+                    else:
+                        st.error(f"O arquivo {caminho_csv} não foi encontrado.")
+                
+                # --- BOTÃO DE SAÍDA NO CSV ---
+                if col_btn2.button("📤 Dar Saída no Estoque Local", use_container_width=True):
+                    if os.path.exists(caminho_csv):
+                        df_estoque = carregar_estoque_local()
                         sucesso = True
                         
                         for item in produtos_nota:
                             cod_nf = item["Código"]
                             qtd_nf = item["Quantidade"]
-                            encontrado = False
                             
-                            for idx_linha, linha in enumerate(dados_planilha[1:], start=2):
-                                if len(linha) >= 2:
-                                    codigo_planilha = str(linha[1]).strip() # Coluna B (codigo)
-                                    
-                                    if codigo_planilha == cod_nf:
-                                        try:
-                                            qtd_atual = float(linha[4].strip()) # Coluna E (qtde)
-                                        except:
-                                            qtd_atual = 0.0
-                                        
-                                        nova_qtd = max(0.0, qtd_atual - qtd_nf)
-                                        
-                                        # Atualiza diretamente a Coluna E (índice 5) da linha correspondente
-                                        sheet.update_cell(idx_linha, 5, f"{nova_qtd:.2f}")
-                                        encontrado = True
-                                        break
-                                        
-                            if not encontrado:
-                                st.warning(f"Produto {cod_nf} (Coluna B) não encontrado na planilha do Google.")
+                            mask = df_estoque['codigo'].astype(str).str.strip() == cod_nf
+                            
+                            if mask.any():
+                                qtd_atual = float(df_estoque.loc[mask, 'qtde'].values[0])
+                                nova_qtd = max(0.0, qtd_atual - qtd_nf)
+                                df_estoque.loc[mask, 'qtde'] = nova_qtd
+                            else:
+                                st.warning(f"Produto {cod_nf} não encontrado no CSV local.")
                                 sucesso = False
-                                
+                        
+                        df_estoque.to_csv(caminho_csv, index=False, encoding='utf-8')
                         if sucesso:
-                            st.success("Saída de estoque realizada e salva no Google Sheets com sucesso!")
-                            
-            except Exception as e:
-                st.error(f"Erro ao processar o arquivo XML ou atualizar a planilha: {e}")
+                            st.success("Saída registrada e salva no arquivo CSV local com sucesso!")
+                    else:
+                        st.error(f"O arquivo {caminho_csv} não foi encontrado.")
+                        
+        except Exception as e:
+            st.error(f"Erro ao processar o arquivo XML ou atualizar o CSV: {e}")
